@@ -1,0 +1,23 @@
+# Build results
+bin/
+obj/
+
+# Visual Studio files
+.vs/
+
+# User-specific files
+*.user
+*.suo
+
+# Logs
+*.log
+
+# NuGet packages
+*.nupkg
+packages/
+
+# Other common artifacts
+*.dll
+*.exe
+
+.fake
