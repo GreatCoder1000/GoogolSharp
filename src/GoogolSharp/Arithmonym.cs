@@ -13,7 +13,7 @@ namespace GoogolSharp
     /// Letter (allows for both tiny numbers like 100, and googological giants),
     /// Operand (>=2, <10)
     /// 
-    /// Bit layout in a 95-bit word:
+    /// Bit layout in a 96-bit word:
     /// [n 1][r 1][l 6][i 3][f 85]
     /// 
     /// - n: _IsNegative
