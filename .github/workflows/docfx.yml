@@ -10,18 +10,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      # Set up .NET environment
       - name: Set up .NET
         uses: actions/setup-dotnet@v2
         with:
           dotnet-version: '7.0'  # Specify the .NET version you are using
 
-      # Step 1: Generate metadata without attempting to build the code
-      - name: Generate metadata
-        run: docfx metadata docfx.json
+      # Install DocFX as a .NET global tool
+      - name: Install DocFX
+        run: dotnet tool install -g docfx
 
-      # Step 2: Build the docs from the pre-generated metadata
+      # Generate metadata without attempting to build the code
+      - name: Generate metadata using DocFX
+        run: docfx metadata docfx.json --no-restore
+
+      # Build the docs using the generated metadata
       - name: Build Docs using DocFX
-        run: docfx build docfx.json
+        run: docfx build docfx.json --no-restore
