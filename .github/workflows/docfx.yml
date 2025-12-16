@@ -20,14 +20,14 @@ jobs:
         with:
           dotnet-version: '10.0'  # Specify the .NET version you are using
 
-      # Install DocFX as a .NET global tool
-      - name: Install DocFX
+      # Install DocFX (either via .NET tool or standalone)
+      - name: Install DocFX (dotnet tool)
         run: dotnet tool install -g docfx
 
-      # Generate metadata without attempting to build the code
+      # Generate metadata using DocFX (no need for --no-restore)
       - name: Generate metadata using DocFX
-        run: docfx metadata docfx.json --no-restore
+        run: docfx metadata docfx.json
 
-      # Build the docs using the generated metadata
+      # Build the docs using the generated metadata (avoid restoring or building code)
       - name: Build Docs using DocFX
-        run: docfx build docfx.json --no-restore
+        run: docfx build docfx.json --no-serve
