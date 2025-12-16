@@ -1,46 +1,27 @@
-name: Build and Deploy DocFX
+name: Build Docs
 
 on:
   push:
     branches:
       - main
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
 jobs:
-  build:
+  build-docs:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: 8.x
+          dotnet-version: '7.0'  # Specify the .NET version you are using
 
-      - name: Install DocFX
-        run: dotnet tool update -g docfx
+      # Step 1: Generate metadata without attempting to build the code
+      - name: Generate metadata
+        run: docfx metadata /path/to/your/docfx.json --no-restore
 
-      - name: Build site
-        run: docfx docfx.json --no-restore
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: '_site'
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      # Step 2: Build the docs from the pre-generated metadata
+      - name: Build Docs using DocFX
+        run: docfx build /path/to/your/docfx.json --no-restore
