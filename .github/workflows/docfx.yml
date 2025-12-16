@@ -22,7 +22,7 @@ jobs:
 
       # Install DocFX (dotnet tool)
       - name: Install DocFX (dotnet tool)
-        run: dotnet tool install -g docfx --version 2.59.2  # Ensure compatibility with your version
+        run: dotnet tool install -g docfx
 
       # Build the project but skip restoring dependencies
       - name: Build the project (no restore)
