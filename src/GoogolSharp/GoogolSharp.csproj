@@ -9,9 +9,5 @@
   <ItemGroup>
     <ProjectReference Include="..\..\lib\QuadrupleLib\QuadrupleLib\QuadrupleLib.csproj" />
   </ItemGroup>
-  <PropertyGroup>
-    <!-- Suppress warnings for missing references -->
-    <NoWarn>$(NoWarn);CS0246</NoWarn> <!-- Finally fixed??!?!? -->
-  </PropertyGroup>
 
 </Project>
