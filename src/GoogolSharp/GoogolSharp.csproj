@@ -7,7 +7,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\QuadrupleLib\QuadrupleLib\QuadrupleLib.csproj" />
+    <ProjectReference Include="..\..\lib\QuadrupleLib\QuadrupleLib\QuadrupleLib.csproj" />
   </ItemGroup>
   <PropertyGroup>
     <!-- Suppress warnings for missing references -->
