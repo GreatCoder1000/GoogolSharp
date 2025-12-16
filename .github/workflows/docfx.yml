@@ -20,15 +20,19 @@ jobs:
         with:
           dotnet-version: '10.0'  # Adjust as needed
 
+      # Restore NuGet packages
+      - name: Restore dependencies
+        run: dotnet restore src/GoogolSharp/GoogolSharp.csproj
+
       # Install DocFX (dotnet tool)
       - name: Install DocFX (dotnet tool)
         run: dotnet tool install -g docfx
 
-      # Build the project but skip restoring dependencies
+      # Build the project (but skip restoring dependencies)
       - name: Build the project (no restore)
         run: dotnet build src/GoogolSharp/GoogolSharp.csproj --no-restore
 
-      # Generate metadata using DocFX (docfx will not attempt to restore or build)
+      # Generate metadata using DocFX
       - name: Generate metadata using DocFX
         run: docfx metadata docfx.json
 
