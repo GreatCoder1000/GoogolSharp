@@ -5,10 +5,10 @@ namespace GoogolSharp.Helpers
     public static class Float128PreciseTranscendentals
     {
         // Machine epsilon for IEEE 754 binary128 (approx 2^-113)
-        private static readonly Float128 Epsilon = Float128.ScaleB(Float128.One, -113);
-        private static readonly Float128 Log2_E = (Float128)1.442695040 + (Float128)8.889634073e-10 + (Float128)5.992468100e-20 + (Float128)1.892137426e-30 + (Float128)6.459541529e-40;
-        private static readonly Float128 Log2_10 = (Float128)3.321928094 + (Float128)8.873623478e-10 + (Float128)7.031942948e-20 + (Float128)9.390175864e-30 + (Float128)8.313930245e-40;
-        private static readonly Float128 Ln2 = (Float128)0.693147180 + (Float128)5.599453094e-10 + (Float128)1.723212145e-20 + (Float128)8.176568075e-30 + (Float128)5.001343602e-40;
+        public static readonly Float128 Epsilon = Float128.ScaleB(Float128.One, -113);
+        public static readonly Float128 Log2_E = (Float128)1.442695040 + (Float128)8.889634073e-10 + (Float128)5.992468100e-20 + (Float128)1.892137426e-30 + (Float128)6.459541529e-40;
+        public static readonly Float128 Log2_10 = (Float128)3.321928094 + (Float128)8.873623478e-10 + (Float128)7.031942948e-20 + (Float128)9.390175864e-30 + (Float128)8.313930245e-40;
+        public static readonly Float128 Ln2 = (Float128)0.693147180 + (Float128)5.599453094e-10 + (Float128)1.723212145e-20 + (Float128)8.176568075e-30 + (Float128)5.001343602e-40;
 
         /// <summary>
         /// Improved Exp2(y) using Newton iteration with adaptive stopping.
@@ -64,6 +64,14 @@ namespace GoogolSharp.Helpers
         public static Float128 SafeLog10(Float128 x)
         {
             return SafeLog2(x) / Log2_10;
+        }
+
+        /// <summary>
+        /// Improved Log(x) using precomputed Log2(e).
+        /// </summary>
+        public static Float128 SafeLog(Float128 x)
+        {
+            return SafeLog2(x) / Log2_E;
         }
 
         /// <summary>
