@@ -40,7 +40,7 @@ All this cleanly fits into 96 bits. Since this is not a power of two it is repre
 
 ## 📄 License
 
-GoogolSharp is licensed under Apache License (2.0), but it uses **QuadrupleLib**, which is licensed under the LGPL-3.0 license. You can find the full license and source code for QuadrupleLib here:
+GoogolSharp is licensed under LGPL-3.0, and it uses **QuadrupleLib**, which is licensed under the same license. You can find the full license and source code for QuadrupleLib here:
 
 - [QuadrupleLib GitHub Repository](https://link-to-quadruplelib-repo)
 - License: [LGPL-3.0](https://www.gnu.org/licenses/lgpl-3.0.html)

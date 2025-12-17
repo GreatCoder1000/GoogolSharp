@@ -6,6 +6,8 @@ _layout: landing
 
 GoogolSharp is a C# library for working with **extremely** large numbers — inspired by googology and advanced numeric representations. It introduces a numeric type called `Arithmonym`, designed to efficiently encode and manipulate values **far beyond conventional floating‑point ranges**.
 
+---
+
 ## ✨ Features
 
 * Custom struct `Arithmonym` for representing *very* large or *very* small numbers.
@@ -24,17 +26,21 @@ GoogolSharp is a C# library for working with **extremely** large numbers — ins
 
 * Extensible design for mathematical operations and future numeric extensions.
 
+---
+
 ## 🔢 Bit Layout (96 bits total)
 
 |Bits|Description|
 |----|-----------|
 |1   |`_IsNegative` - Sign Bit|
 |1   |`_IsReciprocal` - reciprocal flag (for numbers < 1)|
-|6|`Letter` - symbolic representation for scale (tiny numbers to googological)|
-|3|`OperandFloored` - Since `Operand` is always less than 10, and >=2, `Floor(Operand) - 2` encodes cleanly in 3 bits. |
-|85|`OperandFraction128` - The 128 is because the property returns a `UInt128`, and this is the fractional part of the `Operand`.|
+|6   |`Letter` - symbolic representation for scale (tiny numbers to googological)|
+|3   |`OperandFloored` - Since `Operand` is always less than 10, and >=2, `Floor(Operand) - 2` encodes cleanly in 3 bits. |
+|85  |`OperandFraction128` - The 128 is because the property returns a `UInt128`, and this is the fractional part of the `Operand`.|
 
 All this cleanly fits into 96 bits. Since this is not a power of two it is represented in three `uint`s.
+
+---
 
 ## ⚖️ Dependencies
 
