@@ -18,3 +18,7 @@ Now, the focus is on documentation, and implementing MORE interfaces. Maybe tack
 
 ## Day 6
 Yay! Implemented both `INumberBase` and `INumber`, but some functionality is TODO. Also, maybe the docs MD... Maybe work on `ToString` and `Parse`?
+
+## Day 7
+
+Fixed NuGet bugs. https://github.com/GreatCoder1000/GoogolSharp/discussions/2

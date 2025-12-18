@@ -22,14 +22,14 @@ class Program
         Arithmonym numerator = ((n % 2) == 0) ? (Arithmonym)1 : (Arithmonym)11771943321600;
         numerator *= 3674160;
 
-        Arithmonym factorial24 = ArithmonymMath.Factorial((Arithmonym)24);
-        numerator *= Arithmonym.Pow(factorial24, (Arithmonym)(((long)(n-2)*(long)n) / 4L));
+        Arithmonym factorial24 = Arithmonym.Factorial((Arithmonym)24);
+        numerator *= Arithmonym.Pow(factorial24, (Arithmonym)((n - 2) * (long)n / 4L));
 
-        Arithmonym exponent = (Arithmonym)(6L * (((long)(n-2)*(long)(n-2))/4L));
+        Arithmonym exponent = (Arithmonym)(6L * ((n - 2) * (long)(n - 2) / 4L));
 
         Arithmonym denominator = Arithmonym.Pow(24, exponent);
 
-        return numerator/denominator;
+        return numerator / denominator;
     }
 
     static void Main()
