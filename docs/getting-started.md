@@ -17,7 +17,7 @@ This guide will help you set up GoogolSharp and start working with **extremely l
 ```csharp
 using GoogolSharp;
 
-var six = new Arithmonym(6);
-var seven = new Arithmonym(7);
+var six = (Arithmonym)6;
+var seven = (Arithmonym)7;
 Console.WriteLine(Arithmonym.Pow(six, seven)); // 326592
 ```

@@ -2,3 +2,7 @@
   href: introduction.md
 - name: Getting Started
   href: getting-started.md
+- name: Arithmonym Casts
+  href: arithmonym-casts.md
+- name: Factorials & Combinatorics
+  href: factorials-and-combinatorics.md

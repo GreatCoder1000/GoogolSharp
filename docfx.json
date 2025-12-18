@@ -24,13 +24,6 @@
         ]
       }
     ],
-    "externalReferences": [
-      {
-        "reference": "path/to/QuadrupleLib.dll",
-        "aliases": [
-          "QuadrupleLib"
-        ]
-      }],
     "resource": [
       {
         "files": [
