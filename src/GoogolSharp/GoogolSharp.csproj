@@ -15,15 +15,14 @@
   <ItemGroup>
     <!-- QuadrupleLib is bundled inside GoogolSharp, not exposed as a dependency -->
     <ProjectReference Include="..\..\lib\QuadrupleLib\QuadrupleLib\QuadrupleLib.csproj"
-                      PrivateAssets="all"
-                      ExcludeAssets="runtime" />
+                      PrivateAssets="all" />
     <!-- Readme -->
     <None Include="README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 
   <PropertyGroup>
     <PackageId>GoogolSharp</PackageId>
-    <Version>0.2.12</Version>
+    <Version>0.2.13</Version>
     <Authors>GreatCoder1000</Authors>
     <Description>Represents numbers with reasonable precision, and googological range.</Description>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
