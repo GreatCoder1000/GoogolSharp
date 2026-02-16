@@ -9,14 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\lib\QuadrupleLib\QuadrupleLib\QuadrupleLib.csproj"
+    <ProjectReference Include="..\..\external\QuadrupleLib\QuadrupleLib\QuadrupleLib.csproj"
                       PrivateAssets="all" />
   </ItemGroup>
 
   <!-- IMPORTANT: Target must be OUTSIDE ItemGroup -->
   <Target Name="IncludeQuadrupleLib" AfterTargets="Build">
     <ItemGroup>
-      <None Include="$(ProjectDir)..\..\lib\QuadrupleLib\QuadrupleLib\bin\$(Configuration)\$(TargetFramework)\QuadrupleLib.dll"
+      <None Include="$(ProjectDir)..\..\external\QuadrupleLib\QuadrupleLib\bin\$(Configuration)\$(TargetFramework)\QuadrupleLib.dll"
             Pack="true"
             PackagePath="lib/$(TargetFramework)" />
     </ItemGroup>
