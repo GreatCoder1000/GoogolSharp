@@ -15,8 +15,10 @@
  *  You should have received a copy of the GNU Lesser General Public License
  *  along with GoogolSharp.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
+
 using QuadrupleLib;
+using QuadrupleLib.Accelerators;
+using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
 
 namespace GoogolSharp.Helpers
 {

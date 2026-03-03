@@ -2,78 +2,15 @@
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+    <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
-  <!-- ProjectReference so GoogolSharp can compile against QuadrupleLib -->
   <ItemGroup>
-    <ProjectReference Include="..\..\external\lib\QuadrupleLib\QuadrupleLib\QuadrupleLib.csproj">
-      <PrivateAssets>all</PrivateAssets>
-      <Pack>false</Pack>
-    </ProjectReference>
+    <ProjectReference Include="..\..\external\lib\QuadrupleLib\QuadrupleLib\QuadrupleLib.csproj" />
   </ItemGroup>
-
-  <!-- Convert TargetFrameworks into an item list for batching -->
-  <ItemGroup>
-    <TFM Include="$(TargetFrameworks)" />
-  </ItemGroup>
-
-  <!--
-    Build QuadrupleLib for each TFM BEFORE ResolveReferences and Pack.
-    This guarantees the DLL exists early in the build pipeline.
-  -->
-  <Target Name="BuildQuadrupleLib" BeforeTargets="ResolveReferences;Pack">
-    <MSBuild Projects="$(ProjectDir)..\..\external\lib\QuadrupleLib\QuadrupleLib\QuadrupleLib.csproj"
-             Targets="Build"
-             Properties="Configuration=$(Configuration);TargetFramework=%(TFM.Identity)" />
-  </Target>
-
-  <!--
-    Copy the built QuadrupleLib.dll into GoogolSharp's output BEFORE ResolveReferences.
-    This ensures consumers that reference GoogolSharp as a project will see the DLL and copy it into their output.
-  -->
-  <Target Name="CopyQuadDllToOutput" BeforeTargets="ResolveReferences;Pack" DependsOnTargets="BuildQuadrupleLib">
-    <ItemGroup>
-      <QuadDll Include="$(ProjectDir)..\..\external\lib\QuadrupleLib\QuadrupleLib\bin\$(Configuration)\%(TFM.Identity)\QuadrupleLib.dll" />
-    </ItemGroup>
-
-    <Message Importance="High" Text="Checking QuadrupleLib for %(TFM.Identity): %(QuadDll.Identity)" />
-    <Copy SourceFiles="@(QuadDll)"
-          DestinationFolder="$(OutputPath)"
-          SkipUnchangedFiles="true"
-          Condition="Exists('%(QuadDll.Identity)')" />
-  </Target>
-
-  <!--
-    Add a file Reference that points to the DLL in GoogolSharp's output.
-    Marking Private=true causes the DLL to be copied into consumer outputs.
-  -->
-  <ItemGroup>
-    <Reference Include="QuadrupleLib">
-      <HintPath>$(OutputPath)QuadrupleLib.dll</HintPath>
-      <Private>true</Private>
-    </Reference>
-  </ItemGroup>
-
-  <!--
-    Include QuadrupleLib.dll in the NuGet package under lib/<tfm>/QuadrupleLib.dll
-    This target runs after Build so the DLL is present for packing.
-  -->
-  <Target Name="IncludeQuadrupleLibInPackage" AfterTargets="Build" DependsOnTargets="BuildQuadrupleLib">
-    <ItemGroup>
-      <QuadDllForPack Include="$(ProjectDir)..\..\external\lib\QuadrupleLib\QuadrupleLib\bin\$(Configuration)\%(TFM.Identity)\QuadrupleLib.dll" />
-    </ItemGroup>
-
-    <Message Importance="High" Text="Including QuadrupleLib in package for %(TFM.Identity): %(QuadDllForPack.Identity)" />
-    <ItemGroup>
-      <None Include="@(QuadDllForPack)"
-            Pack="true"
-            PackagePath="lib/%(TFM.Identity)" Condition="Exists('%(QuadDllForPack.Identity)')" />
-    </ItemGroup>
-  </Target>
 
   <PropertyGroup>
     <PackageId>GoogolSharp</PackageId>

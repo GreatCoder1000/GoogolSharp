@@ -18,6 +18,8 @@
 
 using GoogolSharp.Helpers;
 using QuadrupleLib;
+using QuadrupleLib.Accelerators;
+using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
 using System.Globalization;
 using System.Numerics;
 
@@ -1721,8 +1723,8 @@ namespace GoogolSharp
         #endregion
 
         // Lanczos coefficients (g=7, n=9 is common choice)
-    private static readonly double[] lanczosCoefficients =
-    {
+        private static readonly double[] lanczosCoefficients =
+        {
         0.99999999999980993,
         676.5203681218851,
         -1259.1392167224028,
@@ -1734,48 +1736,48 @@ namespace GoogolSharp
         1.5056327351493116e-7
     };
 
-    /// <summary>
-    /// Factorial using Lanczos approximation via Gamma(n+1).
-    /// </summary>
-    public static Arithmonym Factorial(Arithmonym n)
-    {
-        // Convert to double for approximation
-        double x = (double)n;
-
-        if (x < 0.0)
-            throw new ArgumentException("Factorial not defined for negative values.");
-
-        // For integer values, handle small n directly
-        if (x == Math.Floor(x) && x <= 20)
+        /// <summary>
+        /// Factorial using Lanczos approximation via Gamma(n+1).
+        /// </summary>
+        public static Arithmonym Factorial(Arithmonym n)
         {
-            double exact = 1.0;
-            for (int i = 2; i <= (int)x; i++)
-                exact *= i;
-            return (Arithmonym)exact;
+            // Convert to double for approximation
+            double x = (double)n;
+
+            if (x < 0.0)
+                throw new ArgumentException("Factorial not defined for negative values.");
+
+            // For integer values, handle small n directly
+            if (x == Math.Floor(x) && x <= 20)
+            {
+                double exact = 1.0;
+                for (int i = 2; i <= (int)x; i++)
+                    exact *= i;
+                return (Arithmonym)exact;
+            }
+
+            // Lanczos approximation for Gamma(n+1)
+            return (Arithmonym)GammaLanczos(x + 1.0);
         }
 
-        // Lanczos approximation for Gamma(n+1)
-        return (Arithmonym)GammaLanczos(x + 1.0);
-    }
-
-    private static double GammaLanczos(double z)
-    {
-        if (z < 0.5)
+        private static double GammaLanczos(double z)
         {
-            // Reflection formula for stability
-            return Math.PI / (Math.Sin(Math.PI * z) * GammaLanczos(1 - z));
-        }
+            if (z < 0.5)
+            {
+                // Reflection formula for stability
+                return Math.PI / (Math.Sin(Math.PI * z) * GammaLanczos(1 - z));
+            }
 
-        z--;
-        double x = lanczosCoefficients[0];
-        for (int i = 1; i < lanczosCoefficients.Length; i++)
-        {
-            x += lanczosCoefficients[i] / (z + i);
-        }
+            z--;
+            double x = lanczosCoefficients[0];
+            for (int i = 1; i < lanczosCoefficients.Length; i++)
+            {
+                x += lanczosCoefficients[i] / (z + i);
+            }
 
-        double g = 7.0;
-        double t = z + g + 0.5;
-        return Math.Sqrt(2 * Math.PI) * Math.Pow(t, z + 0.5) * Math.Exp(-t) * x;
-    }
+            double g = 7.0;
+            double t = z + g + 0.5;
+            return Math.Sqrt(2 * Math.PI) * Math.Pow(t, z + 0.5) * Math.Exp(-t) * x;
+        }
     }
 }
