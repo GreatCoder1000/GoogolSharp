@@ -39,9 +39,27 @@ namespace GoogolSharp.Helpers
                 );
                 return FormatArithmonymScientific(letterE, isReciprocal);
             }
-
-            // TODO
-            return $"{(isReciprocal ? "1 / " : "")}F{letterF}";
+            if (letterF < 7)
+            {
+                return $"{(isReciprocal ? "1E-" : "1E+")}{FormatArithmonymFromLetterF(letterF - 1, false)}";
+            }
+            if (letterF < 100000000000000000000.0)
+            {
+                Float128 right = Float128.Floor(letterF);
+                Float128 left = Float128PreciseTranscendentals.SafeExp10(letterF - right);
+                if (left < 1)
+                {
+                    right--;
+                    left *= 10;
+                }
+                if (left > 10)
+                {
+                    right++;
+                    left /= 10;
+                }
+                return $"{(isReciprocal ? "1 / (" : "")}{left}F+{right}{(isReciprocal ? ")" : "")}";
+            }
+            return $"{(isReciprocal ? "1 / " : "")}F+{letterF}";
         }
 
         public static string FormatArithmonymScientific(Float128 letterE, bool isReciprocal)
