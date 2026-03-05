@@ -1,1 +1,1 @@
-* Make `FormatArithmonymFromLetterF` in `ArithmonymFormattingUtils.cs`
+* MAKE FLOAT CONVERSION BETTER SO ALL TESTS PASS!!

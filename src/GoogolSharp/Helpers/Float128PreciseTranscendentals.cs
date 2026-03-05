@@ -35,16 +35,14 @@ namespace GoogolSharp.Helpers
         /// </summary>
         public static Float128 SafeExp2(Float128 y)
         {
-            Float128 x_n = Float128.ScaleB(Float128.One, (int)Float128.Floor(y));
+            int n = (int)Float128.Floor(y);
+            Float128 f = y - n;
 
-            for (int n = 0; n < 10; n++)
-            {
-                Float128 delta = y - Float128.Log2(x_n);
-                if (Float128.Abs(delta) < Epsilon) break;
-                x_n = Float128.FusedMultiplyAdd(x_n * Ln2, delta, x_n);
-            }
+            // small-range exp2(f)
+            Float128 z = f * Ln2;
+            Float128 r = 1 + z + z*z/2 + z*z*z/6 + z*z*z*z/24;
 
-            return x_n;
+            return Float128.ScaleB(r, n);
         }
 
         /// <summary>
@@ -53,29 +51,40 @@ namespace GoogolSharp.Helpers
         public static Float128 SafeLog2(Float128 x)
         {
             if (x <= Float128.Zero)
-                throw new ArgumentOutOfRangeException(nameof(x), "Log2 undefined for non-positive values.");
+                throw new ArgumentOutOfRangeException(nameof(x),
+                    "Log2 undefined for non-positive values.");
 
-            // Decompose x = m * 2^e
+            // Decompose x = m * 2^e, with m in [0.5, 1)
             Decompose(x, out Float128 m, out int e);
 
-            // ε = m - 1, with m in [0.5,1)
-            Float128 epsilon = m - Float128.One;
-
-            // Series expansion for log2(1+ε)
-            Float128 term = epsilon;
-            Float128 sum = Float128.Zero;
-            int k = 1;
-
-            while (Float128.Abs(term) > Float128.ScaleB(Float128.One, -120)) // stop near binary128 epsilon
+            // Shift to m in [sqrt(0.5), sqrt(2))
+            Float128 sqrtHalf = Float128.Sqrt(Float128.ScaleB(Float128.One, -1));
+            if (m < sqrtHalf)
             {
-                sum += term / k;
-                k++;
-                term *= -epsilon; // alternating series
+                m *= 2;
+                e--;
             }
 
-            Float128 log2Mantissa = sum / Ln2;
+            // atanh-style transform
+            Float128 t = (m - Float128.One) / (m + Float128.One);
+            Float128 t2 = t * t;
 
-            return e + log2Mantissa;
+            Float128 term = t;
+            Float128 sum = term;
+            int k = 3;
+
+            // relative convergence
+            while (Float128.Abs(term) > Epsilon * Float128.Abs(sum))
+            {
+                term *= t2;
+                sum += term / k;
+                k += 2;
+            }
+
+            Float128 ln_m = 2 * sum;
+            Float128 log2_m = ln_m / Ln2;
+
+            return e + log2_m;
         }
 
         /// <summary>
@@ -99,7 +108,11 @@ namespace GoogolSharp.Helpers
         /// </summary>
         public static Float128 SafePow(Float128 x, Float128 y)
         {
-            return SafeExp2(y * Float128.Log2(x));
+            if (x <= Float128.Zero)
+                throw new ArgumentOutOfRangeException(nameof(x),
+                    "Pow undefined for non-positive base.");
+
+            return SafeExp2(y * SafeLog2(x));
         }
 
         /// <summary>
