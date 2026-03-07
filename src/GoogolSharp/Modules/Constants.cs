@@ -85,6 +85,8 @@ namespace GoogolSharp
         /// </summary>
         public static Arithmonym Log2_10 => new(Float128PreciseTranscendentals.Log2_10);
 
+        public static Arithmonym Five => new(isNegative: false, _IsReciprocal: false, 0x03, EncodeOperand((Float128)2.5));
+
         /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents tau.
         /// </summary>
@@ -94,6 +96,23 @@ namespace GoogolSharp
         /// A constant <see cref="Arithmonym"/> that represents the value ten.
         /// </summary>
         public static Arithmonym Ten => new(isNegative: false, _IsReciprocal: false, 0x03, EncodeOperand((Float128)5));
+
+        /// <summary>
+        /// A constant <see cref="Arithmonym"/> that represents the value 10^10.
+        /// 
+        /// The name Dialogue was also suggested for this constant, but it is a bit ambiguous and used in other places too.
+        /// </summary>
+        public static Arithmonym TenBillion => new(isNegative: false, _IsReciprocal: false, 0x06, 0);
+
+        /// <summary>
+        /// A constant <see cref="Arithmonym"/> that represents the value 10^(10^(10^(10^(10^(10^(10^(10^(10^10)))))))).
+        /// </summary>
+        public static Arithmonym Dekalogue => new(isNegative: false, _IsReciprocal: false, 0x07, 0);
+
+        /// <summary>
+        /// A constant <see cref="Arithmonym"/> that represents the value 10^^^10 (or J3)
+        /// </summary>
+        public static Arithmonym Dekateraksys => new(isNegative: false, _IsReciprocal: false, 0x07, 0);
 
         /// <summary>
         /// The radix.
