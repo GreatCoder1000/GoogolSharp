@@ -84,5 +84,15 @@ namespace GoogolSharp
             double t = z + g + 0.5;
             return Math.Sqrt(2 * Math.PI) * Math.Pow(t, z + 0.5) * Math.Exp(-t) * x;
         }
+
+        public static Arithmonym Permutations(Arithmonym n, Arithmonym r)
+        {
+            return Factorial(n) / Factorial(n - r);
+        }
+
+        public static Arithmonym Combinations(Arithmonym n, Arithmonym r)
+        {
+            return Factorial(n) / (Factorial(r) * Factorial(n - r));
+        }
     }
 }
