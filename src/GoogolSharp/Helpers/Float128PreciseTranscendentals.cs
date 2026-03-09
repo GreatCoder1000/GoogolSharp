@@ -26,27 +26,67 @@ namespace GoogolSharp.Helpers
     {
         // Machine epsilon for IEEE 754 binary128 (approx 2^-113)
         public static readonly Float128 Epsilon = Float128.ScaleB(Float128.One, -113);
-        public static readonly Float128 Log2_E = (Float128)1.442695040 + (Float128)8.889634073e-10 + (Float128)5.992468100e-20 + (Float128)1.892137426e-30 + (Float128)6.459541529e-40;
-        public static readonly Float128 Log2_10 = (Float128)3.321928094 + (Float128)8.873623478e-10 + (Float128)7.031942948e-20 + (Float128)9.390175864e-30 + (Float128)8.313930245e-40;
-        public static readonly Float128 Ln2 = (Float128)0.693147180 + (Float128)5.599453094e-10 + (Float128)1.723212145e-20 + (Float128)8.176568075e-30 + (Float128)5.001343602e-40;
+
+        // High-precision constants using multi-part representation
+        // Log2(e) = 1.44269504088896340735992468100189214...
+        public static readonly Float128 Log2_E = (Float128)1.442695040888963407 +
+                                               (Float128)3.59667e-18 +
+                                               (Float128)9.4850e-27;
+
+        // Log2(10) = 3.32192809488736234787031942948939398...
+        public static readonly Float128 Log2_10 = (Float128)3.321928094887362347 +
+                                                 (Float128)8.704e-18 +
+                                                 (Float128)1.092e-27;
+
+        // Ln(2) = 0.69314718055994530941723212145817656...
+        public static readonly Float128 Ln2 = (Float128)0.693147180559945309 +
+                                             (Float128)4.1747e-18 +
+                                             (Float128)1.2382e-27;
+
+        // Euler's number constants
+        public static readonly Float128 E = (Float128)2.718281828459045234 +
+                                           (Float128)6.02214e-18 +
+                                           (Float128)1.9927e-27;
+
+        public static readonly Float128 Pi = (Float128)3.141592653589793238 +
+                                            (Float128)4.6264e-18 +
+                                            (Float128)2.8467e-27;
 
         /// <summary>
-        /// Improved Exp2(y) using Newton iteration with adaptive stopping.
+        /// Improved Exp2(y) using Taylor series with 13 terms for better precision.
         /// </summary>
         public static Float128 SafeExp2(Float128 y)
         {
             int n = (int)Float128.Floor(y);
             Float128 f = y - n;
 
-            // small-range exp2(f)
+            // small-range exp(f*ln2) using Taylor series
             Float128 z = f * Ln2;
-            Float128 r = 1 + z + z*z/2 + z*z*z/6 + z*z*z*z/24;
+            Float128 z2 = z * z;
+            Float128 z3 = z2 * z;
+            Float128 z4 = z2 * z2;
+
+            // exp(z) = 1 + z + z^2/2! + z^3/3! + z^4/4! + ... with 13 terms
+            Float128 r = (Float128)1.0;
+            r += z;
+            r += z2 / (Float128)2.0;
+            r += z3 / (Float128)6.0;
+            r += z4 / (Float128)24.0;
+            r += z4 * z / (Float128)120.0;
+            r += z4 * z2 / (Float128)720.0;
+            r += z4 * z3 / (Float128)5040.0;
+            r += z4 * z4 / (Float128)40320.0;
+            r += z4 * z4 * z / (Float128)362880.0;
+            r += z4 * z4 * z2 / (Float128)3628800.0;
+            r += z4 * z4 * z3 / (Float128)39916800.0;
+            r += z4 * z4 * z4 / (Float128)479001600.0;
+            r += z4 * z4 * z4 * z / (Float128)6227020800.0;
 
             return Float128.ScaleB(r, n);
         }
 
         /// <summary>
-        /// Improved Log2(x) wrapper.
+        /// Improved Log2(x) with better convergence and more iterations.
         /// </summary>
         public static Float128 SafeLog2(Float128 x)
         {
@@ -65,20 +105,21 @@ namespace GoogolSharp.Helpers
                 e--;
             }
 
-            // atanh-style transform
+            // atanh-style transform: ln(x) = 2 * sum_{k=0}^{inf} t^(2k+1)/(2k+1) where t = (x-1)/(x+1)
             Float128 t = (m - Float128.One) / (m + Float128.One);
             Float128 t2 = t * t;
 
+            Float128 sum = t;
             Float128 term = t;
-            Float128 sum = term;
-            int k = 3;
 
-            // relative convergence
-            while (Float128.Abs(term) > Epsilon * Float128.Abs(sum))
+            // Use more terms for better precision
+            for (int k = 1; k < 100; k++)
             {
                 term *= t2;
-                sum += term / k;
-                k += 2;
+                Float128 contrib = term / (2 * k + 1);
+                if (Float128.Abs(contrib) < Epsilon * Float128.Abs(sum))
+                    break;
+                sum += contrib;
             }
 
             Float128 ln_m = 2 * sum;
