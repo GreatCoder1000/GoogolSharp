@@ -38,3 +38,19 @@ class Program
     }
 }
 ```
+
+## Permutations & Combinations (nPr & nCr)
+
+Permutations and Combinations is easy! 
+
+Really? Look at the example below.
+
+```csharp
+using GoogolSharp; // Always remember that
+
+Arithmonym a = Arithmonym.Permutations(52, 4);
+Console.WriteLine($"There are {a} ways to retrieve 4 cards from a deck of 52 cards");
+
+Arithmonym x = Arithmonym.Combinations(30, 5);
+Console.WriteLine($"There are {x} ways to elect 5 leaders from a group of 30 people.")
+```
