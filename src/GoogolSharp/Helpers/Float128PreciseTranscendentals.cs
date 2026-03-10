@@ -144,23 +144,22 @@ namespace GoogolSharp.Helpers
             // Binary exponent and mantissa extraction
             Decompose(x, out Float128 m, out int e);
 
-            // Aggressive range reduction: reduce m to [1 - 1/256, 1 + 1/256]
-            // This gives very rapid convergence for atanh-based series
+            // Aggressive range reduction: reduce m to [1, 2)
+            // The atanh series works well throughout this range,
+            // and using 2 as the upper bound ensures no oscillation issues
             int exponent_reduce = 0;
-            Float128 target_low = (Float128)1.0 - Float128.ScaleB(Float128.One, -8);
-            Float128 target_high = (Float128)1.0 + Float128.ScaleB(Float128.One, -8);
+            Float128 two = (Float128)2.0;
 
-            while (m < target_low)
+            while (m < Float128.One)
             {
                 m *= Sqrt2;
                 exponent_reduce--;
             }
-            while (m > target_high)
+            while (m >= two)
             {
                 m /= Sqrt2;
                 exponent_reduce++;
             }
-
             // Now m is in ~[1-2^-8, 1+2^-8], atanh converges very rapidly
             // Use atanh transform: ln(x) = 2 * atanh((x-1)/(x+1))
             Float128 t = (m - Float128.One) / (m + Float128.One);
@@ -174,7 +173,7 @@ namespace GoogolSharp.Helpers
             for (int k = 1; k <= 200; k++)
             {
                 term *= t2;
-                Float128 contrib = term / (2.0f * k + 1.0f);
+                Float128 contrib = term / (Float128)(2 * k + 1);
 
                 if (Float128.Abs(contrib) < Epsilon * Epsilon * Float128.Abs(sum))
                     break;

@@ -91,6 +91,15 @@ namespace GoogolSharp
         /// Returns <paramref name="left"/> exponentiated to <paramref name="right"/>
         /// </summary>
         public static Arithmonym Pow(Arithmonym left, Arithmonym right) => (left._Log10 * right)._Exp10;
+
+        /// <summary>
+        /// Returns the absolute value (magnitude) of <paramref name="value"/>.
+        /// This is a small helper that forwards to the instance-level <see cref="AbsoluteValue"/> property.
+        /// </summary>
+        /// <param name="value">The value to take the absolute of.</param>
+        /// <returns>A non-negative <see cref="Arithmonym"/> with the same magnitude as <paramref name="value"/>.</returns>
+        public static Arithmonym Sqrt(Arithmonym value) => new ArithmonymSqrt(value).Of();
+
         /// <summary>
         /// Determines whether the specified <see cref="Arithmonym"/> represents positive or negative infinity.
         /// </summary>
