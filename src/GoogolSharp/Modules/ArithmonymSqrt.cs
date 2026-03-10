@@ -22,15 +22,11 @@ using QuadrupleLib.Accelerators;
 using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
 using System.Globalization;
 using System.Numerics;
-using System.Reflection.Metadata.Ecma335;
-using System.Runtime.CompilerServices;
 namespace GoogolSharp
 {
     internal readonly struct ArithmonymSqrt : IArithmonymOperation
     {
         private readonly Arithmonym inner;
-        internal Arithmonym Inner => inner;
-
         public Arithmonym Operand => inner;
 
         internal ArithmonymSqrt(Arithmonym inner)
@@ -38,6 +34,6 @@ namespace GoogolSharp
             this.inner = inner;
         }
 
-        public Arithmonym Of() => (Inner._Log10 / Arithmonym.Two)._Exp10;
+        public Arithmonym Of() => (Operand._Log10 / Arithmonym.Two)._Exp10;
     }
 }
