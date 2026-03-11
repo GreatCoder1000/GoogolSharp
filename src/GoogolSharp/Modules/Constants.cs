@@ -26,7 +26,7 @@ namespace GoogolSharp
 {
     partial struct Arithmonym
     {
-               /// <summary>
+        /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents a quiet Not-a-Number (QNaN).
         /// </summary>
         public static readonly Arithmonym NaN = new(
@@ -59,6 +59,11 @@ namespace GoogolSharp
         /// A constant <see cref="Arithmonym"/> that represents the value negative one (-1).
         /// </summary>
         public static Arithmonym NegativeOne => new(isNegative: true, _IsReciprocal: false, 0x01, 0);
+
+        /// <summary>
+        /// A constant <see cref="Arithmonym"/> that represents the value ten.
+        /// </summary>
+        public static Arithmonym NegativeTwo => new(isNegative: false, _IsReciprocal: false, 0x02, 0);
 
         /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents the value two.
@@ -94,7 +99,7 @@ namespace GoogolSharp
         /// A constant <see cref="Arithmonym"/> that represents the value four.
         /// </summary>
         public static Arithmonym Four => new(isNegative: false, _IsReciprocal: false, 0x03, 0);
-        
+
         /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents the value five.
         /// </summary>
@@ -126,6 +131,11 @@ namespace GoogolSharp
         public static Arithmonym Thirteen => new(isNegative: false, _IsReciprocal: false, 0x03, EncodeOperand((Float128)6.5));
 
         /// <summary>
+        /// A constant <see cref="Arithmonym"/> that represents the value ten.
+        /// </summary>
+        public static Arithmonym Fourteen => new(isNegative: false, _IsReciprocal: false, 0x03, EncodeOperand((Float128)7));
+
+        /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents the value five.
         /// </summary>
         public static Arithmonym Twenty => new(isNegative: false, _IsReciprocal: false, 0x04, 0);
@@ -148,9 +158,19 @@ namespace GoogolSharp
         public static Arithmonym Dekalogue => new(isNegative: false, _IsReciprocal: false, 0x07, 0);
 
         /// <summary>
+        /// A constant <see cref="Arithmonym"/> that represents the value 10^^^3
+        /// </summary>
+        public static Arithmonym Triateraksys => new(isNegative: false, _IsReciprocal: false, 0x07, EncodeOperand(2 + Float128PreciseTranscendentals.SafeLog2(1.5) / Float128PreciseTranscendentals.SafeLog2(5)));
+
+        /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents the value 10^^^10 (or J3)
         /// </summary>
         public static Arithmonym Dekateraksys => new(isNegative: false, _IsReciprocal: false, 0x07, EncodeOperand(3));
+
+        /// <summary>
+        /// A constant <see cref="Arithmonym"/> that represents the value 10^^^^3
+        /// </summary>
+        public static Arithmonym Triapetaksys => new(isNegative: false, _IsReciprocal: false, 0x07, EncodeOperand(3 + Float128PreciseTranscendentals.SafeLog2(1.5) / Float128PreciseTranscendentals.SafeLog2(5)));
 
         /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents SCG(2)'s lower bound ~ T2

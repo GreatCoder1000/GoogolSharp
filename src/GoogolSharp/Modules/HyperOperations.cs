@@ -22,13 +22,83 @@ using QuadrupleLib.Accelerators;
 using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
 using System.Globalization;
 using System.Numerics;
+using System.Runtime.Serialization;
+using System.Security.Cryptography.X509Certificates;
+using System.Net.NetworkInformation;
 namespace GoogolSharp
 {
     partial struct Arithmonym
     {
         public static Arithmonym Tetration(Arithmonym baseV, Arithmonym heightV)
         {
-            throw new NotImplementedException("TODO: Get Tetration to work");
+            ArgumentOutOfRangeException.ThrowIfLessThan(baseV, Zero);
+            ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(heightV, NegativeTwo);
+            if (IsZero(baseV))
+            {
+                if (IsEvenInteger(heightV)) return One;
+                if (IsOddInteger(heightV)) return Zero;
+                throw new Exception("0^^n : n ∈ R and n ∉ Z is undefined.");
+            }
+            if (baseV == One) return One;
+            if (heightV <= NegativeOne) return (heightV + Two)._Log10 / baseV._Log10;
+            if (heightV <= Zero) return heightV + One;
+            if (heightV <= One) return Pow(baseV, heightV);
+            if (heightV <= Two) return Pow(baseV, Pow(baseV, heightV));
+            if (heightV <= Three) return Pow(baseV, Pow(baseV, Pow(baseV, heightV)));
+            if (baseV >= Float128.Parse("0.06598803584531253707679018759685") && baseV <= Float128.Parse("1.4446678610097661336583391085964"))
+            {
+                // Converges, due to infinite tetration.
+                Arithmonym iterationCount = Floor(heightV);
+                Arithmonym result = heightV - iterationCount;
+                for (int i = 0; i <= iterationCount; i++)
+                {
+                    Arithmonym newResult = Pow(baseV, result);
+                    if (Abs(newResult - result) < 4*Epsilon) break;
+                    result = newResult;
+                }
+                return result;
+            }
+            else
+            {
+                // Instead do it normally!!
+                Arithmonym iterationCount = Floor(heightV);
+                Arithmonym result = heightV - iterationCount;
+                for (int i = 0; i <= iterationCount; i++)
+                {
+                    Arithmonym newResult = Pow(baseV, result);
+                    if (newResult._Log10==result)
+                    {
+                        return result.AddToItsSlog(iterationCount - i);
+                    }
+                    result = newResult;
+                }
+                return result;
+            }
+            throw new Exception("TILT: Should not reach here.");
+        }
+
+        private Arithmonym AddToItsSlog(Arithmonym value)
+        {
+            ArgumentOutOfRangeException.ThrowIfLessThan(value, 0);
+            if (IsZero(value)) return this;
+            if (value == One) return _Exp10;
+            if (value == Two) return _Exp10._Exp10;
+            if (value == Three) return _Exp10._Exp10._Exp10;
+            return Tetration10Linear(Slog10Linear(this)+value);
+        }
+
+        public static Arithmonym Slog10Linear(Arithmonym value)
+        {
+            if (value < TenBillion)
+            {
+                return new(Float128HyperTranscendentals.SuperLog10(value));
+            }
+            if (value < Dekalogue)
+            {
+                // value >= 10^10 and value < 10^10^10^10^10^10^10^10^10^10
+                return new(value.Operand);
+            }
+            throw new NotImplementedException("TODO");
         }
 
         public static Arithmonym Tetration10Linear(Arithmonym value)
@@ -41,7 +111,7 @@ namespace GoogolSharp
             {
                 return new(false, false, 0x06, EncodeOperand(value.ToFloat128()));
             }
-            if (value < Dekalogue)
+            if (value < Dekateraksys)
             {
                 // Hi anyone reading this!
                 // I'm a comment! The compiler ignores me :(
@@ -103,7 +173,7 @@ namespace GoogolSharp
                     )
                 );
             }
-            throw new ArgumentOutOfRangeException("TODO");
+            throw new NotImplementedException("TODO");
         }
 
         private static Arithmonym LetterFToLetterG(Arithmonym value)
