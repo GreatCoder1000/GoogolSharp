@@ -29,7 +29,7 @@ namespace GoogolSharp.Helpers
         {
             ulong lo = (ulong)value;
             ulong hi = (ulong)(value >> 64);
-            return (Float128)(lo) + (Float128)(hi) * twoRaisedTo64;
+            return (Float128)lo + (Float128)hi * twoRaisedTo64;
         }
         public static Float128 LdexpLoop(Float128 x, int exponent)
         {

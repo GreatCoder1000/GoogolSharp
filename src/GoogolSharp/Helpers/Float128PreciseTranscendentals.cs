@@ -101,7 +101,7 @@ namespace GoogolSharp.Helpers
                 // Cascade summation for maximum precision
                 Float128 y_term = term - correction;
                 Float128 t = result + y_term;
-                correction = (t - result) - y_term;
+                correction = t - result - y_term;
                 result = t;
 
                 z_pow *= z;
@@ -181,7 +181,7 @@ namespace GoogolSharp.Helpers
                 // Cascade summation
                 Float128 y_contrib = contrib - correction;
                 Float128 t_sum = sum + y_contrib;
-                correction = (t_sum - sum) - y_contrib;
+                correction = t_sum - sum - y_contrib;
                 sum = t_sum;
             }
 

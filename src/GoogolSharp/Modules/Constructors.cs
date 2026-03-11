@@ -107,7 +107,7 @@ namespace GoogolSharp
             {
 #if DEBUG
                 if (Float128.Abs(v - (Float128)100) < (Float128)0.1)
-                    Console.WriteLine($"[Arithmonym constructor] Input={v}, SafeLog10={Float128PreciseTranscendentals.SafeLog10(value)}, SnapToInt result={(SnapToInt(Float128PreciseTranscendentals.SafeLog10(value)))}");
+                    Console.WriteLine($"[Arithmonym constructor] Input={v}, SafeLog10={Float128PreciseTranscendentals.SafeLog10(value)}, SnapToInt result={SnapToInt(Float128PreciseTranscendentals.SafeLog10(value))}");
 #endif
                 value = Float128PreciseTranscendentals.SafeLog10(value);
                 value = SnapToInt(value);
@@ -136,7 +136,7 @@ namespace GoogolSharp
             squishedHi = (uint)(s >> 64);
         }
         
-        private Arithmonym(bool isNegative, bool _IsReciprocal, byte letter, UInt128 operand)
+        internal Arithmonym(bool isNegative, bool _IsReciprocal, byte letter, UInt128 operand)
             : this(
                 operand
                 + ((UInt128)letter << (FRACTION_BITS + 3))

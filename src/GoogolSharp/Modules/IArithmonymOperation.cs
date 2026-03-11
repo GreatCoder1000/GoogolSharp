@@ -28,6 +28,6 @@ namespace GoogolSharp
     internal interface IArithmonymOperation
     {
         public Arithmonym Operand { get; }
-        public Arithmonym Of();
+        public Arithmonym Evaluate();
     }
 }

@@ -22,20 +22,33 @@ using QuadrupleLib.Accelerators;
 using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
 using System.Globalization;
 using System.Numerics;
+using System.Dynamic;
 namespace GoogolSharp
 {
-    partial struct Arithmonym
+    internal readonly struct ArithmonymTree : IArithmonymOperation
     {
-        public static Arithmonym Factorial(Arithmonym n) => new ArithmonymFactorial(n).Evaluate();
+        private readonly Arithmonym inner;
+        public Arithmonym Operand => inner;
 
-        public static Arithmonym Permutations(Arithmonym n, Arithmonym r)
+        internal ArithmonymTree(Arithmonym inner)
         {
-            return Factorial(n) / Factorial(n - r);
+            this.inner = inner;
         }
 
-        public static Arithmonym Combinations(Arithmonym n, Arithmonym r)
+        public Arithmonym Evaluate()
         {
-            return Factorial(n) / (Factorial(r) * Factorial(n - r));
+            if (Operand < Arithmonym.Zero) throw new Exception("TREE input must be >=0");
+            if (Operand == Arithmonym.Zero || Operand == Arithmonym.One) return Arithmonym.One;
+            if (Operand == Arithmonym.Two) return Arithmonym.Three;
+            if (Operand < Arithmonym.Three && !Arithmonym.IsInteger(Operand)) throw new ArgumentException("TREE not defined for fractional operands.");
+            if (Operand <= Arithmonym.Scg2LowerBound)
+            {
+                // STILL too close to differentiate from T2.
+                return Arithmonym.Scg2LowerBound;
+            }
+
+            // Operand is too big to be affected by TREE
+            return Operand;
         }
     }
 }

@@ -61,7 +61,7 @@ namespace GoogolSharp
                 // floored part is simply the integer itself
                 long iv = (long)(double)rounded; // safe for small operand ranges
                 if (iv < 0) iv = 0;
-                UInt128 operandBits = ((UInt128)iv << FRACTION_BITS);
+                UInt128 operandBits = (UInt128)iv << FRACTION_BITS;
                 return operandBits;
             }
 

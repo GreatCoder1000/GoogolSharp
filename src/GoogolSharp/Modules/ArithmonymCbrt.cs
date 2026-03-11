@@ -24,18 +24,16 @@ using System.Globalization;
 using System.Numerics;
 namespace GoogolSharp
 {
-    partial struct Arithmonym
+    internal readonly struct ArithmonymCbrt : IArithmonymOperation
     {
-        public static Arithmonym Factorial(Arithmonym n) => new ArithmonymFactorial(n).Evaluate();
+        private readonly Arithmonym inner;
+        public Arithmonym Operand => inner;
 
-        public static Arithmonym Permutations(Arithmonym n, Arithmonym r)
+        internal ArithmonymCbrt(Arithmonym inner)
         {
-            return Factorial(n) / Factorial(n - r);
+            this.inner = inner;
         }
 
-        public static Arithmonym Combinations(Arithmonym n, Arithmonym r)
-        {
-            return Factorial(n) / (Factorial(r) * Factorial(n - r));
-        }
+        public Arithmonym Evaluate() => (Operand._Log10 / Arithmonym.Three)._Exp10;
     }
 }

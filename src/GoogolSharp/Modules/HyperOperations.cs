@@ -123,5 +123,9 @@ namespace GoogolSharp
             if (value <= Two) return value;
             return (value / Two)._Log10 / Five._Log10;
         }
+
+        public static Arithmonym Tree(Arithmonym x) => new ArithmonymTree(x).Evaluate();
+        public static Arithmonym Sscg(Arithmonym x) => new ArithmonymSscg(x).Evaluate();
+        public static Arithmonym Scg(Arithmonym x) => new ArithmonymScg(x).Evaluate();
     }
 }

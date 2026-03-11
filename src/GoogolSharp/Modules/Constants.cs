@@ -76,6 +76,11 @@ namespace GoogolSharp
         public static Arithmonym E => new(Float128.E);
 
         /// <summary>
+        /// A constant <see cref="Arithmonym"/> that represents the value three.
+        /// </summary>
+        public static Arithmonym Three => new(isNegative: false, _IsReciprocal: false, 0x02, EncodeOperand(6));
+
+        /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents pi.
         /// </summary>
         public static Arithmonym Pi => new(Float128.Pi);
@@ -85,7 +90,20 @@ namespace GoogolSharp
         /// </summary>
         public static Arithmonym Log2_10 => new(Float128PreciseTranscendentals.Log2_10);
 
+        /// <summary>
+        /// A constant <see cref="Arithmonym"/> that represents the value four.
+        /// </summary>
+        public static Arithmonym Four => new(isNegative: false, _IsReciprocal: false, 0x03, 0);
+        
+        /// <summary>
+        /// A constant <see cref="Arithmonym"/> that represents the value five.
+        /// </summary>
         public static Arithmonym Five => new(isNegative: false, _IsReciprocal: false, 0x03, EncodeOperand((Float128)2.5));
+
+        /// <summary>
+        /// A constant <see cref="Arithmonym"/> that represents the value five.
+        /// </summary>
+        public static Arithmonym Six => new(isNegative: false, _IsReciprocal: false, 0x03, EncodeOperand((Float128)3));
 
         /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents tau.
@@ -93,9 +111,29 @@ namespace GoogolSharp
         public static Arithmonym Tau => new(Float128.Tau);
 
         /// <summary>
+        /// A constant <see cref="Arithmonym"/> that represents the value five.
+        /// </summary>
+        public static Arithmonym Seven => new(isNegative: false, _IsReciprocal: false, 0x03, EncodeOperand((Float128)3.5));
+
+        /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents the value ten.
         /// </summary>
         public static Arithmonym Ten => new(isNegative: false, _IsReciprocal: false, 0x03, EncodeOperand((Float128)5));
+
+        /// <summary>
+        /// A constant <see cref="Arithmonym"/> that represents the value ten.
+        /// </summary>
+        public static Arithmonym Thirteen => new(isNegative: false, _IsReciprocal: false, 0x03, EncodeOperand((Float128)6.5));
+
+        /// <summary>
+        /// A constant <see cref="Arithmonym"/> that represents the value five.
+        /// </summary>
+        public static Arithmonym Twenty => new(isNegative: false, _IsReciprocal: false, 0x04, 0);
+
+        /// <summary>
+        /// A constant <see cref="Arithmonym"/> that represents the value 100.
+        /// </summary>
+        public static Arithmonym Hundred => new(isNegative: false, _IsReciprocal: false, 0x05, EncodeOperand((Float128)2));
 
         /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents the value 10^10.
@@ -112,7 +150,12 @@ namespace GoogolSharp
         /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents the value 10^^^10 (or J3)
         /// </summary>
-        public static Arithmonym Dekateraksys => new(isNegative: false, _IsReciprocal: false, 0x07, 0);
+        public static Arithmonym Dekateraksys => new(isNegative: false, _IsReciprocal: false, 0x07, EncodeOperand(3));
+
+        /// <summary>
+        /// A constant <see cref="Arithmonym"/> that represents SCG(2)'s lower bound ~ T2
+        /// </summary>
+        public static Arithmonym Scg2LowerBound => new(isNegative: false, _IsReciprocal: false, 0x16, 0);
 
         /// <summary>
         /// The radix.
@@ -122,11 +165,6 @@ namespace GoogolSharp
         /// radix is set to 10.
         /// </summary>
         public static int Radix => 10;
-
-        /// <summary>
-        /// A constant <see cref="Arithmonym"/> that represents the value 100.
-        /// </summary>
-        public static Arithmonym Hundred => new(isNegative: false, _IsReciprocal: false, 0x05, EncodeOperand((Float128)2));
 
         /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents positive infinity (+∞).
