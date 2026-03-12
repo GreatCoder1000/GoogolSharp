@@ -4,5 +4,9 @@
   href: getting-started.md
 - name: Arithmonym Casts
   href: arithmonym-casts.md
+- name: Transcendental Functions
+  href: transcendental-functions.md
+- name: Debugging Tools & Testing
+  href: debugging-tools.md
 - name: Factorials & Combinatorics
   href: factorials-and-combinatorics.md
