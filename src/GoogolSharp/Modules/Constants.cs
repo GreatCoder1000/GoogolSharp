@@ -175,7 +175,7 @@ namespace GoogolSharp
         /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents SCG(2)'s lower bound ~ T2
         /// </summary>
-        public static Arithmonym Scg2LowerBound => new(isNegative: false, _IsReciprocal: false, 0x16, 0);
+        public static Arithmonym Scg2LowerBound => new(isNegative: false, _IsReciprocal: false, 0x10, 0);
 
         /// <summary>
         /// The radix.
