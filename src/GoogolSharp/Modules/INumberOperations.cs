@@ -53,10 +53,10 @@ namespace GoogolSharp
 
         /// <summary>
         /// Returns the base-10 logarithm of <paramref name="value"/>.
-        /// This static helper forwards to the instance-level <see cref="_Exp10"/> behavior.
+        /// This static helper forwards to the instance-level <see cref="_Log10"/> behavior.
         /// </summary>
-        /// <param name="value">The logarithm (base 10).</param>
-        /// <returns>An <see cref="Arithmonym"/> representing Log10(<paramref name="value"/>).</returns>
+        /// <param name="value">The positive value to take the base-10 logarithm of.</param>
+        /// <returns>An <see cref="Arithmonym"/> representing log₁₀(<paramref name="value"/>).</returns>
         public static Arithmonym Log10(Arithmonym value) => value._Log10;
 
         /// <summary>
@@ -69,21 +69,21 @@ namespace GoogolSharp
         /// <summary>
         /// Returns the base-2 logarithm of <paramref name="value"/>.
         /// </summary>
-        /// <param name="value">The logarithm (base 2).</param>
-        /// <returns>An <see cref="Arithmonym"/> representing Log2(<paramref name="value"/>).</returns>
+        /// <param name="value">The positive value to take the base-2 logarithm of.</param>
+        /// <returns>An <see cref="Arithmonym"/> representing log₂(<paramref name="value"/>).</returns>
         public static Arithmonym Log2(Arithmonym value) => value._Log10 * Log2_10;
 
         /// <summary>
         /// Returns e raised to the power <paramref name="value"/>.
         /// </summary>
-        /// <param name="value">The exponent value (base 2).</param>
-        /// <returns>An <see cref="Arithmonym"/> representing 2^<paramref name="value"/>.</returns>
+        /// <param name="value">The exponent value (base e).</param>
+        /// <returns>An <see cref="Arithmonym"/> representing e^<paramref name="value"/>.</returns>
         public static Arithmonym Exp(Arithmonym value) => (value / Ln10)._Exp10;
 
         /// <summary>
         /// Returns the natural (base-e) logarithm of <paramref name="value"/>.
         /// </summary>
-        /// <param name="value">The logarithm (base e).</param>
+        /// <param name="value">The positive value to take the natural logarithm of.</param>
         /// <returns>An <see cref="Arithmonym"/> representing ln(<paramref name="value"/>).</returns>
         public static Arithmonym Log(Arithmonym value) => value._Log10 * Ln10;
 
@@ -95,15 +95,15 @@ namespace GoogolSharp
         /// <summary>
         /// Returns the square root of <paramref name="value"/>
         /// </summary>
-        /// <param name="value">The value to take the absolute of.</param>
-        /// <returns>Positive square root of <paramref name="value"/>.</returns>
+        /// <param name="value">The non-negative value to take the square root of.</param>
+        /// <returns>The positive square root of <paramref name="value"/>.</returns>
         public static Arithmonym Sqrt(Arithmonym value) => new ArithmonymSqrt(value).Evaluate();
 
         /// <summary>
-        /// Returns the square root of <paramref name="value"/>
+        /// Returns the cube root of <paramref name="value"/>
         /// </summary>
-        /// <param name="value">The value to take the absolute of.</param>
-        /// <returns>Positive square root of <paramref name="value"/>.</returns>
+        /// <param name="value">The value to take the cube root of.</param>
+        /// <returns>The cube root of <paramref name="value"/>.</returns>
         public static Arithmonym Cbrt(Arithmonym value) => new ArithmonymCbrt(value).Evaluate();
 
         /// <summary>

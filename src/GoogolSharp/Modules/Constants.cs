@@ -29,7 +29,7 @@ namespace GoogolSharp
         /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents a quiet Not-a-Number (QNaN).
         /// </summary>
-        public Arithmonym NaN => new(
+        public static Arithmonym NaN => new(
             (((UInt128)1) << (FRACTION_BITS + 9)) |
             (((UInt128)0x3f) << (FRACTION_BITS + 3)) |
             (((UInt128)1) << (FRACTION_BITS + 2))
@@ -61,9 +61,9 @@ namespace GoogolSharp
         public static Arithmonym NegativeOne => new(isNegative: true, _IsReciprocal: false, 0x01, 0);
 
         /// <summary>
-        /// A constant <see cref="Arithmonym"/> that represents the value ten.
+        /// A constant <see cref="Arithmonym"/> that represents the value negative two.
         /// </summary>
-        public static Arithmonym NegativeTwo => new(isNegative: false, _IsReciprocal: false, 0x02, 0);
+        public static Arithmonym NegativeTwo => new(isNegative: true, _IsReciprocal: false, 0x02, 0);
 
         /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents the value two.
@@ -71,12 +71,12 @@ namespace GoogolSharp
         public static Arithmonym Two => new(isNegative: false, _IsReciprocal: false, 0x02, 0);
 
         /// <summary>
-        /// A constant <see cref="Arithmonym"/> that represents the base-2 logarithm of 10.
+        /// A constant <see cref="Arithmonym"/> that represents the natural logarithm of 10.
         /// </summary>
         public static Arithmonym Ln10 => new(Float128PreciseTranscendentals.SafeLog(10));
 
         /// <summary>
-        /// A constant <see cref="Arithmonym"/> that represents euler's number (aka the Napier Constant).
+        /// A constant <see cref="Arithmonym"/> that represents Euler's number (the Napier Constant).
         /// </summary>
         public static Arithmonym E => new(Float128.E);
 
@@ -106,7 +106,7 @@ namespace GoogolSharp
         public static Arithmonym Five => new(isNegative: false, _IsReciprocal: false, 0x03, EncodeOperand((Float128)2.5));
 
         /// <summary>
-        /// A constant <see cref="Arithmonym"/> that represents the value five.
+        /// A constant <see cref="Arithmonym"/> that represents the value six.
         /// </summary>
         public static Arithmonym Six => new(isNegative: false, _IsReciprocal: false, 0x03, EncodeOperand((Float128)3));
 
@@ -116,7 +116,7 @@ namespace GoogolSharp
         public static Arithmonym Tau => new(Float128.Tau);
 
         /// <summary>
-        /// A constant <see cref="Arithmonym"/> that represents the value five.
+        /// A constant <see cref="Arithmonym"/> that represents the value seven.
         /// </summary>
         public static Arithmonym Seven => new(isNegative: false, _IsReciprocal: false, 0x03, EncodeOperand((Float128)3.5));
 
@@ -126,17 +126,17 @@ namespace GoogolSharp
         public static Arithmonym Ten => new(isNegative: false, _IsReciprocal: false, 0x03, EncodeOperand((Float128)5));
 
         /// <summary>
-        /// A constant <see cref="Arithmonym"/> that represents the value ten.
+        /// A constant <see cref="Arithmonym"/> that represents the value thirteen.
         /// </summary>
         public static Arithmonym Thirteen => new(isNegative: false, _IsReciprocal: false, 0x03, EncodeOperand((Float128)6.5));
 
         /// <summary>
-        /// A constant <see cref="Arithmonym"/> that represents the value ten.
+        /// A constant <see cref="Arithmonym"/> that represents the value fourteen.
         /// </summary>
         public static Arithmonym Fourteen => new(isNegative: false, _IsReciprocal: false, 0x03, EncodeOperand((Float128)7));
 
         /// <summary>
-        /// A constant <see cref="Arithmonym"/> that represents the value five.
+        /// A constant <see cref="Arithmonym"/> that represents the value twenty.
         /// </summary>
         public static Arithmonym Twenty => new(isNegative: false, _IsReciprocal: false, 0x04, 0);
 
