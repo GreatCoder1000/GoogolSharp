@@ -59,5 +59,6 @@ namespace GoogolSharp
         INumberBase<Arithmonym>
     {
         // See Modules/ for implementation.
+        // For some unincluded stuff like Float128PreciseTranscendentals look in Helpers/
     }
 }
