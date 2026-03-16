@@ -29,7 +29,7 @@ namespace GoogolSharp
         /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents a quiet Not-a-Number (QNaN).
         /// </summary>
-        public static readonly Arithmonym NaN = new(
+        public Arithmonym NaN => new(
             (((UInt128)1) << (FRACTION_BITS + 9)) |
             (((UInt128)0x3f) << (FRACTION_BITS + 3)) |
             (((UInt128)1) << (FRACTION_BITS + 2))
