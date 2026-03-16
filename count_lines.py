@@ -15,8 +15,9 @@ def count_lines_in_project():
     total_lines = 0
     file_count = 0
     
-    # Find all .cs files recursively
-    cs_files = sorted(src_path.rglob("*.cs"))
+    # Find all .cs files recursively, excluding obj directory
+    all_cs_files = src_path.rglob("*.cs")
+    cs_files = sorted([f for f in all_cs_files if "\\obj\\" not in str(f) and "/obj/" not in str(f)])
     
     if not cs_files:
         print("No .cs files found")
