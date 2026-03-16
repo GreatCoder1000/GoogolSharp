@@ -9,6 +9,7 @@ The differences are that we have 4 extra letters in the start, A, B, C, and D to
 Here is the full letter table, and what each of it does (note a letter is like a function here, if it was hard to understand. E is the first one and it does `10^` to the number)
 
 **Range assumes operand is in range 2 to 10, which is the case in Arithmonym.*
+
 | Letter | Internal Number | Mnemonic | Range* |
 |-|-|-|-|
 |**A**|1|--|1 to 2|
