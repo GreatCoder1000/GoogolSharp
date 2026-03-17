@@ -1,0 +1,1423 @@
+﻿Test run for C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\bin\Release\net8.0\GoogolSharp.Tests.dll (.NETCoreApp,Version=v8.0)
+VSTest version 18.0.1 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+Test run for C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\bin\Release\net10.0\GoogolSharp.Tests.dll (.NETCoreApp,Version=v10.0)
+Test run for C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\bin\Release\net9.0\GoogolSharp.Tests.dll (.NETCoreApp,Version=v9.0)
+VSTest version 18.0.1 (x64)
+
+VSTest version 18.0.1 (x64)
+
+Starting test execution, please wait...
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+A total of 1 test files matched the specified pattern.
+dotnet : [xUnit.net 00:00:01.53]     GoogolSharp.Tests.Float128PreciseTranscend
+entalsTests.SafeLog_StandardValues_HighPrecision(x: 100, expected: 
+4.6051701859880918) [FAIL]
+At line:1 char:1
++ dotnet test GoogolSharp.sln --no-build --configuration Release -q 2>& ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([xUnit.net 00:0...9880918) [FAIL] 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[xUnit.net 00:00:01.54]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp_StandardValues_HighPrecision(x: -1, expected: 0.36787944117144233) 
+[FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_StandardValues_HighPrecision(x: 100, expected: 4.6051701859880918) [1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 4.6051701859880918 (rounded from 4.6051701859880918)
+Actual:   4.6051701859880909 (rounded from 4.6051701859880909)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_StandardValues_HighPrecision(Double x, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 56
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafeLog_StandardValues_HighPrecision(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp_StandardValues_HighPrecision(x: -1, expected: 0.36787944117144233) [12 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 0.367879441171442 (rounded from 0.36787944117144233)
+Actual:   0.36787108125825801 (rounded from 0.36787108125825796)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp_StandardValues_HighPrecision(Double x, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 231
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafeExp_StandardValues_HighPrecision(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.55]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp_StandardValues_HighPrecision(x: -2, expected: 0.1353352832366127) 
+[FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp_StandardValues_HighPrecision(x: -2, expected: 0.1353352832366127) [12 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 0.13533528323661301 (rounded from 0.1353352832366127)
+Actual:   0.13533025967491699 (rounded from 0.13533025967491669)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp_StandardValues_HighPrecision(Double x, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 231
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafeExp_StandardValues_HighPrecision(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.58]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp10_IntegerExponents_Exact(x: -2, expected: 0.01) [FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp10_IntegerExponents_Exact(x: -2, expected: 0.01) [11 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 10 decimal places
+Expected: 0.01 (rounded from 0.01)
+Actual:   0.010000041899999999 (rounded from 0.010000041923710628)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp10_IntegerExponents_Exact(Double x, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 338
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafeExp10_IntegerExponents_Exact(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.61]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.Exp10_and_Log10_AreInverses [FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp10_and_Log10_AreInverses [9 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 14 decimal places
+Expected: 8.9000000000000004 (rounded from 8.9000000000000004)
+Actual:   8.9000042625515707 (rounded from 8.9000042625515707)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp10_and_Log10_AreInverses() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 456
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.62]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeLog_InverseWithExp_PreservesValue [FAIL]
+[xUnit.net 00:00:01.66]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp_LargePositiveExponent [FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_InverseWithExp_PreservesValue [19 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 2.5 (rounded from 2.5)
+Actual:   2.500002306199169 (rounded from 2.500002306199169)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_InverseWithExp_PreservesValue() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 75
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp_LargePositiveExponent [37 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 22026.465794806718 (rounded from 22026.465794806718)
+Actual:   22026.465794806714 (rounded from 22026.465794806714)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp_LargePositiveExponent() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 248
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.70]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafePow_IntegerPowers_Exact(x: 2, y: 4, expected: 16) [FAIL]
+[xUnit.net 00:00:01.72]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafePow_IntegerPowers_Exact(x: 3, y: 2, expected: 9) [FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(x: 2, y: 4, expected: 16) [11 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 10 decimal places
+Expected: 16 (rounded from 16)
+Actual:   16.000014334999999 (rounded from 16.000014334951985)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(Double x, Double y, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 391
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(x: 3, y: 2, expected: 9) [15 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 10 decimal places
+Expected: 9 (rounded from 9)
+Actual:   9.0000009649999999 (rounded from 9.0000009650148485)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(Double x, Double y, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 391
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.75]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafePow_IntegerPowers_Exact(x: 2, y: 3, expected: 8) [FAIL]
+[xUnit.net 00:00:01.76]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafePow_IntegerPowers_Exact(x: 5, y: 3, expected: 125) [FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(x: 2, y: 3, expected: 8) [27 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 10 decimal places
+Expected: 8 (rounded from 8)
+Actual:   8.0000085167999995 (rounded from 8.0000085167559352)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(Double x, Double y, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 391
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(x: 5, y: 3, expected: 125) [9 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 10 decimal places
+Expected: 125 (rounded from 125)
+Actual:   125.0001631515 (rounded from 125.00016315151794)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(Double x, Double y, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 391
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.81]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafePow_IntegerPowers_Exact(x: 10, y: 2, expected: 100) [FAIL]
+[xUnit.net 00:00:01.81]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp2_FractionalExponents_HighPrecision(x: 0.5, expected: 
+1.4142135623730951) [FAIL]
+[xUnit.net 00:00:01.82]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp2_FractionalExponents_HighPrecision(x: 0.25, expected: 
+1.189207115002721) [FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(x: 10, y: 2, expected: 100) [37 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 10 decimal places
+Expected: 100 (rounded from 100)
+Actual:   100.00033611560001 (rounded from 100.00033611556616)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(Double x, Double y, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 391
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp2_FractionalExponents_HighPrecision(x: 0.5, expected: 1.4142135623730951) [14 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 1.4142135623730949 (rounded from 1.4142135623730951)
+Actual:   1.414222481226366 (rounded from 1.4142224812263655)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp2_FractionalExponents_HighPrecision(Double x, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 294
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp2_FractionalExponents_HighPrecision(x: 0.25, expected: 1.189207115002721) [10 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 1.189207115002721 (rounded from 1.189207115002721)
+Actual:   1.1892077556431819 (rounded from 1.1892077556431826)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp2_FractionalExponents_HighPrecision(Double x, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 294
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafeExp2_FractionalExponents_HighPrecision(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.88]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafePow_RootOperations_HighPrecision(x: 8, y: 0.33333333333332998, 
+expected: 2) [FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_RootOperations_HighPrecision(x: 8, y: 0.33333333333332998, expected: 2) [11 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 2 (rounded from 2)
+Actual:   1.999999999999986 (rounded from 1.9999999999999862)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_RootOperations_HighPrecision(Double x, Double y, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 401
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafePow_RootOperations_HighPrecision(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.92]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.Exp2_ExpensiveViaExp_Equivalence [FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp2_ExpensiveViaExp_Equivalence [23 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 45.255119399243696 (rounded from 45.255119399243696)
+Actual:   45.254942741174048 (rounded from 45.254942741174048)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp2_ExpensiveViaExp_Equivalence() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 608
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.93]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp10_InverseWithLog10_PreservesValue [FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp10_InverseWithLog10_PreservesValue [11 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 14 decimal places
+Expected: 2.5 (rounded from 2.5)
+Actual:   2.4999999344066 (rounded from 2.4999999344066)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp10_InverseWithLog10_PreservesValue() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 355
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.99]     
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.VeryLargeNumbers [FAIL]
+[xUnit.net 00:00:02.00]     
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Log2_Via_Log_Consistency 
+[FAIL]
+[xUnit.net 00:00:02.00]     
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp_and_Log_AreInverses 
+[FAIL]
+[xUnit.net 00:00:02.04]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafePow_InverseRelationship [FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.VeryLargeNumbers [2 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 230.25850929940458 (rounded from 230.25850929940458)
+Actual:   230.25850929940455 (rounded from 230.25850929940455)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.VeryLargeNumbers() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 645
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Log2_Via_Log_Consistency [1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 3.9068905956085178 (rounded from 3.9068905956085183)
+Actual:   3.9068603515625 (rounded from 3.9068603515625)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Log2_Via_Log_Consistency() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 467
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp_and_Log_AreInverses [7 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 14 decimal places
+Expected: 7.5 (rounded from 7.5)
+Actual:   7.5000003130428103 (rounded from 7.5000003130428059)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp_and_Log_AreInverses() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 438
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_InverseRelationship [29 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 13 decimal places
+Expected: 2.5 (rounded from 2.5)
+Actual:   2.5000021522817999 (rounded from 2.5000021522818159)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_InverseRelationship() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 427
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:02.06]     
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_OfE_Equals_One 
+[FAIL]
+[xUnit.net 00:00:02.07]     
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_NegativeExponent 
+[FAIL]
+[xUnit.net 00:00:02.08]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp10_FractionalExponents_HighPrecision(x: 0.5, expected: 
+3.1622776601683795) [FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_OfE_Equals_One [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 14 decimal places
+Expected: 1 (rounded from 1)
+Actual:   0.99999867785453 (rounded from 0.99999867785452645)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_OfE_Equals_One() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 618
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_NegativeExponent [19 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 10 decimal places
+Expected: 0.25 (rounded from 0.25)
+Actual:   0.24999311320000001 (rounded from 0.24999311319503018)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_NegativeExponent() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 417
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp10_FractionalExponents_HighPrecision(x: 0.5, expected: 3.1622776601683795) [16 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 3.16227766016838 (rounded from 3.1622776601683795)
+Actual:   3.1623051235822608 (rounded from 3.1623051235822608)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp10_FractionalExponents_HighPrecision(Double x, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 346
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+[xUnit.net 00:00:02.10]     
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Pow_CommutativeProperty 
+[FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Pow_CommutativeProperty [14 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 2 (rounded from 2)
+Actual:   2.0000007097340222 (rounded from 2.0000007097340218)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Pow_CommutativeProperty() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 595
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:02.14]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.Exp_CompositionPreservesValue [FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp_CompositionPreservesValue [37 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 601.84908826286971 (rounded from 601.84908826286971)
+Actual:   601.847921253967 (rounded from 601.847921253967)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp_CompositionPreservesValue() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 491
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:02.15]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.Log10_Via_Log_Consistency [FAIL]
+[xUnit.net 00:00:02.18]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp_InverseWithLog_PreservesValue [FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Log10_Via_Log_Consistency [1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 1.6232492903978999 (rounded from 1.6232492903979003)
+Actual:   1.62322998046875 (rounded from 1.62322998046875)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Log10_Via_Log_Consistency() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 478
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp_InverseWithLog_PreservesValue [24 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 1.5 (rounded from 1.5)
+Actual:   1.500001233435398 (rounded from 1.5000012334353976)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp_InverseWithLog_PreservesValue() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 240
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:02.18]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeLog10_StandardValues_HighPrecision(x: 2, expected: 0.30102999566400002) 
+[FAIL]
+[xUnit.net 00:00:02.18]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeLog10_StandardValues_HighPrecision(x: 3, expected: 0.47712125472) [FAIL]
+[xUnit.net 00:00:02.20]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeLog2_InverseWithExp2_PreservesValue [FAIL]
+[xUnit.net 00:00:02.20]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeLog_OfPi_HighPrecision [FAIL]
+[xUnit.net 00:00:02.20]     
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_LargeValue [FAIL]
+[xUnit.net 00:00:01.33]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeLog_StandardValues_HighPrecision(x: 100, expected: 4.6051701859880918) 
+[FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_StandardValues_HighPrecision(x: 100, expected: 4.6051701859880918) [1 ms]
+  Error Message:
+[xUnit.net 00:00:01.48]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeLog_StandardValues_HighPrecision(x: 100, expected: 4.6051701859880918) 
+[FAIL]
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 4.6051701859880918 (rounded from 4.6051701859880918)
+Actual:   4.6051701859880909 (rounded from 4.6051701859880909)
+  Stack Trace:
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_StandardValues_HighPrecision(x: 100, expected: 4.6051701859880918) [1 ms]
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_StandardValues_HighPrecision(Double x, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 56
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafeLog_StandardValues_HighPrecision(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Error Message:
+[xUnit.net 00:00:01.45]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp_StandardValues_HighPrecision(x: -1, expected: 0.36787944117144233) 
+[FAIL]
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 4.6051701859880918 (rounded from 4.6051701859880918)
+Actual:   4.6051701859880909 (rounded from 4.6051701859880909)  Failed 
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp_StandardValues_HighPrecision(x: -1, expected: 0.36787944117144233) [8 ms]
+  Error Message:
+  Stack Trace:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 0.367879441171442 (rounded from 0.36787944117144233)
+Actual:   0.36787108125825801 (rounded from 0.36787108125825796)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_StandardValues_HighPrecision(Double x, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 56
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafeLog_StandardValues_HighPrecision(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp_StandardValues_HighPrecision(Double x, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 231
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafeExp_StandardValues_HighPrecision(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.50]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp_StandardValues_HighPrecision(x: -1, expected: 0.36787944117144233) 
+[FAIL]
+[xUnit.net 00:00:01.50]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp_StandardValues_HighPrecision(x: -2, expected: 0.1353352832366127) 
+[FAIL]
+[xUnit.net 00:00:01.46]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp_StandardValues_HighPrecision(x: -2, expected: 0.1353352832366127) 
+[FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp_StandardValues_HighPrecision(x: -2, expected: 0.1353352832366127) [9 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 0.13533528323661301 (rounded from 0.1353352832366127)
+Actual:   0.13533025967491699 (rounded from 0.13533025967491669)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp_StandardValues_HighPrecision(Double x, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 231
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafeExp_StandardValues_HighPrecision(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.48]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp10_IntegerExponents_Exact(x: -2, expected: 0.01) [FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp10_IntegerExponents_Exact(x: -2, expected: 0.01) [9 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 10 decimal places
+Expected: 0.01 (rounded from 0.01)
+Actual:   0.010000041899999999 (rounded from 0.010000041923710628)
+[xUnit.net 00:00:02.22]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp_LargeNegativeExponent [FAIL]
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp10_IntegerExponents_Exact(Double x, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 338
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafeExp10_IntegerExponents_Exact(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.50]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.Exp10_and_Log10_AreInverses [FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp10_and_Log10_AreInverses [9 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 14 decimal places
+Expected: 8.9000000000000004 (rounded from 8.9000000000000004)
+Actual:   8.9000042625515707 (rounded from 8.9000042625515707)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp10_and_Log10_AreInverses() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 456
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.51]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeLog_InverseWithExp_PreservesValue [FAIL]
+[xUnit.net 00:00:01.52]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp_LargePositiveExponent [FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp_StandardValues_HighPrecision(x: -1, expected: 0.36787944117144233) [45 ms]
+  Error Message:
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_InverseWithExp_PreservesValue [8 ms]
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 0.367879441171442 (rounded from 0.36787944117144233)
+Actual:   0.36787108125825801 (rounded from 0.36787108125825796)  Error Message:
+
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 2.5 (rounded from 2.5)
+Actual:   2.500002306199169 (rounded from 2.500002306199169)
+  Stack Trace:
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp_StandardValues_HighPrecision(Double x, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 231
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafeExp_StandardValues_HighPrecision(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_InverseWithExp_PreservesValue() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 75
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp_LargePositiveExponent [9 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 22026.465794806718 (rounded from 22026.465794806718)
+Actual:   22026.465794806714 (rounded from 22026.465794806714)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp_StandardValues_HighPrecision(x: -2, expected: 0.1353352832366127) [10 ms]
+  Failed   Stack Trace:
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog10_StandardValues_HighPrecision(x: 2, expected: 0.30102999566400002) [1 ms]
+  Error Message:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp_LargePositiveExponent() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 248
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 0.13533528323661301 (rounded from 0.1353352832366127)
+Actual:   0.13533025967491699 (rounded from 0.13533025967491669)
+[xUnit.net 00:00:01.55]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafePow_IntegerPowers_Exact(x: 2, y: 4, expected: 16) [FAIL]
+  Stack Trace:
+[xUnit.net 00:00:01.57]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafePow_IntegerPowers_Exact(x: 3, y: 2, expected: 9) [FAIL]
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp_StandardValues_HighPrecision(Double x, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 231
+[xUnit.net 00:00:01.57]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafePow_IntegerPowers_Exact(x: 2, y: 3, expected: 8) [FAIL]
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafeExp_StandardValues_HighPrecision(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.58]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafePow_IntegerPowers_Exact(x: 5, y: 3, expected: 125) [FAIL]
+[xUnit.net 00:00:01.56]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp10_IntegerExponents_Exact(x: -2, expected: 0.01) [FAIL]
+  Error Message:
+[xUnit.net 00:00:01.57]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.Exp10_and_Log10_AreInverses [FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp10_IntegerExponents_Exact(x: -2, expected: 0.01) [8 ms]
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 0.30102999566400002 (rounded from 0.30102999566400002)
+Actual:   0.30102999566398098 (rounded from 0.3010299956639812)
+  Error Message:
+   Assert.Equal() Failure: Values are not within 10 decimal places
+Expected: 0.01 (rounded from 0.01)
+Actual:   0.010000041899999999 (rounded from 0.010000041923710628)
+  Stack Trace:
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp10_IntegerExponents_Exact(Double x, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 338
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafeExp10_IntegerExponents_Exact(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.60]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafePow_IntegerPowers_Exact(x: 10, y: 2, expected: 100) [FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(x: 2, y: 4, expected: 16) [7 ms]
+  Error Message:
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp10_and_Log10_AreInverses [6 ms]   Assert.Equal() Failure: Values are not within 10 decimal places
+Expected: 16 (rounded from 16)
+Actual:   16.000014334999999 (rounded from 16.000014334951985)
+
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog10_StandardValues_HighPrecision(Double x, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 184
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Error Message:
+  Stack Trace:
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog10_StandardValues_HighPrecision(x: 3, expected: 0.47712125472) [1 ms]
+   Assert.Equal() Failure: Values are not within 14 decimal places
+Expected: 8.9000000000000004 (rounded from 8.9000000000000004)
+Actual:   8.9000042625515707 (rounded from 8.9000042625515707)
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(Double x, Double y, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 391
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Error Message:
+  Stack Trace:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 0.47712125472 (rounded from 0.47712125472)
+Actual:   0.47712125471966199 (rounded from 0.47712125471966244)
+  Failed      at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp10_and_Log10_AreInverses() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 456
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(x: 3, y: 2, expected: 9) [11 ms]
+  Stack Trace:
+  Error Message:
+[xUnit.net 00:00:01.59]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeLog_InverseWithExp_PreservesValue [FAIL]
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog10_StandardValues_HighPrecision(Double x, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 184
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafeLog10_StandardValues_HighPrecision(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   Assert.Equal() Failure: Values are not within 10 decimal places
+Expected: 9 (rounded from 9)
+Actual:   9.0000009649999999 (rounded from 9.0000009650148485)
+[xUnit.net 00:00:01.59]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp_LargePositiveExponent [FAIL]
+  Failed   Stack Trace:
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog2_InverseWithExp2_PreservesValue [18 ms]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_InverseWithExp_PreservesValue [8 ms]
+  Error Message:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(Double x, Double y, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 391
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(x: 2, y: 3, expected: 8) [6 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 10 decimal places
+Expected: 8 (rounded from 8)
+Actual:   8.0000085167999995 (rounded from 8.0000085167559352)
+  Error Message:
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(Double x, Double y, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 391
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(x: 5, y: 3, expected: 125) [6 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 10 decimal places
+Expected: 125 (rounded from 125)
+Actual:   125.0001631515 (rounded from 125.00016315151794)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(Double x, Double y, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 391
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(x: 10, y: 2, expected: 100) [20 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 10 decimal places
+Expected: 100 (rounded from 100)
+Actual:   100.00033611560001 (rounded from 100.00033611556616)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(Double x, Double y, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 391
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.61]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp2_FractionalExponents_HighPrecision(x: 0.5, expected: 
+1.4142135623730951) [FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp2_FractionalExponents_HighPrecision(x: 0.5, expected: 1.4142135623730951) [10 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 1.4142135623730949 (rounded from 1.4142135623730951)
+Actual:   1.414222481226366 (rounded from 1.4142224812263655)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp2_FractionalExponents_HighPrecision(Double x, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 294
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.62]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp2_FractionalExponents_HighPrecision(x: 0.25, expected: 
+1.189207115002721) [FAIL]
+  Failed    Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 3.7000000000000002 (rounded from 3.7000000000000002)
+Actual:   3.7000013873177262 (rounded from 3.7000013873177267)
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp2_FractionalExponents_HighPrecision(x: 0.25, expected: 1.189207115002721) [7 ms]
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 2.5 (rounded from 2.5)
+Actual:   2.500002306199169 (rounded from 2.500002306199169)
+  Error Message:
+  Stack Trace:
+  Stack Trace:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 1.189207115002721 (rounded from 1.189207115002721)
+Actual:   1.1892077556431819 (rounded from 1.1892077556431826)
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog2_InverseWithExp2_PreservesValue() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 147
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_InverseWithExp_PreservesValue() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 75
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Stack Trace:
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_OfPi_HighPrecision [< 1 ms]
+  Failed      at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp2_FractionalExponents_HighPrecision(Double x, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 294
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafeExp2_FractionalExponents_HighPrecision(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Error Message:
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp_LargePositiveExponent [9 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 1.1447298858493999 (rounded from 1.1447298858494002)
+Actual:   1.1447292525178761 (rounded from 1.1447292525178763)
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 22026.465794806718 (rounded from 22026.465794806718)
+Actual:   22026.465794806714 (rounded from 22026.465794806714)
+  Stack Trace:
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_OfPi_HighPrecision() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 627
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp_LargePositiveExponent() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 248
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_LargeValue [3 ms]
+[xUnit.net 00:00:01.62]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafePow_IntegerPowers_Exact(x: 2, y: 4, expected: 16) [FAIL]
+  Error Message:
+  Failed    Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 230.25850929940458 (rounded from 230.25850929940458)
+Actual:   230.25850929940455 (rounded from 230.25850929940455)
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(x: 2, y: 4, expected: 16) [6 ms]
+  Error Message:
+  Stack Trace:
+   Assert.Equal() Failure: Values are not within 10 decimal places
+Expected: 16 (rounded from 16)
+Actual:   16.000014334999999 (rounded from 16.000014334951985)
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_LargeValue() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 83
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Stack Trace:
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp_LargeNegativeExponent [13 ms]
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(Double x, Double y, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 391
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Error Message:
+[xUnit.net 00:00:01.63]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafePow_IntegerPowers_Exact(x: 3, y: 2, expected: 9) [FAIL]
+[xUnit.net 00:00:01.68]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafePow_RootOperations_HighPrecision(x: 8, y: 0.33333333333332998, 
+expected: 2) [FAIL]
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 4.5399929761999999E-05 (rounded from 4.5399929762484854E-05)
+Actual:   4.5393016707999998E-05 (rounded from 4.539301670825854E-05)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_RootOperations_HighPrecision(x: 8, y: 0.33333333333332998, expected: 2) [7 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 2 (rounded from 2)
+Actual:   1.999999999999986 (rounded from 1.9999999999999862)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_RootOperations_HighPrecision(Double x, Double y, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 401
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafePow_RootOperations_HighPrecision(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.71]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.Exp2_ExpensiveViaExp_Equivalence [FAIL]
+[xUnit.net 00:00:01.72]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp10_InverseWithLog10_PreservesValue [FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp2_ExpensiveViaExp_Equivalence [17 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 45.255119399243696 (rounded from 45.255119399243696)
+Actual:   45.254942741174048 (rounded from 45.254942741174048)
+[xUnit.net 00:00:01.64]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafePow_IntegerPowers_Exact(x: 2, y: 3, expected: 8) [FAIL]
+  Stack Trace:
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp2_ExpensiveViaExp_Equivalence() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 608
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp10_InverseWithLog10_PreservesValue [8 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 14 decimal places
+Expected: 2.5 (rounded from 2.5)
+Actual:   2.4999999344066 (rounded from 2.4999999344066)
+[xUnit.net 00:00:01.65]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafePow_IntegerPowers_Exact(x: 5, y: 3, expected: 125) [FAIL]
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp_LargeNegativeExponent() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 256
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp10_InverseWithLog10_PreservesValue() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 355
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:02.24]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.Exp2_and_Log2_AreInverses [FAIL]
+[xUnit.net 00:00:01.77]     
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.VeryLargeNumbers [FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(x: 3, y: 2, expected: 9) [8 ms]
+  Error Message:
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.VeryLargeNumbers [1 ms]
+   Assert.Equal() Failure: Values are not within 10 decimal places
+Expected: 9 (rounded from 9)
+Actual:   9.0000009649999999 (rounded from 9.0000009650148485)
+  Error Message:
+  Stack Trace:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 230.25850929940458 (rounded from 230.25850929940458)
+Actual:   230.25850929940455 (rounded from 230.25850929940455)
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(Double x, Double y, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 391
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Stack Trace:
+  Failed      at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.VeryLargeNumbers() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 645
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(x: 2, y: 3, expected: 8) [12 ms]
+  Error Message:
+[xUnit.net 00:00:01.78]     
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Log2_Via_Log_Consistency 
+[FAIL]
+   Assert.Equal() Failure: Values are not within 10 decimal places
+Expected: 8 (rounded from 8)
+[xUnit.net 00:00:01.78]     
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp_and_Log_AreInverses 
+[FAIL]
+Actual:   8.0000085167999995 (rounded from 8.0000085167559352)
+  Stack Trace:
+[xUnit.net 00:00:01.80]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafePow_InverseRelationship [FAIL]
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(Double x, Double y, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 391
+[xUnit.net 00:00:01.80]     
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_OfE_Equals_One 
+[FAIL]
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed   Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(x: 5, y: 3, expected: 125) [7 ms]
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Log2_Via_Log_Consistency [1 ms]
+  Error Message:
+  Error Message:
+   Assert.Equal() Failure: Values are not within 10 decimal places
+Expected: 125 (rounded from 125)
+Actual:   125.0001631515 (rounded from 125.00016315151794)
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 3.9068905956085178 (rounded from 3.9068905956085183)
+Actual:   3.9068603515625 (rounded from 3.9068603515625)
+  Stack Trace:
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(Double x, Double y, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 391
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Log2_Via_Log_Consistency() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 467
+   at System.Reflection.MethodBaseInvo
+ker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp_and_Log_AreInverses [4 ms]
+[xUnit.net 00:00:01.66]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafePow_IntegerPowers_Exact(x: 10, y: 2, expected: 100) [FAIL]
+  Error Message:
+[xUnit.net 00:00:01.68]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp2_FractionalExponents_HighPrecision(x: 0.5, expected: 
+1.4142135623730951) [FAIL]
+   Assert.Equal() Failure: Values are not within 14 decimal places
+Expected: 7.5 (rounded from 7.5)
+Actual:   7.5000003130428103 (rounded from 7.5000003130428059)
+  Stack Trace:
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(x: 10, y: 2, expected: 100) [14 ms]
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp_and_Log_AreInverses() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 438
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Error Message:
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_InverseRelationship [24 ms]
+   Assert.Equal() Failure: Values are not within 10 decimal places
+Expected: 100 (rounded from 100)
+Actual:   100.00033611560001 (rounded from 100.00033611556616)
+  Error Message:
+  Stack Trace:
+   Assert.Equal() Failure: Values are not within 13 decimal places
+Expected: 2.5 (rounded from 2.5)
+Actual:   2.5000021522817999 (rounded from 2.5000021522818159)
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(Double x, Double y, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 391
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafePow_IntegerPowers_Exact(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_InverseRelationship() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 427
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp2_FractionalExponents_HighPrecision(x: 0.5, expected: 1.4142135623730951) [17 ms]  Failed 
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_OfE_Equals_One [< 1 ms]
+  Error Message:
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 1.4142135623730949 (rounded from 1.4142135623730951)
+Actual:   1.414222481226366 (rounded from 1.4142224812263655)
+   Assert.Equal() Failure: Values are not within 14 decimal places
+Expected: 1 (rounded from 1)
+Actual:   0.99999867785453 (rounded from 0.99999867785452645)
+  Stack Trace:
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp2_FractionalExponents_HighPrecision(Double x, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 294
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_OfE_Equals_One() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 618
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.70]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp2_FractionalExponents_HighPrecision(x: 0.25, expected: 
+1.189207115002721) [FAIL][xUnit.net 00:00:01.82]     
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_NegativeExponent 
+[FAIL]
+
+[xUnit.net 00:00:01.84]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp10_FractionalExponents_HighPrecision(x: 0.5, expected: 
+3.1622776601683795) [FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp2_FractionalExponents_HighPrecision(x: 0.25, expected: 1.189207115002721) [12 ms]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_NegativeExponent [14 ms]
+  Error Message:
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 1.189207115002721 (rounded from 1.189207115002721)
+Actual:   1.1892077556431819 (rounded from 1.1892077556431826)
+   Assert.Equal() Failure: Values are not within 10 decimal places
+Expected: 0.25 (rounded from 0.25)
+Actual:   0.24999311320000001 (rounded from 0.24999311319503018)
+  Stack Trace:
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp2_FractionalExponents_HighPrecision(Double x, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line      at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_NegativeExponent() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 417
+   at System.Reflection.MethodBaseInvo294
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafeExp2_FractionalExponents_HighPrecision(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+ker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:02.28]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp2_InverseWithLog2_PreservesValue [FAIL]
+[xUnit.net 00:00:01.74]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafePow_RootOperations_HighPrecision(x: 8, y: 0.33333333333332998, 
+expected: 2) [FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp10_FractionalExponents_HighPrecision(x: 0.5, expected: 3.1622776601683795) [18 ms]
+[xUnit.net 00:00:02.30]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeLog10_InverseWithExp10_PreservesValue [FAIL]
+  Failed   Error Message:
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_RootOperations_HighPrecision(x: 8, y: 0.33333333333332998, expected: 2) [7 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 3.16227766016838 (rounded from 3.1622776601683795)
+Actual:   3.1623051235822608 (rounded from 3.1623051235822608)
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 2 (rounded from 2)
+Actual:   1.999999999999986 (rounded from 1.9999999999999862)
+  Stack Trace:
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp10_FractionalExponents_HighPrecision(Double x, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 346
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.85]     
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Pow_CommutativeProperty 
+[FAIL]
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_RootOperations_HighPrecision(Double x, Double y, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 401
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafePow_RootOperations_HighPrecision(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Pow_CommutativeProperty [9 ms]
+  Error Message:
+[xUnit.net 00:00:01.77]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.Exp2_ExpensiveViaExp_Equivalence [FAIL]
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 2 (rounded from 2)
+Actual:   2.0000007097340222 (rounded from 2.0000007097340218)
+[xUnit.net 00:00:01.78]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp10_InverseWithLog10_PreservesValue [FAIL]
+  Stack Trace:
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp2_ExpensiveViaExp_Equivalence [17 ms]
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Pow_CommutativeProperty() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 595
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Error Message:
+[xUnit.net 00:00:01.89]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.Exp_CompositionPreservesValue [FAIL]
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 45.255119399243696 (rounded from 45.255119399243696)
+Actual:   45.254942741174048 (rounded from 45.254942741174048)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp2_ExpensiveViaExp_Equivalence() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 608
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)  Failed 
+[xUnit.net 00:00:01.90]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.Log10_Via_Log_Consistency [FAIL]
+[xUnit.net 00:00:01.84]     
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.VeryLargeNumbers [FAIL]
+[xUnit.net 00:00:02.32]     
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp10_LargeExponent 
+[FAIL]
+[xUnit.net 00:00:01.84]     
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Log2_Via_Log_Consistency 
+[FAIL]
+[xUnit.net 00:00:01.92]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp_InverseWithLog_PreservesValue [FAIL]
+[xUnit.net 00:00:01.84]     
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp_and_Log_AreInverses 
+[FAIL]
+[xUnit.net 00:00:01.92]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeLog10_StandardValues_HighPrecision(x: 2, expected: 0.30102999566400002) 
+[FAIL]
+[xUnit.net 00:00:01.87]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafePow_InverseRelationship [FAIL]
+[xUnit.net 00:00:01.92]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeLog10_StandardValues_HighPrecision(x: 3, expected: 0.47712125472) [FAIL]
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp_CompositionPreservesValue [43 ms]
+  Error Message:
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp10_InverseWithLog10_PreservesValue [8 ms]
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 601.84908826286971 (rounded from 601.84908826286971)
+Actual:   601.847921253967 (rounded from 601.847921253967)
+  Error Message:
+  Stack Trace:
+   Assert.Equal() Failure: Values are not within 14 decimal places
+Expected: 2.5 (rounded from 2.5)
+Actual:   2.4999999344066 (rounded from 2.4999999344066)
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp_CompositionPreservesValue() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 491
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Stack Trace:
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Log10_Via_Log_Consistency [< 1 ms]
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp10_InverseWithLog10_PreservesValue() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 355
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 1.6232492903978999 (rounded from 1.6232492903979003)
+Actual:   1.62322998046875 (rounded from 1.62322998046875)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Log10_Via_Log_Consistency() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 478
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed   Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp_InverseWithLog_PreservesValue [12 ms]
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.VeryLargeNumbers [1 ms]
+  Error Message:
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 1.5 (rounded from 1.5)
+Actual:   1.500001233435398 (rounded from 1.5000012334353976)
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 230.25850929940458 (rounded from 230.25850929940458)
+Actual:   230.25850929940455 (rounded from 230.25850929940455)
+  Stack Trace:
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp_InverseWithLog_PreservesValue() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 240
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.VeryLargeNumbers() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 645
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)  Failed 
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog10_StandardValues_HighPrecision(x: 2, expected: 0.30102999566400002) [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 0.30102999566400002 (rounded from 0.30102999566400002)
+Actual:   0.30102999566398098 (rounded from 0.3010299956639812)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog10_StandardValues_HighPrecision(Double x, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 184
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog10_StandardValues_HighPrecision(x: 3, expected: 0.47712125472) [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 0.47712125472 (rounded from 0.47712125472)
+Actual:   0.47712125471966199 (rounded from 0.47712125471966244)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog10_StandardValues_HighPrecision(Double x, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 184
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafeLog10_StandardValues_HighPrecision(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.94]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeLog2_InverseWithExp2_PreservesValue [FAIL]
+[xUnit.net 00:00:01.94]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeLog_OfPi_HighPrecision [FAIL]
+[xUnit.net 00:00:01.94]     
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_LargeValue [FAIL]
+[xUnit.net 00:00:01.95]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp_LargeNegativeExponent [FAIL]
+[xUnit.net 00:00:01.96]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.Exp2_and_Log2_AreInverses [FAIL]
+[xUnit.net 00:00:02.34]     
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.VerySmallNumbers [FAIL]
+[xUnit.net 00:00:02.34]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeLog_SmallPositiveValue [FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Log2_Via_Log_Consistency [1 ms]
+  Error Message:
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp2_and_Log2_AreInverses [20 ms]
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 3.9068905956085178 (rounded from 3.9068905956085183)
+Actual:   3.9068603515625 (rounded from 3.9068603515625)
+  Error Message:
+  Stack Trace:
+   Assert.Equal() Failure: Values are not within 14 decimal places
+Expected: 12.300000000000001 (rounded from 12.300000000000001)
+Actual:   12.30001585514575 (rounded from 12.300015855145753)
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Log2_Via_Log_Consistency() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 467
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Stack Trace:
+  Failed      at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp2_and_Log2_AreInverses() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 447
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp_and_Log_AreInverses [5 ms]
+  Error Message:
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp2_InverseWithLog2_PreservesValue [42 ms]
+   Assert.Equal() Failure: Values are not within 14 decimal places
+Expected: 7.5 (rounded from 7.5)
+Actual:   7.5000003130428103 (rounded from 7.5000003130428059)
+  Error Message:
+  Stack Trace:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 4.2000000000000002 (rounded from 4.2000000000000002)
+Actual:   4.2000011819847076 (rounded from 4.2000011819847076)
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp_and_Log_AreInverses() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 438
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Stack Trace:
+  Failed      at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp2_InverseWithLog2_PreservesValue() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 303
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_InverseRelationship [24 ms]
+  Error Message:
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog10_InverseWithExp10_PreservesValue [15 ms]
+   Assert.Equal() Failure: Values are not within 13 decimal places
+Expected: 2.5 (rounded from 2.5)
+Actual:   2.5000021522817999 (rounded from 2.5000021522818159)
+[xUnit.net 00:00:01.97]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp2_InverseWithLog2_PreservesValue [FAIL]
+  Error Message:
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog2_InverseWithExp2_PreservesValue [18 ms]
+  Stack Trace:
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 5.5 (rounded from 5.5)
+Actual:   5.5000198300940406 (rounded from 5.5000198300940415)
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_InverseRelationship() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 427
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Stack Trace:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 3.7000000000000002 (rounded from 3.7000000000000002)
+Actual:   3.7000013873177262 (rounded from 3.7000013873177267)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog2_InverseWithExp2_PreservesValue() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 147
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_OfPi_HighPrecision [1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 1.1447298858493999 (rounded from 1.1447298858494002)
+Actual:   1.1447292525178761 (rounded from 1.1447292525178763)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_OfPi_HighPrecision() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 627
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_LargeValue [1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 230.25850929940458 (rounded from 230.25850929940458)
+Actual:   230.25850929940455 (rounded from 230.25850929940455)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_LargeValue() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 83
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp_LargeNegativeExponent [9 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 4.5399929761999999E-05 (rounded from 4.5399929762484854E-05)
+Actual:   4.5393016707999998E-05 (rounded from 4.539301670825854E-05)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp_LargeNegativeExponent() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 256
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp2_and_Log2_AreInverses [11 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 14 decimal places
+Expected: 12.300000000000001 (rounded from 12.300000000000001)
+Actual:   12.30001585514575 (rounded from 12.300015855145753)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp2_and_Log2_AreInverses() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 447
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp2_InverseWithLog2_PreservesValue [10 ms]
+[xUnit.net 00:00:01.87]     
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_OfE_Equals_One 
+[FAIL]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 4.2000000000000002 (rounded from 4.2000000000000002)
+Actual:   4.2000011819847076 (rounded from 4.2000011819847076)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp2_InverseWithLog2_PreservesValue() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 303
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog10_InverseWithExp10_PreservesValue() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 202
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.89]     
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_NegativeExponent 
+[FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp10_LargeExponent [19 ms]
+  Failed   Error Message:
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_OfE_Equals_One [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 10000000000 (rounded from 10000000000)
+Actual:   10000034591.006813 (rounded from 10000034591.006813)
+   Assert.Equal() Failure: Values are not within 14 decimal places
+Expected: 1 (rounded from 1)
+Actual:   0.99999867785453 (rounded from 0.99999867785452645)
+  Stack Trace:
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp10_LargeExponent() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 363
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.98]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeLog10_InverseWithExp10_PreservesValue [FAIL]
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_OfE_Equals_One() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 618
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.VerySmallNumbers [16 ms]
+  Failed   Error Message:
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_NegativeExponent [16 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: -230.25850929940458 (rounded from -230.25850929940458)
+Actual:   -230.25850929940455 (rounded from -230.25850929940455)
+   Assert.Equal() Failure: Values are not within 10 decimal places
+Expected: 0.25 (rounded from 0.25)
+Actual:   0.24999311320000001 (rounded from 0.24999311319503018)
+  Stack Trace:
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.VerySmallNumbers() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 636
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafePow_NegativeExponent() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 417
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_SmallPositiveValue [3 ms]
+[xUnit.net 00:00:01.91]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp10_FractionalExponents_HighPrecision(x: 0.5, expected: 
+3.1622776601683795) [FAIL]
+  Error Message:
+[xUnit.net 00:00:01.92]     
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Pow_CommutativeProperty 
+[FAIL]
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: -115.12925464970229 (rounded from -115.12925464970229)
+Actual:   -115.12925464970228 (rounded from -115.12925464970228)
+[xUnit.net 00:00:01.95]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.Exp_CompositionPreservesValue [FAIL]
+  Stack Trace:
+  Failed      at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_SmallPositiveValue() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 91
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp10_FractionalExponents_HighPrecision(x: 0.5, expected: 3.1622776601683795) [17 ms]
+  Error Message:
+[xUnit.net 00:00:02.37]     
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_OfE_IsOne [FAIL]
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 3.16227766016838 (rounded from 3.1622776601683795)
+Actual:   3.1623051235822608 (rounded from 3.1623051235822608)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_OfE_IsOne [< 1 ms]
+  Stack Trace:
+  Error Message:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp10_FractionalExponents_HighPrecision(Double x, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 346
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 1 (rounded from 1)
+Actual:   0.99999867785452601 (rounded from 0.99999867785452645)
+  Stack Trace:
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Pow_CommutativeProperty [9 ms]
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_OfE_IsOne() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 45
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 2 (rounded from 2)
+Actual:   2.0000007097340222 (rounded from 2.0000007097340218)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Pow_CommutativeProperty() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 595
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp_CompositionPreservesValue [28 ms]
+[xUnit.net 00:00:01.99]     
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp10_LargeExponent 
+[FAIL]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 601.84908826286971 (rounded from 601.84908826286971)
+Actual:   601.847921253967 (rounded from 601.847921253967)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp_CompositionPreservesValue() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 491
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.95]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.Log10_Via_Log_Consistency [FAIL]
+[xUnit.net 00:00:01.99]     
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.VerySmallNumbers [FAIL]
+[xUnit.net 00:00:02.00]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeLog_SmallPositiveValue [FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Log10_Via_Log_Consistency [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 1.6232492903978999 (rounded from 1.6232492903979003)
+Actual:   1.62322998046875 (rounded from 1.62322998046875)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Log10_Via_Log_Consistency() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 478
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.97]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp_InverseWithLog_PreservesValue [FAIL]
+[xUnit.net 00:00:01.97]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeLog10_StandardValues_HighPrecision(x: 2, expected: 0.30102999566400002) 
+[FAIL]
+[xUnit.net 00:00:01.97]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeLog10_StandardValues_HighPrecision(x: 3, expected: 0.47712125472) [FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp_InverseWithLog_PreservesValue [13 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 1.5 (rounded from 1.5)
+Actual:   1.500001233435398 (rounded from 1.5000012334353976)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp_InverseWithLog_PreservesValue() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 240
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog10_StandardValues_HighPrecision(x: 2, expected: 0.30102999566400002) [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 0.30102999566400002 (rounded from 0.30102999566400002)
+Actual:   0.30102999566398098 (rounded from 0.3010299956639812)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog10_StandardValues_HighPrecision(Double x, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 184
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog10_StandardValues_HighPrecision(x: 3, expected: 0.47712125472) [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 0.47712125472 (rounded from 0.47712125472)
+Actual:   0.47712125471966199 (rounded from 0.47712125471966244)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog10_StandardValues_HighPrecision(Double x, Double expected) in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 184
+   at InvokeStub_Float128PreciseTranscendentalsTests.SafeLog10_StandardValues_HighPrecision(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.99]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeLog2_InverseWithExp2_PreservesValue [FAIL]
+[xUnit.net 00:00:01.99]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeLog_OfPi_HighPrecision [FAIL]
+[xUnit.net 00:00:01.99]     
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_LargeValue [FAIL]
+[xUnit.net 00:00:02.00]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp_LargeNegativeExponent [FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog2_InverseWithExp2_PreservesValue [14 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 3.7000000000000002 (rounded from 3.7000000000000002)
+Actual:   3.7000013873177262 (rounded from 3.7000013873177267)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog2_InverseWithExp2_PreservesValue() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 147
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_OfPi_HighPrecision [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 1.1447298858493999 (rounded from 1.1447298858494002)
+Actual:   1.1447292525178761 (rounded from 1.1447292525178763)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_OfPi_HighPrecision() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 627
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_LargeValue [1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 230.25850929940458 (rounded from 230.25850929940458)
+Actual:   230.25850929940455 (rounded from 230.25850929940455)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_LargeValue() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 83
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp_LargeNegativeExponent [10 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 4.5399929761999999E-05 (rounded from 4.5399929762484854E-05)
+Actual:   4.5393016707999998E-05 (rounded from 4.539301670825854E-05)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp_LargeNegativeExponent() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 256
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:02.01]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.Exp2_and_Log2_AreInverses [FAIL]
+[xUnit.net 00:00:02.02]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeExp2_InverseWithLog2_PreservesValue [FAIL]
+[xUnit.net 00:00:02.01]     
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_OfE_IsOne [FAIL]
+[xUnit.net 00:00:02.03]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeLog10_InverseWithExp10_PreservesValue [FAIL]
+[xUnit.net 00:00:02.04]     
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp10_LargeExponent 
+[FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp2_and_Log2_AreInverses [14 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 14 decimal places
+Expected: 12.300000000000001 (rounded from 12.300000000000001)
+Actual:   12.30001585514575 (rounded from 12.300015855145753)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.Exp2_and_Log2_AreInverses() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 447
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp2_InverseWithLog2_PreservesValue [7 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 4.2000000000000002 (rounded from 4.2000000000000002)
+Actual:   4.2000011819847076 (rounded from 4.2000011819847076)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp2_InverseWithLog2_PreservesValue() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 303
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog10_InverseWithExp10_PreservesValue [10 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 5.5 (rounded from 5.5)
+Actual:   5.5000198300940406 (rounded from 5.5000198300940415)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog10_InverseWithExp10_PreservesValue() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 202
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp10_LargeExponent [7 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 10000000000 (rounded from 10000000000)
+Actual:   10000034591.006813 (rounded from 10000034591.006813)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp10_LargeExponent() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 363
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:02.04]     
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.VerySmallNumbers [FAIL]
+[xUnit.net 00:00:02.05]     GoogolSharp.Tests.Float128PreciseTranscendentalsTes
+ts.SafeLog_SmallPositiveValue [FAIL]
+[xUnit.net 00:00:02.06]     
+GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_OfE_IsOne [FAIL]
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog10_InverseWithExp10_PreservesValue [10 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 5.5 (rounded from 5.5)
+Actual:   5.5000198300940406 (rounded from 5.5000198300940415)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog10_InverseWithExp10_PreservesValue() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 202
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp10_LargeExponent [7 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 10000000000 (rounded from 10000000000)
+Actual:   10000034591.006813 (rounded from 10000034591.006813)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeExp10_LargeExponent() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 363
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.VerySmallNumbers [1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: -230.25850929940458 (rounded from -230.25850929940458)
+Actual:   -230.25850929940455 (rounded from -230.25850929940455)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.VerySmallNumbers() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 636
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_SmallPositiveValue [1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: -115.12925464970229 (rounded from -115.12925464970229)
+Actual:   -115.12925464970228 (rounded from -115.12925464970228)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_SmallPositiveValue() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 91
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_OfE_IsOne [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 1 (rounded from 1)
+Actual:   0.99999867785452601 (rounded from 0.99999867785452645)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_OfE_IsOne() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 45
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.VerySmallNumbers [1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: -230.25850929940458 (rounded from -230.25850929940458)
+Actual:   -230.25850929940455 (rounded from -230.25850929940455)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.VerySmallNumbers() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 636
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_SmallPositiveValue [1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: -115.12925464970229 (rounded from -115.12925464970229)
+Actual:   -115.12925464970228 (rounded from -115.12925464970228)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_SmallPositiveValue() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 91
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_OfE_IsOne [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values are not within 15 decimal places
+Expected: 1 (rounded from 1)
+Actual:   0.99999867785452601 (rounded from 0.99999867785452645)
+  Stack Trace:
+     at GoogolSharp.Tests.Float128PreciseTranscendentalsTests.SafeLog_OfE_IsOne() in C:\Users\Gard\Desktop\MyCode\2026\csharp\GoogolSharp\tests\GoogolSharp.Tests\Float128PreciseTranscendentalsTests.cs:line 45
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+
+Failed!  - Failed:    41, Passed:   127, Skipped:     0, Total:   168, Duration: 2 s - GoogolSharp.Tests.dll (net8.0)
+
+Failed!  - Failed:    41, Passed:   127, Skipped:     0, Total:   168, Duration: 1 s - GoogolSharp.Tests.dll (net10.0)
+
+Failed!  - Failed:    41, Passed:   127, Skipped:     0, Total:   168, Duration: 1 s - GoogolSharp.Tests.dll (net9.0)

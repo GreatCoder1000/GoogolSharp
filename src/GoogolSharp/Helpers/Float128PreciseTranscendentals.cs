@@ -117,6 +117,14 @@ namespace GoogolSharp.Helpers
         private static readonly Float128 Ln10_Over_Ln2 = Ln10 / Ln2;
 
         /// <summary>
+        /// Reciprocal of ln(10): 1/ln(10) ≈ 0.43429448190325182765...
+        /// Used for log₁₀(x) = ln(x) / ln(10) = ln(x) * (1/ln(10))
+        /// Precomputing reciprocal avoids division and improves precision.
+        /// </summary>
+        private static readonly Float128 Inv_Ln10 =
+            Float128.Parse("0.43429448190325182765112891891660508229439700580367", null);
+
+        /// <summary>
         /// Computes high-precision natural logarithm using atanh-based range reduction.
         /// 
         /// Algorithm:
@@ -239,8 +247,9 @@ namespace GoogolSharp.Helpers
             if (x == Float128.One)
                 return Float128.Zero;
 
-            // Log10(x) = Log(x) / Log(10)
-            return LogHighPrecision(x) / Ln10;
+            // Log10(x) = Log(x) / Log(10) = Log(x) * (1/Log(10))
+            // Using reciprocal multiplication is more precise than division
+            return LogHighPrecision(x) * Inv_Ln10;
         }
 
         /// <summary>
@@ -342,19 +351,20 @@ namespace GoogolSharp.Helpers
         /// <remarks>This is an internal method used by SafeExp2.</remarks>
         private static Float128 Exp2Fractional(Float128 y_frac)
         {
-            // Initial guess using linear approximation
-            Float128 x_n = Float128.One + y_frac * Ln2;
+            // Better initial guess using Taylor series: 2^y ≈ 1 + y*ln(2) + (y*ln(2))^2/2 + (y*ln(2))^3/6
+            Float128 ln2_y = y_frac * Ln2;
+            Float128 x_n = Float128.One + ln2_y + (ln2_y * ln2_y) / 2 + (ln2_y * ln2_y * ln2_y) / 6;
 
             // Newton-Raphson: We want to solve 2^y = x, i.e., Log2(x) = y
             // f(x) = Log2(x) - y, f'(x) = 1/(x*Ln(2))
             // x_{n+1} = x_n - f(x_n)/f'(x_n) = x_n - (Log2(x_n) - y) * x_n * Ln(2)
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < 50; i++)  // Increased iterations for better convergence
             {
                 Float128 log2_xn = LogHighPrecision(x_n) * Log2_E;
-                Float128 correction = (log2_xn - y_frac) * x_n * Ln2;  // MULTIPLY by Ln2, not divide
+                Float128 correction = (log2_xn - y_frac) * x_n * Ln2;
                 Float128 x_next = x_n - correction;
 
-                if (Float128.Abs(x_next - x_n) < Epsilon * Float128.Abs(x_n))
+                if (Float128.Abs(correction) < Epsilon * Epsilon * Float128.Abs(x_n) && i > 20)
                     break;
 
                 x_n = x_next;
@@ -403,16 +413,18 @@ namespace GoogolSharp.Helpers
             Float128 y_fractionPart = y - Float128.Floor(y);
             int y_intPart = (int)Float128.Floor(y);
 
-            // Compute E^(fractional part) using Newton-Raphson
-            Float128 x_n = Float128.One + y_fractionPart;  // Linear approximation
+            // Compute E^(fractional part) using better Taylor approximation
+            Float128 x_n = Float128.One + y_fractionPart + (y_fractionPart * y_fractionPart) / 2 
+                                     + (y_fractionPart * y_fractionPart * y_fractionPart) / 6 
+                                     + (y_fractionPart * y_fractionPart * y_fractionPart * y_fractionPart) / 24;
 
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < 50; i++)  // Increased iterations for better convergence
             {
                 Float128 log_xn = LogHighPrecision(x_n);
                 Float128 delta = x_n * (y_fractionPart - log_xn);
                 Float128 x_next = x_n + delta;
 
-                if (Float128.Abs(delta) < Epsilon * Float128.Abs(x_n))
+                if (Float128.Abs(delta) < Epsilon * Epsilon * Float128.Abs(x_n) && i > 20)
                     break;
 
                 x_n = x_next;
