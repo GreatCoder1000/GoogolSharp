@@ -22,30 +22,29 @@ using QuadrupleLib.Accelerators;
 using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
 using System.Globalization;
 using System.Numerics;
-
 namespace GoogolSharp
 {
-    /// <summary>
-    /// A large number.
-    /// </summary>
-    /// <remarks>
-    /// A number is represented using 4 basic fields.
-    /// _IsNegative (tracks sign), _IsReciprocal (allows for numbers below 1),
-    /// Letter (allows for both tiny numbers like 100, and googological giants),
-    /// Operand (>=2, <10)
-    /// 
-    /// Bit layout in a 96-bit word:
-    /// [n 1][r 1][l 6][i 3][f 85]
-    /// 
-    /// - n: _IsNegative
-    /// - r: _IsReciprocal
-    /// - l: Letter
-    /// - i: OperandFloored-2 (3 bits)
-    /// - f: Fraction (Q3.85)
-    /// </remarks>
-    public readonly partial struct Arithmonym : IGoogologyFloat<Arithmonym>
+    internal readonly struct ArithmonymPsiLevel : IArithmonymOperation
     {
-        // See Modules/ for implementation.
-        // For some unincluded stuff like Float128PreciseTranscendentals look in Helpers/
+        private readonly Arithmonym inner;
+        public Arithmonym Operand => inner;
+
+        internal ArithmonymPsiLevel(Arithmonym inner)
+        {
+            this.inner = inner;
+        }
+
+        public Arithmonym Evaluate()
+        {
+            int n = (int)(Operand + (Arithmonym)1e-15);
+            if (n == 0) return Arithmonym.Zero;
+            if (n == 1) return Arithmonym.Ten;
+            if (n == 2) return Arithmonym.TenBillion;
+            if (n == 3) return Arithmonym.Trialogue;
+            if (n == 4) return Arithmonym.Tetralogue;
+            if (n == 5) return Arithmonym.Pentalogue;
+            if (n == 6) return Arithmonym.Dekalogue;
+            throw new NotImplementedException();
+        }
     }
 }

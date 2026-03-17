@@ -20,9 +20,7 @@ using GoogolSharp.Helpers;
 using QuadrupleLib;
 using QuadrupleLib.Accelerators;
 using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
-using System.Globalization;
 using System.Numerics;
-using System.Dynamic;
 namespace GoogolSharp
 {
     internal readonly struct ArithmonymSscg : IArithmonymOperation

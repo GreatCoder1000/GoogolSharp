@@ -194,8 +194,36 @@ namespace GoogolSharp
             return (value / Two)._Log10 / Five._Log10;
         }
 
+        /// <summary>
+        /// Friedman's TREE function. Notable number: TREE(3)
+        /// </summary>        
         public static Arithmonym Tree(Arithmonym x) => new ArithmonymTree(x).Evaluate();
+        
+        
+        /// <summary>
+        /// Simple SubCubic Graph function. Notable number: SSCG(3)
+        /// </summary>
         public static Arithmonym Sscg(Arithmonym x) => new ArithmonymSscg(x).Evaluate();
+        
+        /// <summary>
+        /// SubCubic Graph function. Notable number: SCG(13)
+        /// </summary>
         public static Arithmonym Scg(Arithmonym x) => new ArithmonymScg(x).Evaluate();
+
+        /// <summary>
+        /// Busy Beaver function (Sigma, not the frantic frog)
+        /// 
+        /// Learn more: https://googology.fandom.com/wiki/Busy_beaver_function
+        /// </summary>
+        public static Arithmonym BusyBeaver(Arithmonym x) => new ArithmonymBusyBeaver(x).Evaluate();
+        
+        /// <summary>
+        /// Psi Level of x. Note that x is treated as an integer, so 4.2 -> 4.
+        /// 
+        /// Learn more: https://googology.fandom.com/wiki/User_blog:PsiCubed2/For_Newbies_(and_Veterans_too):_The_Great_Scale_of_Googology
+        /// </summary>
+        /// <param name="x">The value</param>
+        /// <returns>An <see cref="Arithmonym"/> that returns approximately the psi level of x.</returns>
+        public static Arithmonym PsiLevel(Arithmonym x) => new ArithmonymPsiLevel(x).Evaluate();
     }
 }

@@ -16,13 +16,7 @@
  *  along with GoogolSharp.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using GoogolSharp.Helpers;
-using QuadrupleLib;
-using QuadrupleLib.Accelerators;
-using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
-using System.Globalization;
 using System.Numerics;
-using System.Reflection.Metadata.Ecma335;
 namespace GoogolSharp
 {
     internal interface IArithmonymOperation

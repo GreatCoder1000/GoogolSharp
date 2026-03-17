@@ -153,6 +153,21 @@ namespace GoogolSharp
         public static Arithmonym TenBillion => new(isNegative: false, _IsReciprocal: false, 0x06, 0);
 
         /// <summary>
+        /// A constant <see cref="Arithmonym"/> that represents the value 10^(10^10).
+        /// </summary>
+        public static Arithmonym Trialogue => new(isNegative: false, _IsReciprocal: false, 0x06, EncodeOperand((Float128)3));
+
+        /// <summary>
+        /// A constant <see cref="Arithmonym"/> that represents the value 10^(10^(10^10)).
+        /// </summary>
+        public static Arithmonym Tetralogue => new(isNegative: false, _IsReciprocal: false, 0x06, EncodeOperand((Float128)4));
+
+        /// <summary>
+        /// A constant <see cref="Arithmonym"/> that represents the value 10^(10^(10^(10^10))).
+        /// </summary>
+        public static Arithmonym Pentalogue => new(isNegative: false, _IsReciprocal: false, 0x06, EncodeOperand((Float128)5));
+
+        /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents the value 10^(10^(10^(10^(10^(10^(10^(10^(10^10)))))))).
         /// </summary>
         public static Arithmonym Dekalogue => new(isNegative: false, _IsReciprocal: false, 0x07, 0);
