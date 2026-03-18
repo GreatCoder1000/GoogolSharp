@@ -24,7 +24,7 @@ namespace GoogolSharp.Helpers
 {
     public static class ArithmonymFormattingUtils
     {
-        public static string FormatArithmonymFromLetterF(Float128 letterF, bool isReciprocal)
+        public static string FormatArithmonymFromLetterF(Float128 letterF, bool isReciprocal, string placeholder = "E", bool showExponentSignIfPositive = true)
         {
             if (letterF < 2) return new Arithmonym(Float128HyperTranscendentals.LetterF(letterF)).ToString();
             if (letterF < 3)
@@ -37,11 +37,11 @@ namespace GoogolSharp.Helpers
                         )
                     )
                 );
-                return FormatArithmonymScientific(letterE, isReciprocal);
+                return FormatArithmonymScientific(letterE, isReciprocal, placeholder, showExponentSignIfPositive);
             }
             if (letterF < 7)
             {
-                return $"{(isReciprocal ? "1E-" : "1E+")}{FormatArithmonymFromLetterF(letterF - 1, false)}";
+                return $"{placeholder}{(isReciprocal ? "-" : showExponentSignIfPositive ? "+" : "")}{FormatArithmonymFromLetterF(letterF - 1, false)}";
             }
             if (letterF < 100000000000000000000.0)
             {
@@ -62,7 +62,7 @@ namespace GoogolSharp.Helpers
             return $"{(isReciprocal ? "1 / " : "")}F+{letterF}";
         }
 
-        public static string FormatArithmonymScientific(Float128 letterE, bool isReciprocal)
+        public static string FormatArithmonymScientific(Float128 letterE, bool isReciprocal, string placeholder = "E", bool showExponentSignIfPositive = true)
         {
             letterE = Float128PreciseTranscendentals.SafeExp10(
                 Float128PreciseTranscendentals.SafeExp10(
@@ -74,7 +74,7 @@ namespace GoogolSharp.Helpers
             Float128 exponent = Float128.Floor(letterE);
             Float128 significand = Float128PreciseTranscendentals.SafeExp10(
                 letterE - exponent);
-            return $"{significand}e{(isReciprocal ? "-" : "+")}{(ulong)exponent}";
+            return $"{significand}{placeholder}{(isReciprocal ? "-" : showExponentSignIfPositive ? "+" : "")}{(ulong)exponent}";
         }
     }
 }

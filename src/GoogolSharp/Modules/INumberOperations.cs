@@ -601,40 +601,7 @@ namespace GoogolSharp
                 return false;
             }
         }
-
-        /// <summary>
-        /// Returns a string representation of the current <see cref="Arithmonym"/>,
-        /// formatted according to <paramref name="format"/> and <paramref name="provider"/> if provided.
-        /// </summary>
-        /// <param name="format">A format string (currently unused); may be <c>null</c>.</param>
-        /// <param name="provider">An optional format provider that supplies culture-specific formatting information.</param>
-        /// <returns>A formatted string representation of this <see cref="Arithmonym"/>.</returns>
-        public string ToString(string? format, IFormatProvider? provider)
-        {
-            if (format == "B") return ToBinaryString(squishedHi, 32) + ToBinaryString(squishedMid, 32) + ToBinaryString(squishedLo, 32);
-            // Current implementation falls back to default ToString(); keep that behavior.
-            return ToString();
-        }
-
-        // Converts an integer to a binary string with optional fixed width
-        private static string ToBinaryString(uint number, int bitWidth = 0)
-        {
-            // Convert to binary without leading zeros
-            string binary = Convert.ToString(number, 2);
-
-            // If a fixed width is specified, pad with leading zeros
-            if (bitWidth > 0)
-            {
-                // Ensure bitWidth is reasonable (1 to 64 for int)
-                if (bitWidth < 1 || bitWidth > 64)
-                    throw new ArgumentOutOfRangeException(nameof(bitWidth), "Bit width must be between 1 and 64.");
-
-                binary = binary.PadLeft(bitWidth, '0');
-            }
-
-            return binary;
-        }
-
+        
         /// <summary>
         /// Attempts to format the current <see cref="Arithmonym"/> into the provided
         /// <paramref name="destination"/> buffer using the specified <paramref name="format"/> and <paramref name="provider"/>.
