@@ -22,6 +22,7 @@ using QuadrupleLib.Accelerators;
 using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
 using System.Globalization;
 using System.Numerics;
+using System.Reflection.Emit;
 namespace GoogolSharp
 {
     partial struct Arithmonym
@@ -123,5 +124,24 @@ namespace GoogolSharp
         /// Determines whether <paramref name="left"/> is greater than or equal to <paramref name="right"/>.
         /// </summary>
         public static bool operator >=(Arithmonym left, Arithmonym right) => (left > right) || (left == right);
+
+        public static bool NearlyEqual(Arithmonym left, Arithmonym right, Float128 operandTolerance)
+        {
+            Arithmonym lhsNmlzd = left.Normalized;
+            Arithmonym rhsNmlzd = right.Normalized;
+            if (IsZero(lhsNmlzd) != IsZero(rhsNmlzd)) return false;
+            if (IsNaN(lhsNmlzd) != IsNaN(rhsNmlzd)) return false;
+            if (IsPositiveInfinity(lhsNmlzd) != IsPositiveInfinity(rhsNmlzd)) return false;
+            if (IsNegativeInfinity(lhsNmlzd) != IsNegativeInfinity(rhsNmlzd)) return false;
+
+            if (lhsNmlzd._IsNegative != rhsNmlzd._IsNegative) return false;
+            if (lhsNmlzd._IsReciprocal != rhsNmlzd._IsReciprocal) return false;
+            
+            Float128 lhsCompId = lhsNmlzd.Letter + ((lhsNmlzd.Operand - 2) / 8);
+            Float128 rhsCompId = rhsNmlzd.Letter + ((rhsNmlzd.Operand - 2) / 8);
+            if (Float128.Abs(lhsCompId - rhsCompId) > operandTolerance)
+                return false;
+            return true;
+        }
     }
 }

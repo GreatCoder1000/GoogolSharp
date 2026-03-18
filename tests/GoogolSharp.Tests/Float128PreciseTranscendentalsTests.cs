@@ -38,7 +38,7 @@ public class Float128PreciseTranscendentalsTests
     public void SafeLog_OfOne_IsZero()
     {
         var result = Float128PreciseTranscendentals.SafeLog((Float128)1.0);
-        Assert.Equal(Float128.Zero, result);
+        AssertFloat128.Equal(Float128.Zero, result);
     }
 
     [Fact]
@@ -47,7 +47,7 @@ public class Float128PreciseTranscendentalsTests
         var e = Float128PreciseTranscendentals.E;
         var result = Float128PreciseTranscendentals.SafeLog(e);
         // Using RelaxedPrecisionDigits due to inherent precision loss in Float128->double conversion
-        Assert.Equal(1.0, (double)result, RelaxedPrecisionDigits);
+        AssertFloat128.Equal((Float128)1.0, result, RelaxedPrecisionDigits);
     }
 
     [Theory]
@@ -58,7 +58,7 @@ public class Float128PreciseTranscendentalsTests
     public void SafeLog_StandardValues_HighPrecision(double x, double expected)
     {
         var result = Float128PreciseTranscendentals.SafeLog((Float128)x);
-        Assert.Equal(expected, (double)result, RelaxedPrecisionDigits);
+        AssertFloat128.Equal((Float128)expected, result, RelaxedPrecisionDigits);
     }
 
     [Theory]
@@ -77,7 +77,7 @@ public class Float128PreciseTranscendentalsTests
         var original = (Float128)2.5;
         var logged = Float128PreciseTranscendentals.SafeLog(original);
         var restored = Float128PreciseTranscendentals.SafeExp(logged);
-        Assert.Equal((double)original, (double)restored, RelaxedPrecisionDigits);
+        AssertFloat128.Equal(original, restored, RelaxedPrecisionDigits);
     }
 
     [Fact]
@@ -85,7 +85,7 @@ public class Float128PreciseTranscendentalsTests
     {
         var result = Float128PreciseTranscendentals.SafeLog((Float128)1e100);
         var expected = 100 * Math.Log(10);
-        Assert.Equal(expected, (double)result, RelaxedPrecisionDigits);
+        AssertFloat128.Equal((Float128)expected, result, RelaxedPrecisionDigits);
     }
 
     [Fact]
@@ -93,7 +93,7 @@ public class Float128PreciseTranscendentalsTests
     {
         var result = Float128PreciseTranscendentals.SafeLog((Float128)1e-50);
         var expected = -50 * Math.Log(10);
-        Assert.Equal(expected, (double)result, RelaxedPrecisionDigits);
+        AssertFloat128.Equal((Float128)expected, result, RelaxedPrecisionDigits);
     }
     #endregion
 
@@ -102,14 +102,14 @@ public class Float128PreciseTranscendentalsTests
     public void SafeLog2_OfOne_IsZero()
     {
         var result = Float128PreciseTranscendentals.SafeLog2((Float128)1.0);
-        Assert.Equal(Float128.Zero, result);
+        AssertFloat128.Equal(Float128.Zero, result);
     }
 
     [Fact]
     public void SafeLog2_OfTwo_IsOne()
     {
         var result = Float128PreciseTranscendentals.SafeLog2((Float128)2.0);
-        Assert.Equal(1.0, (double)result, RelaxedPrecisionDigits);  // Exact for powers of 2
+        AssertFloat128.Equal((Float128)1.0, result, RelaxedPrecisionDigits);  // Exact for powers of 2
     }
 
     [Theory]
@@ -122,7 +122,7 @@ public class Float128PreciseTranscendentalsTests
     public void SafeLog2_PowersOfTwo_Exact(double x, double expected)
     {
         var result = Float128PreciseTranscendentals.SafeLog2((Float128)x);
-        Assert.Equal(expected, (double)result, RelaxedPrecisionDigits);
+        AssertFloat128.Equal((Float128)expected, result, RelaxedPrecisionDigits);
     }
 
     [Theory]
@@ -131,7 +131,7 @@ public class Float128PreciseTranscendentalsTests
     public void SafeLog2_StandardValues_HighPrecision(double x, double expected)
     {
         var result = Float128PreciseTranscendentals.SafeLog2((Float128)x);
-        Assert.Equal(expected, (double)result, RelaxedPrecisionDigits);
+        AssertFloat128.Equal((Float128)expected, result, RelaxedPrecisionDigits);
     }
 
     [Theory]
@@ -149,7 +149,7 @@ public class Float128PreciseTranscendentalsTests
         var original = (Float128)3.7;
         var logged = Float128PreciseTranscendentals.SafeLog2(original);
         var restored = Float128PreciseTranscendentals.SafeExp2(logged);
-        Assert.Equal((double)original, (double)restored, RelaxedPrecisionDigits);
+        AssertFloat128.Equal(original, restored, RelaxedPrecisionDigits);
     }
     #endregion
 
@@ -158,14 +158,14 @@ public class Float128PreciseTranscendentalsTests
     public void SafeLog10_OfOne_IsZero()
     {
         var result = Float128PreciseTranscendentals.SafeLog10((Float128)1.0);
-        Assert.Equal(Float128.Zero, result);
+        AssertFloat128.Equal(Float128.Zero, result);
     }
 
     [Fact]
     public void SafeLog10_OfTen_IsOne()
     {
         var result = Float128PreciseTranscendentals.SafeLog10((Float128)10.0);
-        Assert.Equal(1.0, (double)result, RelaxedPrecisionDigits);  // Exact
+        AssertFloat128.Equal((Float128)1.0, result, RelaxedPrecisionDigits);  // Exact
     }
 
     [Theory]
@@ -177,7 +177,7 @@ public class Float128PreciseTranscendentalsTests
     public void SafeLog10_PowersOfTen_Exact(double x, double expected)
     {
         var result = Float128PreciseTranscendentals.SafeLog10((Float128)x);
-        Assert.Equal(expected, (double)result, RelaxedPrecisionDigits);  // Exact for powers of 10
+        AssertFloat128.Equal((Float128)expected, result, RelaxedPrecisionDigits);  // Exact for powers of 10
     }
 
     [Theory]
@@ -186,7 +186,7 @@ public class Float128PreciseTranscendentalsTests
     public void SafeLog10_StandardValues_HighPrecision(double x, double expected)
     {
         var result = Float128PreciseTranscendentals.SafeLog10((Float128)x);
-        Assert.Equal(expected, (double)result, RelaxedPrecisionDigits);
+        AssertFloat128.Equal((Float128)expected, result, RelaxedPrecisionDigits);
     }
 
     [Theory]
@@ -204,7 +204,7 @@ public class Float128PreciseTranscendentalsTests
         var original = (Float128)5.5;
         var logged = Float128PreciseTranscendentals.SafeLog10(original);
         var restored = Float128PreciseTranscendentals.SafeExp10(logged);
-        Assert.Equal((double)original, (double)restored, RelaxedPrecisionDigits);
+        AssertFloat128.Equal(original, restored, RelaxedPrecisionDigits);
     }
     #endregion
 
@@ -213,7 +213,7 @@ public class Float128PreciseTranscendentalsTests
     public void SafeExp_OfZero_IsOne()
     {
         var result = Float128PreciseTranscendentals.SafeExp((Float128)0.0);
-        Assert.Equal(Float128.One, result);
+        AssertFloat128.Equal(Float128.One, result);
     }
 
     [Fact]
@@ -221,7 +221,7 @@ public class Float128PreciseTranscendentalsTests
     {
         var result = Float128PreciseTranscendentals.SafeExp((Float128)1.0);
         var expected = Math.E;
-        Assert.Equal(expected, (double)result, RelaxedPrecisionDigits);
+        AssertFloat128.Equal((Float128)expected, result, RelaxedPrecisionDigits);
     }
 
     [Theory]
@@ -233,7 +233,7 @@ public class Float128PreciseTranscendentalsTests
     public void SafeExp_StandardValues_HighPrecision(double x, double expected)
     {
         var result = Float128PreciseTranscendentals.SafeExp((Float128)x);
-        Assert.Equal(expected, (double)result, RelaxedPrecisionDigits);
+        AssertFloat128.Equal((Float128)expected, result, RelaxedPrecisionDigits);
     }
 
     [Fact]
@@ -242,7 +242,7 @@ public class Float128PreciseTranscendentalsTests
         var original = (Float128)1.5;
         var expped = Float128PreciseTranscendentals.SafeExp(original);
         var restored = Float128PreciseTranscendentals.SafeLog(expped);
-        Assert.Equal((double)original, (double)restored, RelaxedPrecisionDigits);
+        AssertFloat128.Equal(original, restored, RelaxedPrecisionDigits);
     }
 
     [Fact]
@@ -250,7 +250,7 @@ public class Float128PreciseTranscendentalsTests
     {
         var result = Float128PreciseTranscendentals.SafeExp((Float128)10.0);
         var expected = Math.Exp(10.0);
-        Assert.Equal(expected, (double)result, RelaxedPrecisionDigits);
+        AssertFloat128.Equal((Float128)expected, result, RelaxedPrecisionDigits);
     }
 
     [Fact]
@@ -258,7 +258,7 @@ public class Float128PreciseTranscendentalsTests
     {
         var result = Float128PreciseTranscendentals.SafeExp((Float128)(-10.0));
         var expected = Math.Exp(-10.0);
-        Assert.Equal(expected, (double)result, RelaxedPrecisionDigits);
+        AssertFloat128.Equal((Float128)expected, result, RelaxedPrecisionDigits);
     }
     #endregion
 
@@ -267,14 +267,14 @@ public class Float128PreciseTranscendentalsTests
     public void SafeExp2_OfZero_IsOne()
     {
         var result = Float128PreciseTranscendentals.SafeExp2((Float128)0.0);
-        Assert.Equal(Float128.One, result);
+        AssertFloat128.Equal(Float128.One, result);
     }
 
     [Fact]
     public void SafeExp2_OfOne_IsTwo()
     {
         var result = Float128PreciseTranscendentals.SafeExp2((Float128)1.0);
-        Assert.Equal(2.0, (double)result, RelaxedPrecisionDigits);
+        AssertFloat128.Equal((Float128)2.0, result, RelaxedPrecisionDigits);
     }
 
     [Theory]
@@ -287,7 +287,7 @@ public class Float128PreciseTranscendentalsTests
     public void SafeExp2_IntegerExponents_Exact(double x, double expected)
     {
         var result = Float128PreciseTranscendentals.SafeExp2((Float128)x);
-        Assert.Equal(expected, (double)result, RelaxedPrecisionDigits);
+        AssertFloat128.Equal((Float128)expected, result, RelaxedPrecisionDigits);
     }
 
     [Theory]
@@ -296,7 +296,7 @@ public class Float128PreciseTranscendentalsTests
     public void SafeExp2_FractionalExponents_HighPrecision(double x, double expected)
     {
         var result = Float128PreciseTranscendentals.SafeExp2((Float128)x);
-        Assert.Equal(expected, (double)result, RelaxedPrecisionDigits);
+        AssertFloat128.Equal((Float128)expected, result, RelaxedPrecisionDigits);
     }
 
     [Fact]
@@ -305,7 +305,7 @@ public class Float128PreciseTranscendentalsTests
         var original = (Float128)4.2;
         var expped = Float128PreciseTranscendentals.SafeExp2(original);
         var restored = Float128PreciseTranscendentals.SafeLog2(expped);
-        Assert.Equal((double)original, (double)restored, RelaxedPrecisionDigits);
+        AssertFloat128.Equal(original, restored, RelaxedPrecisionDigits);
     }
 
     [Fact]
@@ -313,7 +313,7 @@ public class Float128PreciseTranscendentalsTests
     {
         var result = Float128PreciseTranscendentals.SafeExp2((Float128)100.0);
         var expected = Math.Pow(2.0, 100.0);
-        Assert.Equal(expected, (double)result, RelaxedPrecisionDigits);
+        AssertFloat128.Equal((Float128)expected, result, RelaxedPrecisionDigits);
     }
     #endregion
 
@@ -322,14 +322,14 @@ public class Float128PreciseTranscendentalsTests
     public void SafeExp10_OfZero_IsOne()
     {
         var result = Float128PreciseTranscendentals.SafeExp10((Float128)0.0);
-        Assert.Equal(Float128.One, result);
+        AssertFloat128.Equal(Float128.One, result);
     }
 
     [Fact]
     public void SafeExp10_OfOne_IsTen()
     {
         var result = Float128PreciseTranscendentals.SafeExp10((Float128)1.0);
-        Assert.Equal(10.0, (double)result, RelaxedPrecisionDigits);
+        AssertFloat128.Equal((Float128)10.0, result, RelaxedPrecisionDigits);
     }
 
     [Theory]
@@ -340,7 +340,7 @@ public class Float128PreciseTranscendentalsTests
     public void SafeExp10_IntegerExponents_Exact(double x, double expected)
     {
         var result = Float128PreciseTranscendentals.SafeExp10((Float128)x);
-        Assert.Equal(expected, (double)result, RelaxedPrecisionDigits);
+        AssertFloat128.Equal((Float128)expected, result, RelaxedPrecisionDigits);
     }
 
     [Theory]
@@ -348,7 +348,7 @@ public class Float128PreciseTranscendentalsTests
     public void SafeExp10_FractionalExponents_HighPrecision(double x, double expected)
     {
         var result = Float128PreciseTranscendentals.SafeExp10((Float128)x);
-        Assert.Equal(expected, (double)result, RelaxedPrecisionDigits);
+        AssertFloat128.Equal((Float128)expected, result, RelaxedPrecisionDigits);
     }
 
     [Fact]
@@ -357,7 +357,7 @@ public class Float128PreciseTranscendentalsTests
         var original = (Float128)2.5;
         var expped = Float128PreciseTranscendentals.SafeExp10(original);
         var restored = Float128PreciseTranscendentals.SafeLog10(expped);
-        Assert.Equal((double)original, (double)restored, RelaxedPrecisionDigits);
+        AssertFloat128.Equal(original, restored, RelaxedPrecisionDigits);
     }
 
     [Fact]
@@ -376,14 +376,14 @@ public class Float128PreciseTranscendentalsTests
     public void SafePow_AnyBaseToZero_IsOne()
     {
         var result = Float128PreciseTranscendentals.SafePow((Float128)5.0, (Float128)0.0);
-        Assert.Equal(Float128.One, result);
+        AssertFloat128.Equal(Float128.One, result);
     }
 
     [Fact]
     public void SafePow_OneToAnyPower_IsOne()
     {
         var result = Float128PreciseTranscendentals.SafePow((Float128)1.0, (Float128)17.5);
-        Assert.Equal(Float128.One, result);
+        AssertFloat128.Equal(Float128.One, result);
     }
 
     [Theory]
@@ -395,7 +395,7 @@ public class Float128PreciseTranscendentalsTests
     public void SafePow_IntegerPowers_Exact(double x, double y, double expected)
     {
         var result = Float128PreciseTranscendentals.SafePow((Float128)x, (Float128)y);
-        Assert.Equal(expected, (double)result, RelaxedPrecisionDigits);
+        AssertFloat128.Equal((Float128)expected, result, RelaxedPrecisionDigits);
     }
 
     [Theory]
@@ -405,7 +405,7 @@ public class Float128PreciseTranscendentalsTests
     public void SafePow_RootOperations_HighPrecision(double x, double y, double expected)
     {
         var result = Float128PreciseTranscendentals.SafePow((Float128)x, (Float128)y);
-        Assert.Equal(expected, (double)result, RelaxedPrecisionDigits);
+        AssertFloat128.Equal((Float128)expected, result, RelaxedPrecisionDigits);
     }
 
     [Theory]
@@ -421,7 +421,7 @@ public class Float128PreciseTranscendentalsTests
     public void SafePow_NegativeExponent()
     {
         var result = Float128PreciseTranscendentals.SafePow((Float128)2.0, (Float128)(-2.0));
-        Assert.Equal(0.25, (double)result, RelaxedPrecisionDigits);
+        AssertFloat128.Equal((Float128)0.25, result, RelaxedPrecisionDigits);
     }
 
     [Fact]
@@ -431,7 +431,7 @@ public class Float128PreciseTranscendentalsTests
         var exponent = (Float128)3.7;
         var powered = Float128PreciseTranscendentals.SafePow(original, exponent);
         var restored = Float128PreciseTranscendentals.SafePow(powered, Float128.One / exponent);
-        Assert.Equal((double)original, (double)restored, RelaxedPrecisionDigits);
+        AssertFloat128.Equal(original, restored, RelaxedPrecisionDigits);
     }
     #endregion
 
@@ -442,7 +442,7 @@ public class Float128PreciseTranscendentalsTests
         var value = (Float128)7.5;
         var logged = Float128PreciseTranscendentals.SafeLog(value);
         var restored = Float128PreciseTranscendentals.SafeExp(logged);
-        Assert.Equal((double)value, (double)restored, RelaxedPrecisionDigits);
+        AssertFloat128.Equal(value, restored, RelaxedPrecisionDigits);
     }
 
     [Fact]
@@ -451,7 +451,7 @@ public class Float128PreciseTranscendentalsTests
         var value = (Float128)12.3;
         var logged = Float128PreciseTranscendentals.SafeLog2(value);
         var restored = Float128PreciseTranscendentals.SafeExp2(logged);
-        Assert.Equal((double)value, (double)restored, RelaxedPrecisionDigits);
+        AssertFloat128.Equal(value, restored, RelaxedPrecisionDigits);
     }
 
     [Fact]
@@ -460,7 +460,7 @@ public class Float128PreciseTranscendentalsTests
         var value = (Float128)8.9;
         var logged = Float128PreciseTranscendentals.SafeLog10(value);
         var restored = Float128PreciseTranscendentals.SafeExp10(logged);
-        Assert.Equal((double)value, (double)restored, RelaxedPrecisionDigits);
+        AssertFloat128.Equal(value, restored, RelaxedPrecisionDigits);
     }
 
     [Fact]
@@ -471,7 +471,7 @@ public class Float128PreciseTranscendentalsTests
         var log_natural = Float128PreciseTranscendentals.SafeLog(value);
         var log2_via_ln = log_natural / Float128PreciseTranscendentals.SafeLog((Float128)2.0);
 
-        Assert.Equal((double)log2_direct, (double)log2_via_ln, RelaxedPrecisionDigits);
+        AssertFloat128.Equal(log2_direct, log2_via_ln, RelaxedPrecisionDigits);
     }
 
     [Fact]
@@ -482,7 +482,7 @@ public class Float128PreciseTranscendentalsTests
         var log_natural = Float128PreciseTranscendentals.SafeLog(value);
         var log10_via_ln = log_natural / Float128PreciseTranscendentals.SafeLog((Float128)10.0);
 
-        Assert.Equal((double)log10_direct, (double)log10_via_ln, RelaxedPrecisionDigits);
+        AssertFloat128.Equal(log10_direct, log10_via_ln, RelaxedPrecisionDigits);
     }
 
     [Fact]
@@ -495,7 +495,7 @@ public class Float128PreciseTranscendentalsTests
         var direct = Float128PreciseTranscendentals.SafeExp(x + y);
         var composed = Float128PreciseTranscendentals.SafeExp(x) * Float128PreciseTranscendentals.SafeExp(y);
 
-        Assert.Equal((double)direct, (double)composed, RelaxedPrecisionDigits);
+        AssertFloat128.Equal(direct, composed, RelaxedPrecisionDigits);
     }
 
     [Fact]
@@ -508,7 +508,7 @@ public class Float128PreciseTranscendentalsTests
         var direct = Float128PreciseTranscendentals.SafeLog(x * y);
         var composed = Float128PreciseTranscendentals.SafeLog(x) + Float128PreciseTranscendentals.SafeLog(y);
 
-        Assert.Equal((double)direct, (double)composed, RelaxedPrecisionDigits);
+        AssertFloat128.Equal(direct, composed, RelaxedPrecisionDigits);
     }
 
     [Fact]
@@ -523,7 +523,7 @@ public class Float128PreciseTranscendentalsTests
             exponent * Float128PreciseTranscendentals.SafeLog(base_val)
         );
 
-        Assert.Equal((double)direct, (double)via_exp_log, RelaxedPrecisionDigits);
+        AssertFloat128.Equal(direct, via_exp_log, RelaxedPrecisionDigits);
     }
 
     #region Precision Diagnostic Tests
@@ -599,7 +599,7 @@ public class Float128PreciseTranscendentalsTests
         var powered = Float128PreciseTranscendentals.SafePow(x, y);
         var restored = Float128PreciseTranscendentals.SafePow(powered, Float128.One / y);
 
-        Assert.Equal((double)x, (double)restored, RelaxedPrecisionDigits);
+        AssertFloat128.Equal(x, restored, RelaxedPrecisionDigits);
     }
 
     [Fact]
@@ -612,7 +612,7 @@ public class Float128PreciseTranscendentalsTests
         var direct = Float128PreciseTranscendentals.SafeExp2(x);
         var via_exp = Float128PreciseTranscendentals.SafeExp(x * ln2);
 
-        Assert.Equal((double)direct, (double)via_exp, RelaxedPrecisionDigits);
+        AssertFloat128.Equal(direct, via_exp, RelaxedPrecisionDigits);
     }
     #endregion
 
@@ -622,7 +622,7 @@ public class Float128PreciseTranscendentalsTests
     {
         var e = Float128PreciseTranscendentals.E;
         var ln_e = Float128PreciseTranscendentals.SafeLog(e);
-        Assert.Equal(1.0, (double)ln_e, RelaxedPrecisionDigits);
+        AssertFloat128.Equal((Float128)1.0, ln_e, RelaxedPrecisionDigits);
     }
 
     [Fact]
@@ -631,7 +631,7 @@ public class Float128PreciseTranscendentalsTests
         var pi = Float128PreciseTranscendentals.Pi;
         var ln_pi = Float128PreciseTranscendentals.SafeLog(pi);
         var expected = Math.Log(Math.PI);
-        Assert.Equal(expected, (double)ln_pi, RelaxedPrecisionDigits);
+        AssertFloat128.Equal((Float128)expected, ln_pi, RelaxedPrecisionDigits);
     }
 
     [Fact]
@@ -640,7 +640,7 @@ public class Float128PreciseTranscendentalsTests
         var tiny = (Float128)1e-100;
         var log_tiny = Float128PreciseTranscendentals.SafeLog(tiny);
         var expected = -100 * Math.Log(10);
-        Assert.Equal(expected, (double)log_tiny, RelaxedPrecisionDigits);
+        AssertFloat128.Equal((Float128)expected, log_tiny, RelaxedPrecisionDigits);
     }
 
     [Fact]
@@ -649,7 +649,7 @@ public class Float128PreciseTranscendentalsTests
         var huge = (Float128)1e100;
         var log_huge = Float128PreciseTranscendentals.SafeLog(huge);
         var expected = 100 * Math.Log(10);
-        Assert.Equal(expected, (double)log_huge, RelaxedPrecisionDigits);
+        AssertFloat128.Equal((Float128)expected, log_huge, RelaxedPrecisionDigits);
     }
 
     [Fact]
@@ -658,7 +658,7 @@ public class Float128PreciseTranscendentalsTests
         var near_one = (Float128)1.0000000001;
         var log_near = Float128PreciseTranscendentals.SafeLog(near_one);
         var expected = Math.Log(1.0000000001);
-        Assert.Equal(expected, (double)log_near, RelaxedPrecisionDigits);  // Realistic precision for composed ops
+        AssertFloat128.Equal((Float128)expected, log_near, RelaxedPrecisionDigits);  // Realistic precision for composed ops
     }
     #endregion
 }
