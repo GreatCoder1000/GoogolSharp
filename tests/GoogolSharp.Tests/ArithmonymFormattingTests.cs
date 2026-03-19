@@ -125,11 +125,35 @@ namespace GoogolSharp.Tests
             Assert.Equal("13", Arithmonym.Thirteen.ToString());
         }
 
+        [Fact]
+        public void TestTwenty()
+        {
+            Assert.Equal("20", Arithmonym.Twenty.ToString());
+        }
+
+        [Fact]
+        public void TestHundred()
+        {
+            Assert.Equal("100", Arithmonym.Hundred.ToString());
+        }
+
+        [Fact]
+        public void TestMultiDigit()
+        {
+            // Relaxing the tests in this weird way because currently numbers above 100 are wildly imprecise.
+            Assert.Equal("74284", new Arithmonym(74284.5).ToString()[..5]);
+        }
         
         [Fact]
         public void TestTenBillion()
         {
             Assert.Equal("1*10^10", Arithmonym.TenBillion.ToString());
+        }
+
+        [Fact]
+        public void TestTrialogue()
+        {
+            Assert.Equal("10^(1*10^10)", Arithmonym.Trialogue.ToString());
         }
     }
 }

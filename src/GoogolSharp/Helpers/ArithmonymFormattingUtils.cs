@@ -36,7 +36,9 @@ namespace GoogolSharp.Helpers
             }
             if (letterF < 7)
             {
-                return $"{placeholder}{(isReciprocal ? "-" : showExponentSignIfPositive ? "+" : "")}{FormatArithmonymFromLetterF(letterF - 1, false)}";
+                if (placeholder == "*10^")
+                    return $"10^({(isReciprocal ? "-" : showExponentSignIfPositive ? "+" : "")}{FormatArithmonymFromLetterF(letterF - 1, false, placeholder, showExponentSignIfPositive)})";
+                return $"{placeholder}{(isReciprocal ? "-" : showExponentSignIfPositive ? "+" : "")}{FormatArithmonymFromLetterF(letterF - 1, false, placeholder, showExponentSignIfPositive)}";
             }
             if (letterF < 100000000000000000000.0)
             {
