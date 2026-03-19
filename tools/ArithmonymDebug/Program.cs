@@ -3,7 +3,6 @@ using QuadrupleLib.Accelerators;
 using GoogolSharp.Helpers;
 using GoogolSharp;
 using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
-using System.Reflection;
 
 Console.WriteLine("╔════════════════════════════════════════════════════════════╗");
 Console.WriteLine("║         EXHAUSTIVE EXPONENTIAL FUNCTION DEBUGGING          ║");

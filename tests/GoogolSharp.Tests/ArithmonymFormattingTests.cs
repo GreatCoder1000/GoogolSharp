@@ -16,9 +16,6 @@
  *  along with GoogolSharp.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Reflection;
-using Xunit;
-
 namespace GoogolSharp.Tests
 {
     public class ArithmonymFormattingTests

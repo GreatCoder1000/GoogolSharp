@@ -22,7 +22,6 @@ using QuadrupleLib.Accelerators;
 using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
 using System.Globalization;
 using System.Numerics;
-using System.Reflection.Emit;
 namespace GoogolSharp
 {
     partial struct Arithmonym
