@@ -26,7 +26,7 @@ namespace GoogolSharp
 {
     partial struct Arithmonym
     {
-        
+
         /// <summary>
         /// Returns a string representation of the current <see cref="Arithmonym"/>,
         /// formatted according to <paramref name="format"/> and <paramref name="provider"/> if provided.
@@ -165,10 +165,13 @@ namespace GoogolSharp
                         : 2 + ((value - 2) / 4);
                     break;
                 case 0x03:
-                    output += _IsReciprocal
-                        ? 1 / (value * 2)
-                        : value * 2;
-                    break;
+                    {
+                        Float128 result = _IsReciprocal
+                            ? 1 / (value * 2)
+                            : value * 2;
+                        output += ArithmonymFormattingUtils.FormatNearInteger(result);
+                        break;
+                    }
                 case 0x04:
                     output += _IsReciprocal
                         ? 1 / (value * 10)
@@ -179,7 +182,7 @@ namespace GoogolSharp
                         ? Float128PreciseTranscendentals.SafeExp10(-value) : Float128PreciseTranscendentals.SafeExp10(value);
                     break;
                 case 0x06:
-                    output += ArithmonymFormattingUtils.FormatArithmonymFromLetterF(Operand, _IsReciprocal, "10^", false);
+                    output += ArithmonymFormattingUtils.FormatArithmonymFromLetterF(Operand, _IsReciprocal, "*10^", false);
                     break;
                 default:
                     if (_IsReciprocal)

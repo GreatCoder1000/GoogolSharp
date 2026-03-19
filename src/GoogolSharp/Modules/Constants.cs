@@ -121,10 +121,31 @@ namespace GoogolSharp
         public static Arithmonym Seven => new(isNegative: false, _IsReciprocal: false, 0x03, EncodeOperand((Float128)3.5));
 
         /// <summary>
+        /// A constant <see cref="Arithmonym"/> that represents the value eight.
+        /// </summary>
+        public static Arithmonym Eight => new(isNegative: false, _IsReciprocal: false, 0x03, EncodeOperand((Float128)4));
+
+        /// <summary>
+        /// A constant <see cref="Arithmonym"/> that represents the value nine.
+        /// </summary>
+        public static Arithmonym Nine => new(isNegative: false, _IsReciprocal: false, 0x03, EncodeOperand((Float128)4.5));
+
+
+        /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents the value ten.
         /// </summary>
         public static Arithmonym Ten => new(isNegative: false, _IsReciprocal: false, 0x03, EncodeOperand((Float128)5));
 
+        /// <summary>
+        /// A constant <see cref="Arithmonym"/> that represents the value eleven.
+        /// </summary>
+        public static Arithmonym Eleven => new(isNegative: false, _IsReciprocal: false, 0x03, EncodeOperand((Float128)5.5));
+
+        /// <summary>
+        /// A constant <see cref="Arithmonym"/> that represents the value twelve.
+        /// </summary>
+        public static Arithmonym Twelve => new(isNegative: false, _IsReciprocal: false, 0x03, EncodeOperand((Float128)6));
+        
         /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents the value thirteen.
         /// </summary>

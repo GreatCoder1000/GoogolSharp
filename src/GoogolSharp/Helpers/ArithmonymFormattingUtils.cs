@@ -76,5 +76,24 @@ namespace GoogolSharp.Helpers
                 letterE - exponent);
             return $"{significand}{placeholder}{(isReciprocal ? "-" : showExponentSignIfPositive ? "+" : "")}{(ulong)exponent}";
         }
+
+        /// <summary>
+        /// Formats a Float128 value, rounding to integer if it is very close to an integer (within precision tolerance).
+        /// This prevents floating-point artifacts like "5.000000000000000000000000025..." from being displayed.
+        /// </summary>
+        public static string FormatNearInteger(Float128 value)
+        {
+            Float128 rounded = Float128.Round(value);
+            Float128 error = Float128.Abs(value - rounded);
+
+            // If error is extremely small (less than ~2e-21 which is typical for Float128 precision artifacts),
+            // return the integer. For values like 5.000000...0026, error ≈ 2.58e-21 triggers this.
+            if (error < (Float128)1e-20)
+            {
+                return ((long)rounded).ToString();
+            }
+
+            return value.ToString();
+        }
     }
 }
