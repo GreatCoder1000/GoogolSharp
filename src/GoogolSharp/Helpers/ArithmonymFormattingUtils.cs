@@ -29,14 +29,9 @@ namespace GoogolSharp.Helpers
             if (letterF < 2) return new Arithmonym(Float128HyperTranscendentals.LetterF(letterF)).ToString();
             if (letterF < 3)
             {
-                Float128 letterE = letterF - 2;
-                letterE = Float128PreciseTranscendentals.SafeExp10(
+                Float128 letterE = Float128PreciseTranscendentals.SafeExp10(
                     Float128PreciseTranscendentals.SafeExp10(
-                        Float128PreciseTranscendentals.SafeExp10(
-                            letterE
-                        )
-                    )
-                );
+                        letterF - 2));
                 return FormatArithmonymScientific(letterE, isReciprocal, placeholder, showExponentSignIfPositive);
             }
             if (letterF < 7)
@@ -64,13 +59,6 @@ namespace GoogolSharp.Helpers
 
         public static string FormatArithmonymScientific(Float128 letterE, bool isReciprocal, string placeholder = "E", bool showExponentSignIfPositive = true)
         {
-            letterE = Float128PreciseTranscendentals.SafeExp10(
-                Float128PreciseTranscendentals.SafeExp10(
-                    Float128PreciseTranscendentals.SafeExp10(
-                        letterE
-                    )
-                )
-            );
             Float128 exponent = Float128.Floor(letterE);
             Float128 significand = Float128PreciseTranscendentals.SafeExp10(
                 letterE - exponent);

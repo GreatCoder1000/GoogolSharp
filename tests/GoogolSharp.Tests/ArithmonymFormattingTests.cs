@@ -124,5 +124,12 @@ namespace GoogolSharp.Tests
         {
             Assert.Equal("13", Arithmonym.Thirteen.ToString());
         }
+
+        
+        [Fact]
+        public void TestTenBillion()
+        {
+            Assert.Equal("1*10^10", Arithmonym.TenBillion.ToString());
+        }
     }
 }
