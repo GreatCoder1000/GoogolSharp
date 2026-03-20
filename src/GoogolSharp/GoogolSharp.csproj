@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="QuadrupleLib" Version="0.1.2" />
+    <PackageReference Include="QuadrupleLib" Version="0.1.4" />
   </ItemGroup>
 
   <PropertyGroup>
