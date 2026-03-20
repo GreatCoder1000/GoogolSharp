@@ -185,7 +185,7 @@ namespace GoogolSharp.Helpers
 
                 result += term;
                 t_power *= t_squared;
-                
+
                 // Early exit if we've achieved machine epsilon convergence
                 if (n > 50 && Float128.Abs(term) < Epsilon)
                     break;
@@ -204,7 +204,7 @@ namespace GoogolSharp.Helpers
                 for (int i = 0; i < -exponent; i++)
                     exponent_contribution -= Ln2;
             }
-            
+
             return 2 * result + exponent_contribution;
         }
 
