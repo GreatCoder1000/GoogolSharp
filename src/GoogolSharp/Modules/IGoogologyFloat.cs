@@ -53,6 +53,7 @@ namespace GoogolSharp
         IUtf8SpanParsable<TSelf>
         where TSelf : IGoogologyFloat<TSelf>
     {
+        static abstract TSelf Neg(TSelf value);
         static abstract TSelf Factorial(TSelf value);
         static abstract TSelf Permutations(TSelf n, TSelf r);
         static abstract TSelf Combinations(TSelf n, TSelf r);
