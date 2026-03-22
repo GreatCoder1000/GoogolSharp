@@ -137,34 +137,49 @@ namespace GoogolSharp
         public static Arithmonym Ten => new(isNegative: false, _IsReciprocal: false, 0x03, EncodeOperand((Float128)5));
 
         /// <summary>
-        /// A constant <see cref="Arithmonym"/> that represents the value eleven.
+        /// A constant <see cref="Arithmonym"/> that represents the value 11.
         /// </summary>
         public static Arithmonym Eleven => new(isNegative: false, _IsReciprocal: false, 0x03, EncodeOperand((Float128)5.5));
 
         /// <summary>
-        /// A constant <see cref="Arithmonym"/> that represents the value twelve.
+        /// A constant <see cref="Arithmonym"/> that represents the value 12.
         /// </summary>
         public static Arithmonym Twelve => new(isNegative: false, _IsReciprocal: false, 0x03, EncodeOperand((Float128)6));
 
         /// <summary>
-        /// A constant <see cref="Arithmonym"/> that represents the value thirteen.
+        /// A constant <see cref="Arithmonym"/> that represents the value 13.
         /// </summary>
         public static Arithmonym Thirteen => new(isNegative: false, _IsReciprocal: false, 0x03, EncodeOperand((Float128)6.5));
 
         /// <summary>
-        /// A constant <see cref="Arithmonym"/> that represents the value fourteen.
+        /// A constant <see cref="Arithmonym"/> that represents the value 14.
         /// </summary>
         public static Arithmonym Fourteen => new(isNegative: false, _IsReciprocal: false, 0x03, EncodeOperand((Float128)7));
 
         /// <summary>
-        /// A constant <see cref="Arithmonym"/> that represents the value twenty.
+        /// A constant <see cref="Arithmonym"/> that represents the value 15.
+        /// </summary>
+        public static Arithmonym Fifteen => new(isNegative: false, _IsReciprocal: false, 0x03, EncodeOperand((Float128)7.5));
+
+        /// <summary>
+        /// A constant <see cref="Arithmonym"/> that represents the value 16.
+        /// </summary>
+        public static Arithmonym Sixteen => new(isNegative: false, _IsReciprocal: false, 0x03, EncodeOperand((Float128)8));
+
+        /// <summary>
+        /// A constant <see cref="Arithmonym"/> that represents the value 20.
         /// </summary>
         public static Arithmonym Twenty => new(isNegative: false, _IsReciprocal: false, 0x04, 0);
 
         /// <summary>
+        /// A constant <see cref="Arithmonym"/> that represents the value 27.
+        /// </summary>
+        public static Arithmonym TwentySeven => new(isNegative: false, _IsReciprocal: false, 0x04, EncodeOperand((Float128)2.0875));
+
+        /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents the value 100.
         /// </summary>
-        public static Arithmonym Hundred => new(isNegative: false, _IsReciprocal: false, 0x05, EncodeOperand((Float128)2));
+        public static Arithmonym Hundred => new(isNegative: false, _IsReciprocal: false, 0x05, 0);
 
         /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents the value 10^10.

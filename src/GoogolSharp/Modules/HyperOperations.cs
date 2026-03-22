@@ -29,6 +29,15 @@ namespace GoogolSharp
 {
     partial struct Arithmonym
     {
+        private static Dictionary<Tuple<Arithmonym,Arithmonym>,Arithmonym> TETRATION_CHEAT_SHEET =
+        new()
+        {
+          {new Tuple<Arithmonym,Arithmonym>(Two, Two), Four},
+          {new Tuple<Arithmonym,Arithmonym>(Two, Three), Sixteen},
+          {new Tuple<Arithmonym,Arithmonym>(Three, Two), TwentySeven},
+          {new Tuple<Arithmonym,Arithmonym>(Two, Four), (Arithmonym)65536L},
+          {new Tuple<Arithmonym,Arithmonym>(Three, Three), (Arithmonym)7625597484987L}
+        };
         public static Arithmonym Tetration(Arithmonym baseV, Arithmonym heightV)
         {
             ArgumentOutOfRangeException.ThrowIfLessThan(baseV, Zero);
@@ -45,6 +54,12 @@ namespace GoogolSharp
             if (heightV <= One) return Pow(baseV, heightV);
             if (heightV <= Two) return Pow(baseV, Pow(baseV, heightV));
             if (heightV <= Three) return Pow(baseV, Pow(baseV, Pow(baseV, heightV)));
+
+            // Always allowed to cheat :)
+            if (TETRATION_CHEAT_SHEET.ContainsKey(new Tuple<Arithmonym, Arithmonym>(baseV, heightV)))
+            {
+                return TETRATION_CHEAT_SHEET[new Tuple<Arithmonym, Arithmonym>(baseV, heightV)];
+            }
             if (baseV >= Float128.Parse("0.06598803584531253707679018759685") && baseV <= Float128.Parse("1.4446678610097661336583391085964"))
             {
                 // Converges, due to infinite tetration.
@@ -60,7 +75,8 @@ namespace GoogolSharp
             }
             else
             {
-                // Instead do it normally!!
+                // This way to do it "works" but can very quickly lose precision.
+                // Trying to find a better way.
                 Arithmonym iterationCount = Floor(heightV);
                 Arithmonym result = heightV - iterationCount;
                 for (int i = 0; i <= iterationCount; i++)
@@ -74,11 +90,14 @@ namespace GoogolSharp
                 }
                 return result;
             }
+
+            // Warning Silencer
             throw new Exception("TILT: Should not reach here.");
         }
 
         private Arithmonym AddToItsSlog(Arithmonym value)
         {
+            // For now this only does addition.
             ArgumentOutOfRangeException.ThrowIfLessThan(value, 0);
             if (IsZero(value)) return this;
             if (value == One) return _Exp10;

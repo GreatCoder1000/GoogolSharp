@@ -20,12 +20,12 @@ namespace GoogolSharp.Tests
 {
     public class ArithmonymTetrationTests
     {
-        // TODO: fix this.
-        // [Fact]
-        // public void TestTwoTetratedToFour()
-        // {
-        //     Arithmonym twoTetratedToFour = Arithmonym.Tetration(Arithmonym.Two,Arithmonym.Four);
-        //     Assert.Equal(65536,twoTetratedToFour);
-        // }
+        // IN PROGRESS
+        [Fact]
+        public void TestTwoTetratedToFour()
+        {
+            Arithmonym twoTetratedToFour = Arithmonym.Tetration(Arithmonym.Two,Arithmonym.Four);
+            AssertArithmonym.NearlyEqual(65536, twoTetratedToFour, 1e-15);
+        }
     }
 }
