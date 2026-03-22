@@ -19,7 +19,6 @@
 using System.Numerics;
 namespace GoogolSharp
 {
-#pragma warning disable CA2260 // Generic interface constraint type is not self-contained
     /// <summary>
     /// Marker interface for googological number types that implement all standard numeric operations.
     /// This allows any implementation to satisfy the numeric interface contract.
@@ -59,5 +58,4 @@ namespace GoogolSharp
         static abstract TSelf Combinations(TSelf n, TSelf r);
         static abstract TSelf Tetration(TSelf baseV, TSelf heightV);
     }
-#pragma warning restore CA2260
 }
