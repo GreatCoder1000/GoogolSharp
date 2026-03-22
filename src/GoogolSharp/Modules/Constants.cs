@@ -21,7 +21,7 @@ using QuadrupleLib;
 using QuadrupleLib.Accelerators;
 using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
 using System.Globalization;
-using System.Numerics;
+
 namespace GoogolSharp
 {
     partial struct Arithmonym
@@ -145,7 +145,7 @@ namespace GoogolSharp
         /// A constant <see cref="Arithmonym"/> that represents the value twelve.
         /// </summary>
         public static Arithmonym Twelve => new(isNegative: false, _IsReciprocal: false, 0x03, EncodeOperand((Float128)6));
-        
+
         /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents the value thirteen.
         /// </summary>

@@ -20,7 +20,7 @@ using GoogolSharp.Helpers;
 using QuadrupleLib;
 using QuadrupleLib.Accelerators;
 using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
-using System.Numerics;
+
 namespace GoogolSharp
 {
     internal readonly struct ArithmonymSscg : IArithmonymOperation

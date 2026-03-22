@@ -21,7 +21,7 @@ using QuadrupleLib;
 using QuadrupleLib.Accelerators;
 using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
 using System.Globalization;
-using System.Numerics;
+
 using System.Runtime.Serialization;
 using System.Security.Cryptography.X509Certificates;
 using System.Net.NetworkInformation;
@@ -53,7 +53,7 @@ namespace GoogolSharp
                 for (int i = 0; i <= iterationCount; i++)
                 {
                     Arithmonym newResult = Pow(baseV, result);
-                    if (Abs(newResult - result) < 4*Epsilon) break;
+                    if (Abs(newResult - result) < 4 * Epsilon) break;
                     result = newResult;
                 }
                 return result;
@@ -66,7 +66,7 @@ namespace GoogolSharp
                 for (int i = 0; i <= iterationCount; i++)
                 {
                     Arithmonym newResult = Pow(baseV, result);
-                    if (newResult._Log10==result)
+                    if (newResult._Log10 == result)
                     {
                         return result.AddToItsSlog(iterationCount - i);
                     }
@@ -84,7 +84,7 @@ namespace GoogolSharp
             if (value == One) return _Exp10;
             if (value == Two) return _Exp10._Exp10;
             if (value == Three) return _Exp10._Exp10._Exp10;
-            return Tetration10Linear(Slog10Linear(this)+value);
+            return Tetration10Linear(Slog10Linear(this) + value);
         }
 
         public static Arithmonym Slog10Linear(Arithmonym value)
@@ -182,8 +182,8 @@ namespace GoogolSharp
             ArgumentOutOfRangeException.ThrowIfGreaterThan(value, Dekalogue);
             // 10^^(10^^2) = 10^^^(2+log(2))
             // 10^^(10^^^3) = 10^^^operand+1
-            return (value < One) ? value : 
-                (value < Ten) ? value._Log10 + 1 : 
+            return (value < One) ? value :
+                (value < Ten) ? value._Log10 + 1 :
                 (value < TenBillion) ? ((value._Log10._Log10 + One)._Log10 + Two) : new Arithmonym(Float128PreciseTranscendentals.SafeLog10(value.Operand)) + Two;
         }
 
@@ -198,13 +198,13 @@ namespace GoogolSharp
         /// Friedman's TREE function. Notable number: TREE(3)
         /// </summary>        
         public static Arithmonym Tree(Arithmonym x) => new ArithmonymTree(x).Evaluate();
-        
-        
+
+
         /// <summary>
         /// Simple SubCubic Graph function. Notable number: SSCG(3)
         /// </summary>
         public static Arithmonym Sscg(Arithmonym x) => new ArithmonymSscg(x).Evaluate();
-        
+
         /// <summary>
         /// SubCubic Graph function. Notable number: SCG(13)
         /// </summary>
@@ -216,7 +216,7 @@ namespace GoogolSharp
         /// Learn more: https://googology.fandom.com/wiki/Busy_beaver_function
         /// </summary>
         public static Arithmonym BusyBeaver(Arithmonym x) => new ArithmonymBusyBeaver(x).Evaluate();
-        
+
         /// <summary>
         /// Psi Level of x. Note that x is treated as an integer, so 4.2 -> 4.
         /// 

@@ -16,7 +16,7 @@
  *  along with GoogolSharp.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Numerics;
+
 namespace GoogolSharp
 {
     internal interface IArithmonymOperation

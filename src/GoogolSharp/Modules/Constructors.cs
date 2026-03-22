@@ -21,12 +21,12 @@ using QuadrupleLib;
 using QuadrupleLib.Accelerators;
 using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
 using System.Globalization;
-using System.Numerics;
+
 namespace GoogolSharp
 {
     partial struct Arithmonym
     {
-        
+
 
         /// <summary>
         /// Initializes a new instance of <see cref="Arithmonym"/> from a <see cref="Float128"/> value.
@@ -135,7 +135,7 @@ namespace GoogolSharp
             squishedMid = (uint)(s >> 32);
             squishedHi = (uint)(s >> 64);
         }
-        
+
         internal Arithmonym(bool isNegative, bool _IsReciprocal, byte letter, UInt128 operand)
             : this(
                 operand
@@ -145,7 +145,7 @@ namespace GoogolSharp
         {
         }
 
-        
+
         /// <summary>
         /// Initializes a new instance by splitting a packed <see cref="UInt128"/> value
         /// into the internal three 32-bit words. This constructor is used internally to
@@ -158,7 +158,7 @@ namespace GoogolSharp
             squishedHi = (uint)(squished >> 64);
         }
 
-        
+
 
         /// <summary>
         /// Initializes a new instance of <see cref="Arithmonym"/> from a <see cref="double"/> value.

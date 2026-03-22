@@ -21,7 +21,7 @@ using QuadrupleLib;
 using QuadrupleLib.Accelerators;
 using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
 using System.Globalization;
-using System.Numerics;
+
 namespace GoogolSharp
 {
     partial struct Arithmonym
@@ -135,7 +135,7 @@ namespace GoogolSharp
 
             if (lhsNmlzd._IsNegative != rhsNmlzd._IsNegative) return false;
             if (lhsNmlzd._IsReciprocal != rhsNmlzd._IsReciprocal) return false;
-            
+
             Float128 lhsCompId = lhsNmlzd.Letter + ((lhsNmlzd.Operand - 2) / 8);
             Float128 rhsCompId = rhsNmlzd.Letter + ((rhsNmlzd.Operand - 2) / 8);
             if (Float128.Abs(lhsCompId - rhsCompId) > operandTolerance)

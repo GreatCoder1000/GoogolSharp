@@ -21,12 +21,12 @@ using QuadrupleLib;
 using QuadrupleLib.Accelerators;
 using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
 using System.Globalization;
-using System.Numerics;
+
 namespace GoogolSharp
 {
     partial struct Arithmonym
     {
-        public static Arithmonym Sin(Arithmonym value, int terms=20)
+        public static Arithmonym Sin(Arithmonym value, int terms = 20)
         {
             value %= Tau;
             Arithmonym result = Zero;
@@ -37,14 +37,14 @@ namespace GoogolSharp
             for (int term = 0; term < terms; term++)
             {
                 result += sign * (numerator / denominator);
-                numerator *= value*value;
-                denominator *= (2*term+2) * (2*term+3);
+                numerator *= value * value;
+                denominator *= (2 * term + 2) * (2 * term + 3);
                 sign *= -1;
             }
             return result;
         }
 
-        public static Arithmonym Cos(Arithmonym value, int terms=20)
+        public static Arithmonym Cos(Arithmonym value, int terms = 20)
         {
             value %= Tau;
             Arithmonym result = Zero;
@@ -55,19 +55,19 @@ namespace GoogolSharp
             for (int term = 0; term < terms; term++)
             {
                 result += sign * (numerator / denominator);
-                numerator *= value*value;
-                denominator *= (2*term+1) * (2*term+2);
+                numerator *= value * value;
+                denominator *= (2 * term + 1) * (2 * term + 2);
                 sign *= -1;
             }
             return result;
         }
 
-        public static Arithmonym Tan(Arithmonym value, int terms=20)
+        public static Arithmonym Tan(Arithmonym value, int terms = 20)
         {
             value %= Tau;
             Arithmonym c = Cos(value, terms);
             if (IsZero(c)) throw new ArgumentException("Tan undefined for 90, 270 degrees");
-            return Sin(value, terms) / c;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+            return Sin(value, terms) / c;
         }
     }
 }
