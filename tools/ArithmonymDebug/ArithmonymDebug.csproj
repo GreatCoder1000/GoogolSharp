@@ -7,6 +7,5 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\GoogolSharp\GoogolSharp.csproj" />
-    <ProjectReference Include="..\..\external\lib\QuadrupleLib\QuadrupleLib\QuadrupleLib.csproj" />
   </ItemGroup>
 </Project>
