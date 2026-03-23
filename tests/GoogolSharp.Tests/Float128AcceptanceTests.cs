@@ -166,7 +166,6 @@ public class Float128AcceptanceTests
         var a = (Float128)0.693147180;
         var b = (Float128)5.599453094e-10;
         var sum = a + b;
-        Console.WriteLine($"a={a}, b={b}, a+b={sum}");
         Assert.InRange((double)sum, 0.693147179, 0.693147181);
     }
 

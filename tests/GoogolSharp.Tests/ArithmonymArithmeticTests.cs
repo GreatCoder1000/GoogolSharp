@@ -195,11 +195,6 @@ namespace GoogolSharp.Tests
             var twenty = new Arithmonym(20);
             var log = Arithmonym.Log10(twenty);
             var exp = Arithmonym.Exp10(log);
-
-            // diagnostic
-            Console.WriteLine($"twenty.ToFloat128()={(double)twenty}");
-            Console.WriteLine($"log.ToFloat128()={(double)log}");
-            Console.WriteLine($"exp.ToFloat128()={(double)exp}");
             
             Assert.Equal((double)twenty, (double)exp, precision: 10);
         }

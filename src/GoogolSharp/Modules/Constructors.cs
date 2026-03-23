@@ -106,8 +106,6 @@ namespace GoogolSharp
             else if (value < (Float128)1e10)
             {
 #if DEBUG
-                if (Float128.Abs(v - (Float128)100) < (Float128)0.1)
-                    Console.WriteLine($"[Arithmonym constructor] Input={v}, SafeLog10={Float128PreciseTranscendentals.SafeLog10(value)}, SnapToInt result={SnapToInt(Float128PreciseTranscendentals.SafeLog10(value))}");
 #endif
                 value = Float128PreciseTranscendentals.SafeLog10(value);
                 value = SnapToInt(value);
