@@ -16,6 +16,8 @@
  *  along with GoogolSharp.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Numerics;
+
 namespace GoogolSharp
 {
     /// <summary>
@@ -48,7 +50,10 @@ namespace GoogolSharp
         System.Numerics.IUnaryNegationOperators<TSelf, TSelf>, 
         System.Numerics.IUnaryPlusOperators<TSelf, TSelf>, 
         IUtf8SpanFormattable, 
-        IUtf8SpanParsable<TSelf>
+        IUtf8SpanParsable<TSelf>,
+        ILogarithmicFunctions<TSelf>,
+        IPowerFunctions<TSelf>,
+        IRootFunctions<TSelf>
         where TSelf : IGoogologyFloat<TSelf>
     {
         static abstract TSelf Neg(TSelf value);

@@ -67,7 +67,7 @@ public class Float128AcceptanceTests
     public void NegationAndReciprocal()
     {
         var three = (Float128)3;
-        AssertFloat128.Equal((Float128)(-3.0), (-three), 10);
+        AssertFloat128.Equal((Float128)(-3.0), -three, 10);
         // reciprocal of three is one-third
         var recip = Float128.One / three;
         AssertFloat128.Equal((Float128)(1.0 / 3.0), recip, 10);

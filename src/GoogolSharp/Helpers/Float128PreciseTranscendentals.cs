@@ -448,7 +448,7 @@ namespace GoogolSharp.Helpers
         r * (Float128.Parse("0.0416666666666666666666666666666667", null) +
         r * (Float128.Parse("0.0083333333333333333333333333333333", null) +
         r * (Float128.Parse("0.0013888888888888888888888888888889", null) +
-        r * (Float128.Parse("0.0001984126984126984126984126984127", null)))))));
+        r * Float128.Parse("0.0001984126984126984126984126984127", null))))));
 
     // Scale by 2^k to adjust for the reduction (k * ln(2) part)
     return Float128.ScaleB(poly, k);

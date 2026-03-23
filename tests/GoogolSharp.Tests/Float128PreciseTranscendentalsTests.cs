@@ -544,7 +544,7 @@ public class Float128PreciseTranscendentalsTests
         // Otherwise, calculate how many digits are correct
         // digit_count ≈ -log10(relative_error)
         Float128 log10_error = Float128PreciseTranscendentals.SafeLog10(relative_error);
-        int digits = (int)(-Float128.Floor(log10_error));
+        int digits = (int)-Float128.Floor(log10_error);
 
         return digits > 34 ? 34 : (digits < 0 ? 0 : digits);
     }
