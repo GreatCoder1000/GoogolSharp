@@ -53,7 +53,8 @@ namespace GoogolSharp
         IUtf8SpanParsable<TSelf>,
         ILogarithmicFunctions<TSelf>,
         IPowerFunctions<TSelf>,
-        IRootFunctions<TSelf>
+        IRootFunctions<TSelf>,
+        ISignedNumber<TSelf>
         where TSelf : IGoogologyFloat<TSelf>
     {
         static abstract TSelf Neg(TSelf value);
