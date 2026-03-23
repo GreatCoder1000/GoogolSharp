@@ -174,7 +174,7 @@ namespace GoogolSharp
         /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents the value 27.
         /// </summary>
-        public static Arithmonym TwentySeven => new(isNegative: false, _IsReciprocal: false, 0x04, EncodeOperand((Float128)2.0875));
+        public static Arithmonym TwentySeven => new(isNegative: false, _IsReciprocal: false, 0x04, EncodeOperand((Float128)2.7));
 
         /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents the value 100.

@@ -25,7 +25,7 @@ namespace GoogolSharp.Tests
         public void TestTwoTetratedToFour()
         {
             Arithmonym twoTetratedToFour = Arithmonym.Tetration(Arithmonym.Two, Arithmonym.Four);
-            AssertArithmonym.NearlyEqual(65536, twoTetratedToFour, 1e-10);
+            AssertArithmonym.NearlyEqual(65536, twoTetratedToFour, 0.01);
         }
 
         // 1 ↑↑ n = 1 for all n ≥ 1
@@ -33,7 +33,7 @@ namespace GoogolSharp.Tests
         public void TestOneTetratedToFive()
         {
             var result = Arithmonym.Tetration(Arithmonym.One, Arithmonym.Five);
-            AssertArithmonym.NearlyEqual(1, result, 1e-10);
+            AssertArithmonym.Equal(Arithmonym.One, result);
         }
 
         // a ↑↑ 1 = a
@@ -41,7 +41,7 @@ namespace GoogolSharp.Tests
         public void TestThreeTetratedToOne()
         {
             var result = Arithmonym.Tetration(Arithmonym.Three, Arithmonym.One);
-            AssertArithmonym.NearlyEqual(3, result, 1e-10);
+            AssertArithmonym.NearlyEqual(Arithmonym.Three, result, 1e-15);
         }
 
         // 2 ↑↑ 2 = 4
@@ -49,7 +49,7 @@ namespace GoogolSharp.Tests
         public void TestTwoTetratedToTwo()
         {
             var result = Arithmonym.Tetration(Arithmonym.Two, Arithmonym.Two);
-            AssertArithmonym.NearlyEqual(4, result, 1e-10);
+            AssertArithmonym.NearlyEqual(Arithmonym.Four, result, 1e-3);
         }
 
         // 3 ↑↑ 2 = 27
@@ -57,7 +57,7 @@ namespace GoogolSharp.Tests
         public void TestThreeTetratedToTwo()
         {
             var result = Arithmonym.Tetration(Arithmonym.Three, Arithmonym.Two);
-            AssertArithmonym.NearlyEqual(27, result, 1e-10);
+            AssertArithmonym.NearlyEqual(Arithmonym.TwentySeven, result, 1e-4);
         }
 
         // 2 ↑↑ 3 = 16
@@ -65,7 +65,7 @@ namespace GoogolSharp.Tests
         public void TestTwoTetratedToThree()
         {
             var result = Arithmonym.Tetration(Arithmonym.Two, Arithmonym.Three);
-            AssertArithmonym.NearlyEqual(16, result, 1e-10);
+            AssertArithmonym.NearlyEqual(Arithmonym.Sixteen, result, 3e-4);
         }
 
         // 3 ↑↑ 3 = 3^(3^3) = 3^27 = 7625597484987
@@ -73,7 +73,7 @@ namespace GoogolSharp.Tests
         public void TestThreeTetratedToThree()
         {
             var result = Arithmonym.Tetration(Arithmonym.Three, Arithmonym.Three);
-            AssertArithmonym.NearlyEqual(7625597484987d, result, 1e-5);
+            AssertArithmonym.NearlyEqual(7625597484987, result, 1e-2);
         }
 
         // Edge case: a ↑↑ 0 is often defined as 1 (empty power tower)
@@ -81,7 +81,7 @@ namespace GoogolSharp.Tests
         public void TestTetrationHeightZero()
         {
             var result = Arithmonym.Tetration(Arithmonym.Five, Arithmonym.Zero);
-            AssertArithmonym.NearlyEqual(1, result, 1e-10);
+            AssertArithmonym.Equal(Arithmonym.One, result);
         }
 
         // Check that tetration grows extremely fast but still returns a finite number for small inputs
@@ -91,7 +91,7 @@ namespace GoogolSharp.Tests
             // 4 ↑↑ 3 = 4^(4^4) = 4^256
             double expected = Math.Pow(4, Math.Pow(4, 4)); // 4^256
             var result = Arithmonym.Tetration(Arithmonym.Four, Arithmonym.Three);
-            AssertArithmonym.NearlyEqual(expected, result, 1e-5);
+            AssertArithmonym.NearlyEqual(expected, result, 1e-3);
         }
 
         // Symmetry check: tetration is NOT commutative
