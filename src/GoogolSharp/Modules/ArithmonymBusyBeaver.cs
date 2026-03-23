@@ -42,7 +42,7 @@ namespace GoogolSharp
             if (Operand == Arithmonym.Three) return Arithmonym.Six;
             if (Operand == Arithmonym.Four) return Arithmonym.Fourteen;
             if (Operand == Arithmonym.Five) return new(4098L);
-            return Arithmonym.Tetration(2, Arithmonym.Tetration(2, 65536));
+            return Arithmonym.Tetration(Arithmonym.Two, Arithmonym.Tetration(Arithmonym.Two, Arithmonym.Tetration(Arithmonym.Two, Arithmonym.Nine)));
             // TODO
         }
     }
