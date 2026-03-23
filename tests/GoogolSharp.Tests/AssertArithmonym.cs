@@ -30,7 +30,7 @@ internal static class AssertArithmonym
     /// <summary>
     /// Asserts that two Arithmonym values are equal.
     /// </summary>
-    static void Equal(Arithmonym expected, Arithmonym actual)
+    internal static void Equal(Arithmonym expected, Arithmonym actual)
     {
         if (expected != actual)
             throw new ArithmonymEqualException($"{nameof(AssertArithmonym)}.{nameof(Equal)} failure: Values differ\nExpected: {expected}\nActual: {actual}.");
@@ -42,7 +42,7 @@ internal static class AssertArithmonym
     /// <param name="expected">The expected value.</param>
     /// <param name="actual">The actual value.</param>
     /// <param name="operandTolerance">The maximum allowed difference.</param>
-    static void NearlyEqual(Arithmonym expected, Arithmonym actual, Float128 operandTolerance)
+    internal static void NearlyEqual(Arithmonym expected, Arithmonym actual, Float128 operandTolerance)
     {
         if (!Arithmonym.NearlyEqual(expected, actual, operandTolerance))
             throw new ArithmonymNearlyEqualException($"{nameof(AssertArithmonym)}.{nameof(NearlyEqual)} failure: Values differ more than operandTolerance {operandTolerance}\nExpected: {expected}\nActual: {actual}.");

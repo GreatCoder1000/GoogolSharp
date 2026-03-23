@@ -20,17 +20,14 @@ using GoogolSharp.Helpers;
 using QuadrupleLib;
 using QuadrupleLib.Accelerators;
 using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
-using System.Globalization;
 
-using System.Runtime.Serialization;
-using System.Security.Cryptography.X509Certificates;
-using System.Net.NetworkInformation;
 namespace GoogolSharp
 {
     partial struct Arithmonym
     {
         public static Arithmonym Tetration(Arithmonym baseV, Arithmonym heightV)
         {
+
             ArgumentOutOfRangeException.ThrowIfLessThan(baseV, Zero);
             ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(heightV, NegativeTwo);
             if (IsZero(baseV))
@@ -41,10 +38,15 @@ namespace GoogolSharp
             }
             if (baseV == One) return One;
             if (heightV <= NegativeOne) return (heightV + Two)._Log10 / baseV._Log10;
+            if (heightV == Zero) return One;
+            if (heightV == One) return baseV;
+
             if (heightV <= Zero) return heightV + One;
             if (heightV <= One) return Pow(baseV, heightV);
-            if (heightV <= Two) return Pow(baseV, Pow(baseV, heightV));
-            if (heightV <= Three) return Pow(baseV, Pow(baseV, Pow(baseV, heightV)));
+            if (heightV <= Two) return Pow(baseV, Pow(baseV, heightV - One));
+            if (heightV <= Three) return Pow(baseV, Pow(baseV, Pow(baseV, heightV - Two)));
+            if (heightV <= Four) return Pow(baseV, Pow(baseV, Pow(baseV, Pow(baseV, heightV - Three))));
+
             if (baseV >= Float128.Parse("0.06598803584531253707679018759685") && baseV <= Float128.Parse("1.4446678610097661336583391085964"))
             {
                 // Converges, due to infinite tetration.
@@ -60,7 +62,8 @@ namespace GoogolSharp
             }
             else
             {
-                // Instead do it normally!!
+                // This way to do it "works" but can very quickly lose precision.
+                // Trying to find a better way.
                 Arithmonym iterationCount = Floor(heightV);
                 Arithmonym result = heightV - iterationCount;
                 for (int i = 0; i <= iterationCount; i++)
@@ -74,11 +77,14 @@ namespace GoogolSharp
                 }
                 return result;
             }
+
+            // Warning Silencer
             throw new Exception("TILT: Should not reach here.");
         }
 
         private Arithmonym AddToItsSlog(Arithmonym value)
         {
+            // For now this only does addition.
             ArgumentOutOfRangeException.ThrowIfLessThan(value, 0);
             if (IsZero(value)) return this;
             if (value == One) return _Exp10;
