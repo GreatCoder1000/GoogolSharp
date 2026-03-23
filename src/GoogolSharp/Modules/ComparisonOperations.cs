@@ -63,6 +63,10 @@ namespace GoogolSharp
         {
             if (IsNaN(this) || IsNaN(other)) return int.MinValue;
             if (IsZero(other)) return IsZero(this) ? 0 : _IsNegative ? -1 : 1;
+
+            // HERE I MESSED UP THE ORDER OF 1 AND -1
+            if (IsZero(this)) return other._IsNegative ? 1 : -1;
+            
             if (_IsNegative)
             {
                 if (other._IsNegative) return other.Negated.CompareTo(Negated);
