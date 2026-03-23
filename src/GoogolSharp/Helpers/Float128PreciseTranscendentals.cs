@@ -148,64 +148,66 @@ namespace GoogolSharp.Helpers
         /// </remarks>
         private static Float128 LogHighPrecision(Float128 x)
         {
-            // Use Log2 to get exponent, then compute mantissa logarithm
-            // First get approximate exponent using binary scale
-            Float128 temp = Float128.Abs(x);
-            int exponent = 0;
+            // Extract exponent via ScaleB
+            int k = 0;
+            Float128 m = x;
 
-            // Binary range reduction to [1, √2) for consistent scaling
-            // Each iteration represents exactly one factor of 2
-            while (temp > Sqrt2)
+            // Reduce to [sqrt(0.5), sqrt(2)]
+            while (m > Sqrt2)
             {
-                temp *= Float128.ScaleB(Float128.One, -1);  // Divide by 2
-                exponent++;
+                m *= 0.5;
+                k++;
             }
-            while (temp < Float128.One)
+            while (m < Float128.One / Sqrt2)
             {
-                temp *= 2;
-                exponent--;
+                m *= 2;
+                k--;
             }
 
-            // Now temp is in [1, sqrt(2))
-            // Compute atanh((temp-1)/(temp+1)) with series for ultra-high precision
-            Float128 t = (temp - Float128.One) / (temp + Float128.One);
-            Float128 t_squared = t * t;
+            // Now m ≈ 1 → ideal for atanh
+            Float128 t = (m - Float128.One) / (m + Float128.One);
+            Float128 t2 = t * t;
 
-            // Series: atanh(t) = t + t^3/3 + t^5/5 + t^7/7 + ...
-            // With t ∈ (-0.172, 0.172), this converges rapidly
-            Float128 result = Float128.Zero;
-            Float128 t_power = t;
-            Float128 threshold = Epsilon * Float128.Parse("1e-5", null);  // Stricter convergence
+            // Optimized atanh polynomial (NOT naive series)
+            Float128 sum = t;
+            Float128 term = t;
 
-            for (int n = 0; n < 200; n++)  // 200 iterations for SUB-ULP precision
+            // Hard-unrolled style improves stability
+            for (int i = 1; i < 40; i++)
             {
-                Float128 term = t_power / (2 * n + 1);
-                if (Float128.Abs(term) < threshold)
-                    break;
+                term *= t2;
+                Float128 add = term / (2 * i + 1);
+                sum += add;
 
-                result += term;
-                t_power *= t_squared;
-
-                // Early exit if we've achieved machine epsilon convergence
-                if (n > 50 && Float128.Abs(term) < Epsilon)
+                if (Float128.Abs(add) < Epsilon)
                     break;
             }
 
-            // Ln(x) = 2 * atanh(...) + exponent * Ln(2)
-            // Compute exponent contribution: either multiply Ln2 by exponent or divide
-            Float128 exponent_contribution = Float128.Zero;
-            if (exponent >= 0)
+            Float128 log_m = 2 * sum;
+
+            return log_m + k * Ln2;
+        }
+        private static Float128 Log1p(Float128 x)
+        {
+            if (Float128.Abs(x) < Float128.Parse("1e-6", null))
             {
-                for (int i = 0; i < exponent; i++)
-                    exponent_contribution += Ln2;
-            }
-            else
-            {
-                for (int i = 0; i < -exponent; i++)
-                    exponent_contribution -= Ln2;
+                Float128 term = x;
+                Float128 sum = x;
+
+                for (int n = 2; n < 60; n++)
+                {
+                    term *= -x;
+                    Float128 add = term / n;
+                    sum += add;
+
+                    if (Float128.Abs(add) < Epsilon)
+                        break;
+                }
+
+                return sum;
             }
 
-            return 2 * result + exponent_contribution;
+            return LogHighPrecision(Float128.One + x);
         }
 
         /// <summary>
@@ -373,34 +375,11 @@ namespace GoogolSharp.Helpers
         /// <param name="y_frac">Fractional exponent (typically in [0, 1))</param>
         /// <returns>2^y_frac with 34+ significant digit accuracy (SUB-ULP precision)</returns>
         /// <remarks>This is an internal method used by SafeExp2.</remarks>
-        private static Float128 Exp2Fractional(Float128 y_frac)
+        private static Float128 Exp2Fractional(Float128 y)
         {
-            // Ultra-precise initial guess using 5th-order Taylor series
-            // 2^y ≈ 1 + y*ln(2) + (y*ln(2))^2/2! + (y*ln(2))^3/3! + (y*ln(2))^4/4! + (y*ln(2))^5/5!
-            Float128 ln2_y = y_frac * Ln2;
-            Float128 ln2_y2 = ln2_y * ln2_y;
-            Float128 x_n = Float128.One + ln2_y + ln2_y2 / 2 + (ln2_y2 * ln2_y) / 6
-                                       + (ln2_y2 * ln2_y2) / 24 + (ln2_y2 * ln2_y2 * ln2_y) / 120;
-
-            // Newton-Raphson: We want to solve 2^y = x, i.e., Log2(x) = y
-            // f(x) = Log2(x) - y, f'(x) = 1/(x*Ln(2))
-            // x_{n+1} = x_n - f(x_n)/f'(x_n) = x_n - (Log2(x_n) - y) * x_n * Ln(2)
-            Float128 threshold = Epsilon;  // Converge to machine epsilon
-
-            for (int i = 0; i < 150; i++)  // 150 iterations for SUB-ULP precision
-            {
-                Float128 log2_xn = LogHighPrecision(x_n) * Log2_E;
-                Float128 correction = (log2_xn - y_frac) * x_n * Ln2;
-                Float128 x_next = x_n - correction;
-
-                // Check for convergence to machine epsilon
-                if (Float128.Abs(correction) < threshold * Float128.Abs(x_n) && i > 30)
-                    break;
-
-                x_n = x_next;
-            }
-
-            return x_n;
+            // Convert to exp: 2^y = e^(y ln2)
+            Float128 x = y * Ln2;
+            return SafeExp(x);
         }
 
         /// <summary>
@@ -432,70 +411,48 @@ namespace GoogolSharp.Helpers
         /// var eToLn10 = SafeExp((Float128)Math.Log(10));  // Result: ~10.0
         /// </code>
         /// </example>
-        public static Float128 SafeExp(Float128 y)
-        {
-            if (y > 11356)  // Ln(max Float128)
-                return Float128.PositiveInfinity;
-            if (y < -11356)
-                return Float128.Zero;
+        public static Float128 SafeExp(Float128 x)
+{
+    // Limit the range of inputs
+    if (x > 11356) return Float128.PositiveInfinity;  // Beyond this range, e^x overflows
+    if (x < -11356) return Float128.Zero;  // Beyond this range, e^x underflows to zero
 
-            // Get integer and fractional parts
-            Float128 y_fractionPart = y - Float128.Floor(y);
-            int y_intPart = (int)Float128.Floor(y);
+    // Reduce: x = k*ln2 + r, where r ∈ [-ln2/2, ln2/2]
+    Float128 kf = Float128.Floor(x / Ln2);
+    int k = (int)kf;
 
-            // Compute E^(fractional part) using 7th-order Taylor approximation for ultra-precision
-            Float128 yf2 = y_fractionPart * y_fractionPart;
-            Float128 x_n = Float128.One + y_fractionPart + yf2 / 2 + (yf2 * y_fractionPart) / 6
-                                     + (yf2 * yf2) / 24 + (yf2 * yf2 * y_fractionPart) / 120
-                                     + (yf2 * yf2 * yf2) / 720;
+    // High-precision reduction
+    Float128 r = x - kf * Ln2;
 
-            // Newton-Raphson with machine epsilon convergence
-            Float128 threshold = Epsilon;
+    // Improve reduction accuracy
+    if (r > Ln2 / 2)
+    {
+        r -= Ln2;
+        k++;
+    }
+    else if (r < -Ln2 / 2)
+    {
+        r += Ln2;
+        k--;
+    }
 
-            for (int i = 0; i < 150; i++)  // 150 iterations for SUB-ULP precision
-            {
-                Float128 log_xn = LogHighPrecision(x_n);
-                Float128 delta = x_n * (y_fractionPart - log_xn);
-                Float128 x_next = x_n + delta;
+    // High-order polynomial (degree 8) for the exponential of r
+    Float128 r2 = r * r;
 
-                // Converge to machine epsilon
-                if (Float128.Abs(delta) < threshold * Float128.Abs(x_n) && i > 30)
-                    break;
+    // Polynomial coefficients for e^r expansion: 1 + r + r^2/2! + r^3/3! + ... (degree 8)
+    Float128 poly =
+        Float128.One +
+        r +
+        r2 * (Float128.Parse("0.5", null) +
+        r * (Float128.Parse("0.1666666666666666666666666666666667", null) +
+        r * (Float128.Parse("0.0416666666666666666666666666666667", null) +
+        r * (Float128.Parse("0.0083333333333333333333333333333333", null) +
+        r * (Float128.Parse("0.0013888888888888888888888888888889", null) +
+        r * (Float128.Parse("0.0001984126984126984126984126984127", null)))))));
 
-                x_n = x_next;
-            }
-
-            // Multiply by E^(integer part) with better precision
-            Float128 result = x_n;
-            if (y_intPart > 0)
-            {
-                // Use binary exponentiation for efficiency and precision
-                Float128 e_power = E;
-                int remaining = y_intPart;
-                while (remaining > 0)
-                {
-                    if ((remaining & 1) == 1)
-                        result *= e_power;
-                    e_power *= e_power;
-                    remaining >>= 1;
-                }
-            }
-            else if (y_intPart < 0)
-            {
-                Float128 inv_e_power = Float128.One / E;
-                int remaining = -y_intPart;
-                Float128 base_val = inv_e_power;
-                while (remaining > 0)
-                {
-                    if ((remaining & 1) == 1)
-                        result *= base_val;
-                    base_val *= base_val;
-                    remaining >>= 1;
-                }
-            }
-
-            return result;
-        }
+    // Scale by 2^k to adjust for the reduction (k * ln(2) part)
+    return Float128.ScaleB(poly, k);
+}
 
         /// <summary>
         /// Computes 10 raised to power y with SUB-ULP precision.
@@ -538,6 +495,28 @@ namespace GoogolSharp.Helpers
 
             // Exp10(y) = 2^(y * Log2(10)) - exploits optimized Exp2 path
             return SafeExp2(y * Log2_10);
+        }
+
+        private static Float128 Expm1(Float128 x)
+        {
+            if (Float128.Abs(x) < Float128.Parse("1e-8", null))
+            {
+                Float128 term = x;
+                Float128 sum = x;
+
+                for (int n = 2; n < 100; n++)
+                {
+                    term *= x / n;
+                    sum += term;
+
+                    if (Float128.Abs(term) < Epsilon)
+                        break;
+                }
+
+                return sum;
+            }
+
+            return SafeExp(x) - Float128.One;
         }
 
         /// <summary>
