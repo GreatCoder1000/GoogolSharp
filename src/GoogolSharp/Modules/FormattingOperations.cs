@@ -87,59 +87,20 @@ namespace GoogolSharp
             while (letters.Length < 63)
                 letters = [.. letters, $"[{letters.Length}]"];
 
-            switch (Letter)
+            // unified special‑letter handler
+            string? special = FormatSpecialLetter(Letter, value, _IsReciprocal, commonString: false);
+            if (special != null)
             {
-                case 0x01:
-                    {
-                        // 1 + (value - 2)/8  →  FMA(value, 1/8, 1 - 2/8)
-                        Float128 t = Float128.FusedMultiplyAdd(value, Float128.One / 8, 1 - (Float128)2 / 8);
-                        sb.Append(_IsReciprocal ? (1 / t).ToString("R", null) : t.ToString("R", null));
-                        break;
-                    }
-
-                case 0x02:
-                    {
-                        // 2 + (value - 2)/4  →  FMA(value, 1/4, 2 - 2/4)
-                        Float128 t = Float128.FusedMultiplyAdd(value, Float128.One / 4, 2 - (Float128)2 / 4);
-                        sb.Append(_IsReciprocal ? (1 / t).ToString("R", null) : t.ToString("R", null));
-                        break;
-                    }
-
-                case 0x03:
-                    {
-                        Float128 t = value * 2;
-                        sb.Append(_IsReciprocal ? (1 / t).ToString("R", null) : t.ToString("R", null));
-                        break;
-                    }
-
-                case 0x04:
-                    {
-                        Float128 t = value * 10;
-                        sb.Append(_IsReciprocal ? (1 / t).ToString("R", null) : t.ToString("R", null));
-                        break;
-                    }
-
-                case 0x05:
-                    {
-                        Float128 t = _IsReciprocal
-                            ? Float128PreciseTranscendentals.SafeExp10(-value)
-                            : Float128PreciseTranscendentals.SafeExp10(value);
-
-                        sb.Append(t.ToString("R", null));
-                        break;
-                    }
-
-                case 0x06:
-                    sb.Append(ArithmonymFormattingUtils.FormatArithmonymFromLetterF(Operand, _IsReciprocal));
-                    break;
-
-                default:
-                    if (_IsReciprocal)
-                        sb.Append("1 / ");
-                    sb.Append(letters[Letter]);
-                    sb.Append(value.ToString("R", null));
-                    break;
+                sb.Append(special);
+                return sb.ToString();
             }
+
+            // default formatting
+            if (_IsReciprocal)
+                sb.Append("1 / ");
+
+            sb.Append(letters[Letter]);
+            sb.Append(value.ToString("R", null));
 
             return sb.ToString();
         }
@@ -172,61 +133,73 @@ namespace GoogolSharp
             while (suffixes.Length < 63)
                 suffixes = [.. suffixes, $"[{suffixes.Length}]"];
 
-            switch (Letter)
+            // unified special‑letter handler
+            string? special = FormatSpecialLetter(Letter, value, _IsReciprocal, commonString: true);
+            if (special != null)
+            {
+                sb.Append(special);
+                return sb.ToString();
+            }
+
+            // default formatting
+            if (_IsReciprocal)
+                sb.Append("1 / ");
+
+            sb.Append(prefixes[Letter]);
+            sb.Append(value.ToString("R", null));
+            sb.Append(suffixes[Letter]);
+
+            return sb.ToString();
+        }
+
+        private string? FormatSpecialLetter(byte letter, Float128 value, bool isReciprocal, bool commonString)
+        {
+            switch (letter)
             {
                 case 0x01:
                     {
                         Float128 t = Float128.FusedMultiplyAdd(value, Float128.One / 8, 1 - (Float128)2 / 8);
-                        sb.Append(_IsReciprocal ? (1 / t).ToString("R", null) : t.ToString("R", null));
-                        break;
+                        return (isReciprocal ? (1 / t) : t).ToString("R", null);
                     }
 
                 case 0x02:
                     {
                         Float128 t = Float128.FusedMultiplyAdd(value, Float128.One / 4, 2 - (Float128)2 / 4);
-                        sb.Append(_IsReciprocal ? (1 / t).ToString("R", null) : t.ToString("R", null));
-                        break;
+                        return (isReciprocal ? (1 / t) : t).ToString("R", null);
                     }
 
                 case 0x03:
                     {
                         Float128 t = value * 2;
-                        Float128 result = _IsReciprocal ? 1 / t : t;
-                        sb.Append(ArithmonymFormattingUtils.FormatNearInteger(result));
-                        break;
+                        if (commonString)
+                            return ArithmonymFormattingUtils.FormatNearInteger(isReciprocal ? 1 / t : t);
+
+                        return (isReciprocal ? (1 / t) : t).ToString("R", null);
                     }
 
                 case 0x04:
                     {
                         Float128 t = value * 10;
-                        sb.Append(_IsReciprocal ? (1 / t).ToString("R", null) : t.ToString("R", null));
-                        break;
+                        return (isReciprocal ? (1 / t) : t).ToString("R", null);
                     }
 
                 case 0x05:
                     {
-                        Float128 t = _IsReciprocal
+                        Float128 t = isReciprocal
                             ? Float128PreciseTranscendentals.SafeExp10(-value)
                             : Float128PreciseTranscendentals.SafeExp10(value);
 
-                        sb.Append(t.ToString("R", null));
-                        break;
+                        return t.ToString("R", null);
                     }
 
                 case 0x06:
-                    sb.Append(ArithmonymFormattingUtils.FormatArithmonymFromLetterF(Operand, _IsReciprocal, "*10^", false));
-                    break;
+                    return commonString
+                        ? ArithmonymFormattingUtils.FormatArithmonymFromLetterF(value, isReciprocal, "*10^", false)
+                        : ArithmonymFormattingUtils.FormatArithmonymFromLetterF(value, isReciprocal);
 
                 default:
-                    if (_IsReciprocal)
-                        sb.Append("1 / ");
-                    sb.Append(prefixes[Letter]);
-                    sb.Append(value.ToString("R", null));
-                    sb.Append(suffixes[Letter]);
-                    break;
+                    return null;
             }
-
-            return sb.ToString();
         }
 
     }
