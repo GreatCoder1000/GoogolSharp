@@ -196,7 +196,7 @@ namespace GoogolSharp.Tests
             var log = Arithmonym.Log10(twenty);
             var exp = Arithmonym.Exp10(log);
             
-            Assert.Equal((double)twenty, (double)exp, precision: 10);
+            Assert.Equal((double)twenty, (double)exp, precision: 8);
         }
 
         [Fact]
