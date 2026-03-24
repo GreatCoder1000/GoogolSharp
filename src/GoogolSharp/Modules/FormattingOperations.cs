@@ -40,6 +40,7 @@ namespace GoogolSharp
             if (format is null) return ToString();
             if (format == "B") return ToBinaryString(squishedHi, 32) + ToBinaryString(squishedMid, 32) + ToBinaryString(squishedLo, 32);
             if (format == "L") return ToLetterString();
+            if (format == "A") return ToAbbreviatedString();
             return ToString();
         }
 
@@ -88,7 +89,7 @@ namespace GoogolSharp
                 letters = [.. letters, $"[{letters.Length}]"];
 
             // unified special‑letter handler
-            string? special = FormatSpecialLetter(Letter, value, _IsReciprocal, commonString: false);
+            string? special = FormatSpecialLetter(Letter, value, _IsReciprocal, commonString: false, abbreviate: false);
             if (special != null)
             {
                 sb.Append(special);
@@ -125,16 +126,16 @@ namespace GoogolSharp
             if (_IsNegative)
                 sb.Append('-');
 
-            string[] prefixes = ["", "A", "B", "C", "D", "10^", "10^^", "{10,10,", "{10,", "{10,", "{10,10,", "{10,10,10,", "{10,", "X^^", "X^^^", "{X,"];
+            string[] prefixes = ["", "A", "B", "C", "D", "10^", "10^^", "{10,10,", "{10,", "{10,", "{10,10,", "{10,10,10,", "{10,", "X^^", "X^^^", "{X,", "{X,", "X_2^^", "{10,"];
             while (prefixes.Length < 63)
                 prefixes = [.. prefixes, $"[{prefixes.Length}]"];
 
-            string[] suffixes = ["", "", "", "", "", "", "", "}", ",1,2}", ",2,2}", ",2}", "}", "(1)2}", " & 10", " & 10"];
+            string[] suffixes = ["", "", "", "", "", "", "", "}", ",1,2}", ",2,2}", ",2}", "}", "(1)2}", " & 10", " & 10", "(1)2} & 10", ",2(1)2} & 10", " & X & 10", "/2}"];
             while (suffixes.Length < 63)
                 suffixes = [.. suffixes, $"[{suffixes.Length}]"];
 
             // unified special‑letter handler
-            string? special = FormatSpecialLetter(Letter, value, _IsReciprocal, commonString: true);
+            string? special = FormatSpecialLetter(Letter, value, _IsReciprocal, commonString: true, abbreviate: false);
             if (special != null)
             {
                 sb.Append(special);
@@ -152,7 +153,54 @@ namespace GoogolSharp
             return sb.ToString();
         }
 
-        private string? FormatSpecialLetter(byte letter, Float128 value, bool isReciprocal, bool commonString)
+        /// <summary>
+        /// Returns a human-readable string representation of this <see cref="Arithmonym"/>.
+        /// </summary>
+        public string ToAbbreviatedString()
+        {
+            if (IsNaN(this)) return "NaN";
+            if (this == PositiveInfinity) return "∞";
+            if (this == NegativeInfinity) return "-∞";
+            if (this == Zero) return "0";
+
+            Float128 value = Operand;
+
+            if (Letter == 0x0C)
+                value += 2;
+
+            var sb = new StringBuilder();
+            if (_IsNegative)
+                sb.Append('-');
+
+            string[] prefixes = ["", "A", "B", "C", "D", "10^", "10^^", "{10,10,", "{10,", "{10,", "{10,10,", "{10,10,10,", "{10,", "X^^", "X^^^", "{X,", "{X,", "X_2^^", "{10,"];
+            while (prefixes.Length < 63)
+                prefixes = [.. prefixes, $"[{prefixes.Length}]"];
+
+            string[] suffixes = ["", "", "", "", "", "", "", "}", ",1,2}", ",2,2}", ",2}", "}", "(1)2}", " & 10", " & 10", "(1)2} & 10", ",2(1)2} & 10", " & X & 10", "/2}"];
+            while (suffixes.Length < 63)
+                suffixes = [.. suffixes, $"[{suffixes.Length}]"];
+
+            // unified special‑letter handler
+            string? special = FormatSpecialLetter(Letter, value, _IsReciprocal, commonString: true, abbreviate: true);
+            if (special != null)
+            {
+                sb.Append(special);
+                return sb.ToString();
+            }
+
+            // default formatting
+            if (_IsReciprocal)
+                sb.Append("1 / ");
+
+            sb.Append(prefixes[Letter]);
+            sb.Append(value.ToString("R", null));
+            sb.Append(suffixes[Letter]);
+
+            return sb.ToString();
+        }
+
+
+        private string? FormatSpecialLetter(byte letter, Float128 value, bool isReciprocal, bool commonString, bool abbreviate)
         {
             switch (letter)
             {
@@ -189,6 +237,11 @@ namespace GoogolSharp
                             ? Float128PreciseTranscendentals.SafeExp10(-value)
                             : Float128PreciseTranscendentals.SafeExp10(value);
 
+                        if (value >= 3 && abbreviate && !isReciprocal)
+                        {
+                            return FormatFloat128AbbreviateFromLog10(value);
+                        }
+
                         return t.ToString("R", null);
                     }
 
@@ -202,5 +255,13 @@ namespace GoogolSharp
             }
         }
 
+        private string FormatFloat128AbbreviateFromLog10(Float128 value)
+        {
+            int vf = (int)value;
+            int vfloor = vf / 3;
+            Float128 left = Float128PreciseTranscendentals.SafeExp10(value - (3 * vfloor));
+
+            return left.ToString($"F{3 + (3 * vfloor) - vf}", null) + new string[] { "", "K", "M", "B", "T" }[vfloor];
+        }
     }
 }
