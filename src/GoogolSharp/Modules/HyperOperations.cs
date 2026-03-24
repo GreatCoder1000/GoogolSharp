@@ -16,6 +16,7 @@
  *  along with GoogolSharp.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Reflection.Emit;
 using GoogolSharp.Helpers;
 using QuadrupleLib;
 using QuadrupleLib.Accelerators;
@@ -27,7 +28,6 @@ namespace GoogolSharp
     {
         public static Arithmonym Tetration(Arithmonym baseV, Arithmonym heightV)
         {
-
             ArgumentOutOfRangeException.ThrowIfLessThan(baseV, Zero);
             ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(heightV, NegativeTwo);
             if (IsZero(baseV))
@@ -47,39 +47,30 @@ namespace GoogolSharp
             if (heightV <= Three) return Pow(baseV, Pow(baseV, Pow(baseV, heightV - Two)));
             if (heightV <= Four) return Pow(baseV, Pow(baseV, Pow(baseV, Pow(baseV, heightV - Three))));
 
-            if (baseV >= Float128.Parse("0.06598803584531253707679018759685") && baseV <= Float128.Parse("1.4446678610097661336583391085964"))
-            {
-                // Converges, due to infinite tetration.
-                Arithmonym iterationCount = Floor(heightV);
-                Arithmonym result = heightV - iterationCount;
-                for (int i = 0; i <= iterationCount; i++)
-                {
-                    Arithmonym newResult = Pow(baseV, result);
-                    if (Abs(newResult - result) < 4 * Epsilon) break;
-                    result = newResult;
-                }
-                return result;
-            }
-            else
-            {
-                // This way to do it "works" but can very quickly lose precision.
-                // Trying to find a better way.
-                Arithmonym iterationCount = Floor(heightV);
-                Arithmonym result = heightV - iterationCount;
-                for (int i = 0; i <= iterationCount; i++)
-                {
-                    Arithmonym newResult = Pow(baseV, result);
-                    if (newResult._Log10 == result)
-                    {
-                        return result.AddToItsSlog(iterationCount - i);
-                    }
-                    result = newResult;
-                }
-                return result;
-            }
+            Arithmonym iterationCount = Floor(heightV);
+            Arithmonym start = heightV - iterationCount;
+            return PowerTower(baseV, iterationCount, start);
+        }
 
-            // Warning Silencer
-            throw new Exception("TILT: Should not reach here.");
+        public static Arithmonym PowerTower(Arithmonym a, Arithmonym b, Arithmonym c)
+        {
+            // This way to do it "works" but can very quickly lose precision.
+            // Trying to find a better way.
+            Arithmonym iterationCount = b;
+            Arithmonym result = c;
+            for (int i = 0; i <= iterationCount; i++)
+            {
+                Arithmonym newResult = Pow(a, result);
+
+                // Avoid infinite tetration
+                if (Abs(newResult - result) < 4 * Epsilon) break;
+                if (newResult._Log10 == result)
+                {
+                    return result.AddToItsSlog(iterationCount - i);
+                }
+                result = newResult;
+            }
+            return result;
         }
 
         private Arithmonym AddToItsSlog(Arithmonym value)
@@ -104,7 +95,19 @@ namespace GoogolSharp
                 // value >= 10^10 and value < 10^10^10^10^10^10^10^10^10^10
                 return new(value.Operand);
             }
-            throw new NotImplementedException("TODO");
+            if (value < Triapetaksys)
+            {
+                Float128 letterG;
+                if (value < Dekateraksys)
+                    letterG = Float128PreciseTranscendentals.SafePow(5, value.Operand - 2) * 2;
+                // GG
+                else letterG = Float128HyperTranscendentals.LetterG(Float128PreciseTranscendentals.SafeExp10(Float128PreciseTranscendentals.SafePow(5, value.Operand - 3) * 2));
+                letterG--;
+                if (Float128.IsInfinity(letterG)) return value;
+                if (letterG < 2) return Tetration10Linear((Arithmonym)Float128PreciseTranscendentals.SafeExp10(letterG - 1));
+                return new(false, false, 0x07, EncodeOperand(2 + (Float128PreciseTranscendentals.SafeLog(letterG / 2) / Float128PreciseTranscendentals.SafeLog(5))));
+            }
+            return value;
         }
 
         public static Arithmonym Tetration10Linear(Arithmonym value)
@@ -179,7 +182,28 @@ namespace GoogolSharp
                     )
                 );
             }
-            throw new NotImplementedException("TODO");
+            if (value < Triapetaksys)
+            {
+                Float128 letterH = Float128PreciseTranscendentals.SafePow(5, value.Operand - 3) * 2;
+                if (letterH < 2)
+                {
+                    letterH = 2;
+                }
+                if (letterH >= 3)
+                {
+                    letterH = 3 - Float128.Epsilon;
+                }
+
+                // H2.301.. -> GGG0.301.. -> GG2
+                Float128 letterG = Float128HyperTranscendentals.LetterG(Float128PreciseTranscendentals.SafeExp10(letterH - 2));
+
+                if (Float128.IsInfinity(letterG)) { return value; }
+                letterG++;
+
+                letterH = 2 + Float128PreciseTranscendentals.SafeLog10(Float128HyperTranscendentals.InverseLetterG(letterG));
+                return new(false, false, 0x07, EncodeOperand(3 + (Float128PreciseTranscendentals.SafeLog(letterH / 2) / Float128PreciseTranscendentals.SafeLog(5))));
+            }
+            return value;
         }
 
         private static Arithmonym LetterFToLetterG(Arithmonym value)

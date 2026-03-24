@@ -62,5 +62,6 @@ namespace GoogolSharp
         static abstract TSelf Permutations(TSelf n, TSelf r);
         static abstract TSelf Combinations(TSelf n, TSelf r);
         static abstract TSelf Tetration(TSelf baseV, TSelf heightV);
+        static abstract TSelf PowerTower(TSelf a, TSelf b, TSelf c);
     }
 }
