@@ -32,6 +32,11 @@ namespace GoogolSharp
 
         public static Arithmonym RootN(Arithmonym inputV, int rootV)
         {
+            if (inputV < Zero && int.IsOddInteger(rootV))
+            {
+                return (inputV.Negated._Log10 / rootV)._Exp10.Negated;
+            }
+
             return (inputV._Log10 / rootV)._Exp10;
         }
 
