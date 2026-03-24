@@ -66,6 +66,10 @@ namespace GoogolSharp
         /// Returns a human-readable string representation of this <see cref="Arithmonym"/>.
         /// </summary>
         public override string ToString() => ToCommonString();
+
+        /// <summary>
+        /// Returns a human-readable string representation of this <see cref="Arithmonym"/>.
+        /// </summary>
         public string ToLetterString()
         {
             if (IsNaN(this)) return "NaN";
