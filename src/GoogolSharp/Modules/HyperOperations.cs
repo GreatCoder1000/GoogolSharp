@@ -26,6 +26,15 @@ namespace GoogolSharp
 {
     partial struct Arithmonym
     {
+        public static Arithmonym Hyper(Arithmonym a, Arithmonym b, int c)
+        {
+            ArgumentOutOfRangeException.ThrowIfLessThan(c, 1);
+            if (c == 1) return a + b;
+            if (c == 2) return a * b;
+            if (c == 3) return Pow(a, b);
+            if (c == 4) return Tetration(a, b);
+            throw new NotImplementedException("Not Implemented Yet.");
+        }
         public static Arithmonym Tetration(Arithmonym baseV, Arithmonym heightV)
         {
             ArgumentOutOfRangeException.ThrowIfLessThan(baseV, Zero);

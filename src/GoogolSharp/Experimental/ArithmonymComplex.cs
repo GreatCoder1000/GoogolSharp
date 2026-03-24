@@ -18,10 +18,10 @@
 
 namespace GoogolSharp.Experimental
 {
-    public readonly struct ArithmonymComplex
+    public readonly struct ArithmonymComplex(Arithmonym real, Arithmonym imaginary)
     {
-        private readonly Arithmonym real;
-        private readonly Arithmonym imaginary;
+        private readonly Arithmonym real = real;
+        private readonly Arithmonym imaginary = imaginary;
 
         public Arithmonym Real => real;
         public Arithmonym Imaginary => imaginary;
