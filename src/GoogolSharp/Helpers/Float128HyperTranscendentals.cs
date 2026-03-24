@@ -47,7 +47,7 @@ namespace GoogolSharp.Helpers
             if (v < 0) return SuperLog10(v + 1);
             if (v < 1) return v - 1;
             if (v < 10) return Float128PreciseTranscendentals.SafeLog10(v);
-            return 1 + (Float128PreciseTranscendentals.SafeLog10(Float128HyperTranscendentals.SuperLog10(v)));
+            return 1 + Float128PreciseTranscendentals.SafeLog10(Float128HyperTranscendentals.SuperLog10(v));
         }
 
         public static Float128 LetterJToLetterG(Float128 v)

@@ -21,6 +21,7 @@ using QuadrupleLib;
 using QuadrupleLib.Accelerators;
 using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
 using System.Globalization;
+using System.Numerics;
 
 
 namespace GoogolSharp
@@ -43,7 +44,7 @@ namespace GoogolSharp
     /// - i: OperandFloored-2 (3 bits)
     /// - f: Fraction (Q3.85)
     /// </remarks>
-    public readonly partial struct Arithmonym : IGoogologyFloat<Arithmonym>
+    public readonly partial struct Arithmonym : IGoogologyFloat<Arithmonym>, ITrigonometricFunctions<Arithmonym>, IHyperbolicFunctions<Arithmonym>
     {
         // See Modules/ for implementation.
         // For some unincluded stuff like Float128PreciseTranscendentals look in Helpers/
