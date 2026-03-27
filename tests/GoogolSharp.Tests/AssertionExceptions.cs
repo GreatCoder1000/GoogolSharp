@@ -24,32 +24,28 @@ namespace GoogolSharp.Tests
     /// <summary>
     /// Exception thrown when two Arithmonym values are not equal.
     /// </summary>
-    internal class ArithmonymEqualException : XunitException
+    internal class ArithmonymEqualException(string message) : XunitException(message)
     {
-        public ArithmonymEqualException(string message) : base(message) { }
     }
 
     /// <summary>
     /// Exception thrown when two Arithmonym values differ more than the allowed tolerance.
     /// </summary>
-    internal class ArithmonymNearlyEqualException : XunitException
+    internal class ArithmonymNearlyEqualException(string message) : XunitException(message)
     {
-        public ArithmonymNearlyEqualException(string message) : base(message) { }
     }
 
     /// <summary>
     /// Exception thrown when two Float128 values are not equal.
     /// </summary>
-    internal class Float128EqualException : XunitException
+    internal class Float128EqualException(string message) : XunitException(message)
     {
-        public Float128EqualException(string message) : base(message) { }
     }
 
     /// <summary>
     /// Exception thrown when two Float128 values differ more than the allowed tolerance.
     /// </summary>
-    internal class Float128NearlyEqualException : XunitException
+    internal class Float128NearlyEqualException(string message) : XunitException(message)
     {
-        public Float128NearlyEqualException(string message) : base(message) { }
     }
 }

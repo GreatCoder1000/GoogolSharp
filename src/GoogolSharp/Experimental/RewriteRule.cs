@@ -16,28 +16,32 @@
  *  along with GoogolSharp.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace GoogolSharp
+namespace GoogolSharp.Experimental
 {
-    partial struct Arithmonym
+    public class RewriteRule
     {
-        public static Arithmonym Log(Arithmonym inputV, Arithmonym baseV)
+        public readonly ArithmosymPattern pattern;
+        public readonly Func<Dictionary<string, Arithmosym>, Arithmosym> replacement;
+
+        public RewriteRule(ArithmosymPattern pattern,
+                           Func<Dictionary<string, Arithmosym>, Arithmosym> replacement)
         {
-            return inputV._Log10 / baseV._Log10;
+            this.pattern = pattern;
+            this.replacement = replacement;
         }
 
-        public static Arithmonym RootN(Arithmonym inputV, int rootV)
+        public bool TryApply(Arithmosym expr, out Arithmosym result)
         {
-            if (inputV < Zero && int.IsOddInteger(rootV))
+            var bindings = new Dictionary<string, Arithmosym>();
+
+            if (pattern.Match(expr, bindings))
             {
-                return (inputV.Negated._Log10 / rootV)._Exp10.Negated;
+                result = replacement(bindings);
+                return true;
             }
 
-            return (inputV._Log10 / rootV)._Exp10;
-        }
-
-        public static Arithmonym Hypot(Arithmonym legA, Arithmonym legB)
-        {
-            return Sqrt(legA * legA + legB * legB);
+            result = expr;
+            return false;
         }
     }
 }

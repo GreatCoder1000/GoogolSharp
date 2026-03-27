@@ -16,10 +16,7 @@
  *  along with GoogolSharp.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Reflection.Emit;
 using GoogolSharp.Helpers;
-using QuadrupleLib;
-using QuadrupleLib.Accelerators;
 using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
 
 namespace GoogolSharp

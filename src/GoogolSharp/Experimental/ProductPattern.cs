@@ -16,28 +16,30 @@
  *  along with GoogolSharp.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace GoogolSharp
+namespace GoogolSharp.Experimental
 {
-    partial struct Arithmonym
+    public class ProductPattern : ArithmosymPattern
     {
-        public static Arithmonym Log(Arithmonym inputV, Arithmonym baseV)
+        public readonly List<ArithmosymPattern> factors;
+
+        public ProductPattern(IEnumerable<ArithmosymPattern> factors)
         {
-            return inputV._Log10 / baseV._Log10;
+            this.factors = factors.ToList();
         }
 
-        public static Arithmonym RootN(Arithmonym inputV, int rootV)
+        public override bool Match(Arithmosym expr, Dictionary<string, Arithmosym> bindings)
         {
-            if (inputV < Zero && int.IsOddInteger(rootV))
-            {
-                return (inputV.Negated._Log10 / rootV)._Exp10.Negated;
-            }
+            if (expr is not ArithmosymProduct p)
+                return false;
 
-            return (inputV._Log10 / rootV)._Exp10;
-        }
+            if (p.factors.Count != factors.Count)
+                return false;
 
-        public static Arithmonym Hypot(Arithmonym legA, Arithmonym legB)
-        {
-            return Sqrt(legA * legA + legB * legB);
+            for (int i = 0; i < factors.Count; i++)
+                if (!factors[i].Match(p.factors[i], bindings))
+                    return false;
+
+            return true;
         }
     }
 }

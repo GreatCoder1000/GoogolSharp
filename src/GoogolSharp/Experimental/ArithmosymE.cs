@@ -16,28 +16,14 @@
  *  along with GoogolSharp.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace GoogolSharp
+namespace GoogolSharp.Experimental
 {
-    partial struct Arithmonym
+    public class ArithmosymE() : Arithmosym
     {
-        public static Arithmonym Log(Arithmonym inputV, Arithmonym baseV)
-        {
-            return inputV._Log10 / baseV._Log10;
-        }
+        public override Arithmosym GetSimplified() 
+            => this;
 
-        public static Arithmonym RootN(Arithmonym inputV, int rootV)
-        {
-            if (inputV < Zero && int.IsOddInteger(rootV))
-            {
-                return (inputV.Negated._Log10 / rootV)._Exp10.Negated;
-            }
-
-            return (inputV._Log10 / rootV)._Exp10;
-        }
-
-        public static Arithmonym Hypot(Arithmonym legA, Arithmonym legB)
-        {
-            return Sqrt(legA * legA + legB * legB);
-        }
+        public override string ToString()
+            => "e";
     }
 }

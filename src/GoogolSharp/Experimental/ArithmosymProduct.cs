@@ -18,14 +18,9 @@
 
 namespace GoogolSharp.Experimental
 {
-    public class ArithmosymProduct : Arithmosym
+    public class ArithmosymProduct(IEnumerable<Arithmosym> items) : Arithmosym
     {
-        public readonly List<Arithmosym> factors;
-
-        public ArithmosymProduct(IEnumerable<Arithmosym> items)
-        {
-            factors = [..items];
-        }
+        public readonly List<Arithmosym> factors = [.. items];
 
         public override Arithmosym GetSimplified()
         {

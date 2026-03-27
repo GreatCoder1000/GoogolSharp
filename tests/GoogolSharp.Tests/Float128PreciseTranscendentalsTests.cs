@@ -17,9 +17,6 @@
  */
 
 
-using System;
-using QuadrupleLib;
-using QuadrupleLib.Accelerators;
 using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
 using GoogolSharp.Helpers;
 
