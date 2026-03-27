@@ -198,34 +198,6 @@ namespace GoogolSharp
             return MaxMagnitude(x, y);
         }
 
-        public static Arithmonym Parse(string? s, NumberStyles styles, IFormatProvider? provider)
-        {
-            ArgumentNullException.ThrowIfNull(s);
-            if (Float128.TryParse(s, null, out Float128 outputFloat))
-                return new(outputFloat);
-            string[] split = s.Split(['e', 'E']);
-            if (s[0] == '-') return Parse(s[1..], styles, provider).Negated;
-            if (s[0] == '+') return Parse(s[1..], styles, provider);
-            if (split.Length == 2)
-            {
-                Float128 significand = Float128.Parse(split[0]);
-                Float128 exponent = Float128.Parse(split[1]);
-                bool isReciprocal = false;
-                Float128 letterF = exponent + Float128PreciseTranscendentals.SafeLog10(significand);
-                if (letterF < 0)
-                {
-                    letterF = -letterF;
-                    isReciprocal = true;
-                }
-                if (letterF < 10)
-                    return new Arithmonym(letterF)._Exp10;
-                letterF = 1 + Float128HyperTranscendentals.SuperLog10(letterF);
-                return new(false, isReciprocal, 0x06, EncodeOperand(letterF));
-            }
-            // TODO
-            throw new FormatException("Input string was not in a correct format.");
-        }
-
         public static Arithmonym Parse(ReadOnlySpan<char> chars, NumberStyles styles, IFormatProvider? provider)
         {
             return Parse(chars.ToString(), styles, provider);

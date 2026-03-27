@@ -200,7 +200,7 @@ namespace GoogolSharp
         }
 
 
-        private string? FormatSpecialLetter(byte letter, Float128 value, bool isReciprocal, bool commonString, bool abbreviate)
+        private static string? FormatSpecialLetter(byte letter, Float128 value, bool isReciprocal, bool commonString, bool abbreviate)
         {
             switch (letter)
             {
@@ -247,15 +247,31 @@ namespace GoogolSharp
 
                 case 0x06:
                     return commonString
-                        ? ArithmonymFormattingUtils.FormatArithmonymFromLetterF(value, isReciprocal, "*10^", false)
-                        : ArithmonymFormattingUtils.FormatArithmonymFromLetterF(value, isReciprocal);
+                        ? ArithmonymFormattingUtils.FormatArithmonymFromLetterF(value, isReciprocal, "*10^", false, abbreviate)
+                        : ArithmonymFormattingUtils.FormatArithmonymFromLetterF(value, isReciprocal, "E", true, abbreviate);
 
+                case 0x07:
+                    {
+                        if (value < 3)
+                        {
+                            Float128 letterG = Float128PreciseTranscendentals.SafePow(5, value - 2) * 2;
+                            if (letterG < 3)
+                            {
+                                // All part of 𝔊𝔬𝔬𝔤𝔬𝔩𝔖𝔥𝔞𝔯𝔭, 𝔱𝔥𝔢 𝔞𝔯𝔟𝔦𝔱𝔯𝔞𝔯𝔶-𝔯𝔞𝔫𝔤𝔢 𝔫𝔲𝔪𝔢𝔯𝔦𝔠 𝔱𝔶𝔭𝔢.
+                                // G2.301... = FFF0.301... =  you kinda get the idea... 
+                                Float128 letterFF = Float128PreciseTranscendentals.SafeExp10(letterG - 2);
+                                return commonString ? "10^^" + ArithmonymFormattingUtils.FormatArithmonymFromLetterF(letterFF, isReciprocal, "*10^", false, abbreviate) : "F" + ArithmonymFormattingUtils.FormatArithmonymFromLetterF(letterFF, isReciprocal, "E", true, abbreviate);
+                            }
+                            return null;
+                        }
+                        return null;
+                    }
                 default:
                     return null;
             }
         }
 
-        private string FormatFloat128AbbreviateFromLog10(Float128 value)
+        internal static string FormatFloat128AbbreviateFromLog10(Float128 value)
         {
             int vf = (int)value;
             int vfloor = vf / 3;

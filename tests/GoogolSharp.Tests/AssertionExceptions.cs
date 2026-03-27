@@ -16,38 +16,40 @@
  *  along with GoogolSharp.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace GoogolSharp.Tests;
 
 using Xunit.Sdk;
-
-/// <summary>
-/// Exception thrown when two Arithmonym values are not equal.
-/// </summary>
-internal class ArithmonymEqualException : XunitException
+namespace GoogolSharp.Tests
 {
-    public ArithmonymEqualException(string message) : base(message) { }
-}
 
-/// <summary>
-/// Exception thrown when two Arithmonym values differ more than the allowed tolerance.
-/// </summary>
-internal class ArithmonymNearlyEqualException : XunitException
-{
-    public ArithmonymNearlyEqualException(string message) : base(message) { }
-}
+    /// <summary>
+    /// Exception thrown when two Arithmonym values are not equal.
+    /// </summary>
+    internal class ArithmonymEqualException : XunitException
+    {
+        public ArithmonymEqualException(string message) : base(message) { }
+    }
 
-/// <summary>
-/// Exception thrown when two Float128 values are not equal.
-/// </summary>
-internal class Float128EqualException : XunitException
-{
-    public Float128EqualException(string message) : base(message) { }
-}
+    /// <summary>
+    /// Exception thrown when two Arithmonym values differ more than the allowed tolerance.
+    /// </summary>
+    internal class ArithmonymNearlyEqualException : XunitException
+    {
+        public ArithmonymNearlyEqualException(string message) : base(message) { }
+    }
 
-/// <summary>
-/// Exception thrown when two Float128 values differ more than the allowed tolerance.
-/// </summary>
-internal class Float128NearlyEqualException : XunitException
-{
-    public Float128NearlyEqualException(string message) : base(message) { }
+    /// <summary>
+    /// Exception thrown when two Float128 values are not equal.
+    /// </summary>
+    internal class Float128EqualException : XunitException
+    {
+        public Float128EqualException(string message) : base(message) { }
+    }
+
+    /// <summary>
+    /// Exception thrown when two Float128 values differ more than the allowed tolerance.
+    /// </summary>
+    internal class Float128NearlyEqualException : XunitException
+    {
+        public Float128NearlyEqualException(string message) : base(message) { }
+    }
 }
