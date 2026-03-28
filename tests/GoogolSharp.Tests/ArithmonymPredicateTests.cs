@@ -16,8 +16,8 @@
  *  along with GoogolSharp.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace GoogolSharp.Tests;
-
+namespace GoogolSharp.Tests
+{
 public class ArithmonymPredicateTests
 {
     [Fact]
@@ -105,4 +105,5 @@ public class ArithmonymPredicateTests
         Assert.True(Arithmonym.IsInfinity(negated));
         Assert.False(Arithmonym.IsNegative(negated));
     }
+}
 }

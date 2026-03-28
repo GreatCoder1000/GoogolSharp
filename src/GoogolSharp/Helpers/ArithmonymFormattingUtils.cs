@@ -16,8 +16,6 @@
  *  along with GoogolSharp.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using QuadrupleLib;
-using QuadrupleLib.Accelerators;
 using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
 
 namespace GoogolSharp.Helpers
@@ -28,10 +26,14 @@ namespace GoogolSharp.Helpers
             Float128 letterF,
             bool isReciprocal,
             string placeholder = "E",
-            bool showExponentSignIfPositive = true)
+            bool showExponentSignIfPositive = true,
+            bool abbreviate = false)
         {
+            if (letterF < 1 || (letterF < 2 && !abbreviate))
+                return Float128HyperTranscendentals.LetterF(letterF).ToString();
+
             if (letterF < 2)
-                return new Arithmonym(Float128HyperTranscendentals.LetterF(letterF)).ToString();
+                return Arithmonym.FormatFloat128AbbreviateFromLog10(Float128HyperTranscendentals.LetterF(letterF-1));
 
             if (letterF < 3)
             {
@@ -71,7 +73,7 @@ namespace GoogolSharp.Helpers
                     left /= 10;
                 }
 
-                string leftStr = left.ToString();
+                string leftStr = left.ToString("F6", null);
 
                 return $"{(isReciprocal ? "1 / (" : "")}{leftStr}F+{right}{(isReciprocal ? ")" : "")}";
             }

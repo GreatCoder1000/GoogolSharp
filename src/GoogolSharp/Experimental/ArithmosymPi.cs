@@ -16,28 +16,16 @@
  *  along with GoogolSharp.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace GoogolSharp
+namespace GoogolSharp.Experimental
 {
-    partial struct Arithmonym
+    public class ArithmosymPi() : Arithmosym
     {
-        public static Arithmonym Log(Arithmonym inputV, Arithmonym baseV)
-        {
-            return inputV._Log10 / baseV._Log10;
-        }
+        internal override Arithmosym GetSimplifiedInternal()
+            => this;
 
-        public static Arithmonym RootN(Arithmonym inputV, int rootV)
-        {
-            if (inputV < Zero && int.IsOddInteger(rootV))
-            {
-                return (inputV.Negated._Log10 / rootV)._Exp10.Negated;
-            }
+        internal override string ToInternalString()
+            => "π";
 
-            return (inputV._Log10 / rootV)._Exp10;
-        }
-
-        public static Arithmonym Hypot(Arithmonym legA, Arithmonym legB)
-        {
-            return Sqrt(legA * legA + legB * legB);
-        }
+        internal override Arithmonym EvaluateInternal() => Arithmonym.Pi;
     }
 }

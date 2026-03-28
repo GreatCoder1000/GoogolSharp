@@ -16,35 +16,32 @@
  *  along with GoogolSharp.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace GoogolSharp.Tests;
 
-using System;
-using QuadrupleLib;
-using QuadrupleLib.Accelerators;
 using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
-using GoogolSharp.Helpers;
-using Xunit.Sdk;
-
-internal static class AssertArithmonym
+namespace GoogolSharp.Tests
 {
-    /// <summary>
-    /// Asserts that two Arithmonym values are equal.
-    /// </summary>
-    internal static void Equal(Arithmonym expected, Arithmonym actual)
-    {
-        if (expected != actual)
-            throw new ArithmonymEqualException($"{nameof(AssertArithmonym)}.{nameof(Equal)} failure: Values differ\nExpected: {expected}\nActual: {actual}.");
-    }
 
-    /// <summary>
-    /// Asserts that two Arithmonym values are nearly equal within a specified tolerance.
-    /// </summary>
-    /// <param name="expected">The expected value.</param>
-    /// <param name="actual">The actual value.</param>
-    /// <param name="operandTolerance">The maximum allowed difference.</param>
-    internal static void NearlyEqual(Arithmonym expected, Arithmonym actual, Float128 operandTolerance)
+    internal static class AssertArithmonym
     {
-        if (!Arithmonym.NearlyEqual(expected, actual, operandTolerance))
-            throw new ArithmonymNearlyEqualException($"{nameof(AssertArithmonym)}.{nameof(NearlyEqual)} failure: Values differ more than operandTolerance {operandTolerance}\nExpected: {expected}\nActual: {actual}.");
+        /// <summary>
+        /// Asserts that two Arithmonym values are equal.
+        /// </summary>
+        internal static void Equal(Arithmonym expected, Arithmonym actual)
+        {
+            if (expected != actual)
+                throw new ArithmonymEqualException($"{nameof(AssertArithmonym)}.{nameof(Equal)} failure: Values differ\nExpected: {expected}\nActual: {actual}.");
+        }
+
+        /// <summary>
+        /// Asserts that two Arithmonym values are nearly equal within a specified tolerance.
+        /// </summary>
+        /// <param name="expected">The expected value.</param>
+        /// <param name="actual">The actual value.</param>
+        /// <param name="operandTolerance">The maximum allowed difference.</param>
+        internal static void NearlyEqual(Arithmonym expected, Arithmonym actual, Float128 operandTolerance)
+        {
+            if (!Arithmonym.NearlyEqual(expected, actual, operandTolerance))
+                throw new ArithmonymNearlyEqualException($"{nameof(AssertArithmonym)}.{nameof(NearlyEqual)} failure: Values differ more than operandTolerance {operandTolerance}\nExpected: {expected}\nActual: {actual}.");
+        }
     }
 }
