@@ -1,33 +1,35 @@
-/*
- *  Copyright 2025 @GreatCoder1000
- *  This file is part of GoogolSharp.
- *
- *  GoogolSharp is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  GoogolSharp is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser General Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser General Public License
- *  along with GoogolSharp.  If not, see <https://www.gnu.org/licenses/>.
- */
-
 using System.Globalization;
 
 namespace GoogolSharp.Experimental
 {
-    /// <summary>
-    /// A *precise* number. If ultra precision is not your thing, then use <see cref="Arithmonym"/>.
-    /// Still experimental.
-    /// </summary>
     public abstract class Arithmosym : IParsable<Arithmosym>
     {
         public static Arithmosym Zero => new ArithmosymInteger(0);
-        public abstract Arithmosym GetSimplified();
+
+        public Arithmosym GetSimplified()
+        {
+            // No rewrite rules — just internal simplification
+            return GetSimplifiedInternal();
+        }
+
+        internal abstract Arithmosym GetSimplifiedInternal();
+        internal abstract string ToInternalString();
+
+        public Arithmonym Evaluate()
+        {
+            return EvaluateInternal();
+        }
+
+        internal abstract Arithmonym EvaluateInternal();
+
+
+        public override string ToString()
+        {
+            string s = ToInternalString();
+            if (s.StartsWith("(") && s.EndsWith(")"))
+                return s.Substring(1, s.Length - 2);
+            return s;
+        }
 
         public static Arithmosym Parse(string? s, IFormatProvider? provider)
         {
@@ -45,24 +47,20 @@ namespace GoogolSharp.Experimental
             return parser.ParseExpression().GetSimplified();
         }
 
-        public static bool TryParse(string? s, IFormatProvider? provider, out Arithmosym arithmosym)
+        public static bool TryParse(string? s, IFormatProvider? provider, out Arithmosym result)
         {
             try
             {
-                arithmosym = Parse(s, provider);
+                result = Parse(s, provider);
                 return true;
             }
             catch
             {
-                arithmosym = Zero;
+                result = Zero;
                 return false;
             }
         }
 
-        /// <summary>
-        /// Very small recursive-descent parser for symbolic expressions.
-        /// Supports +, -, *, /, parentheses, integers, π, e.
-        /// </summary>
         private sealed class Parser
         {
             private readonly string _s;
@@ -73,12 +71,10 @@ namespace GoogolSharp.Experimental
             {
                 _s = s;
                 _culture = culture;
-                _i = 0;
             }
 
             private bool End => _i >= _s.Length;
             private char Current => End ? '\0' : _s[_i];
-
             private void Eat() => _i++;
 
             private bool Eat(char c)
@@ -91,13 +87,6 @@ namespace GoogolSharp.Experimental
                 return false;
             }
 
-            // ---------------------------
-            // Grammar:
-            //   Expr   := Term (('+' | '-') Term)*
-            //   Term   := Factor (('*' | '/') Factor | implicit-mul Factor)*
-            //   Factor := Number | Constant | '(' Expr ')'
-            // ---------------------------
-
             public Arithmosym ParseExpression()
             {
                 var terms = new List<Arithmosym> { ParseTerm() };
@@ -105,24 +94,17 @@ namespace GoogolSharp.Experimental
                 while (true)
                 {
                     if (Eat('+'))
-                    {
                         terms.Add(ParseTerm());
-                    }
                     else if (Eat('-'))
-                    {
-                        var right = ParseTerm();
-                        // represent subtraction as adding (-1 * right)
-                        terms.Add(new ArithmosymProduct(new[] {
-                new ArithmosymInteger(-1),
-                right
-            }));
-                    }
+                        terms.Add(new ArithmosymProduct(new Arithmosym[]
+                        {
+                            new ArithmosymInteger(-1),
+                            ParseTerm()
+                        }));
                     else break;
                 }
 
-                return terms.Count == 1
-                    ? terms[0]
-                    : new ArithmosymSum(terms);
+                return terms.Count == 1 ? terms[0] : new ArithmosymSum(terms);
             }
 
             private Arithmosym ParseTerm()
@@ -132,34 +114,20 @@ namespace GoogolSharp.Experimental
                 while (true)
                 {
                     if (Eat('*'))
-                    {
                         factors.Add(ParseFactor());
-                    }
                     else if (Eat('/'))
-                    {
-                        var right = ParseFactor();
-                        factors.Add(new ArithmosymReciprocal(right));
-                    }
+                        factors.Add(new ArithmosymReciprocal(ParseFactor()));
                     else if (IsImplicitMultiplication())
-                    {
                         factors.Add(ParseFactor());
-                    }
                     else break;
                 }
 
-                return factors.Count == 1
-                    ? factors[0]
-                    : new ArithmosymProduct(factors);
+                return factors.Count == 1 ? factors[0] : new ArithmosymProduct(factors);
             }
 
             private bool IsImplicitMultiplication()
             {
-                // Examples:
-                //   2π
-                //   3(4+5)
-                //   πx   (if you later add variables)
                 if (End) return false;
-
                 char c = Current;
                 return char.IsDigit(c) || c == '(' || c == 'π' || char.ToLowerInvariant(c) == 'e';
             }
@@ -192,8 +160,7 @@ namespace GoogolSharp.Experimental
             private Arithmosym ParseNumber()
             {
                 int start = _i;
-
-                if (Eat('-')) { } // allow leading minus
+                if (Eat('-')) { }
 
                 while (!End && char.IsDigit(Current))
                     Eat();

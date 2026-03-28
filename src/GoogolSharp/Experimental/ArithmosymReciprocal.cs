@@ -27,9 +27,9 @@ namespace GoogolSharp.Experimental
             this.inner = inner;
         }
 
-        public override Arithmosym GetSimplified()
+        internal override Arithmosym GetSimplifiedInternal()
         {
-            var s = inner.GetSimplified();
+            var s = inner.GetSimplifiedInternal();
 
             switch (s)
             {
@@ -52,14 +52,19 @@ namespace GoogolSharp.Experimental
                     // 1/(a*b*c) → (1/a)*(1/b)*(1/c)
                     return new ArithmosymProduct(
                         p.factors.Select(f => new ArithmosymReciprocal(f))
-                    ).GetSimplified();
+                    ).GetSimplifiedInternal();
 
                 default:
                     return new ArithmosymReciprocal(s);
             }
         }
 
-        public override string ToString()
+        internal override string ToInternalString()
             => "(1/" + inner.ToString() + ")";
+
+        internal override Arithmonym EvaluateInternal()
+        {
+            return Arithmonym.One / inner.EvaluateInternal();
+        }
     }
 }

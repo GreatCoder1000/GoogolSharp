@@ -22,7 +22,7 @@ namespace GoogolSharp.Experimental
     {
         public readonly List<Arithmosym> terms = [.. items];
 
-        public override Arithmosym GetSimplified()
+        internal override Arithmosym GetSimplifiedInternal()
         {
             var flat = new List<Arithmosym>();
 
@@ -31,7 +31,7 @@ namespace GoogolSharp.Experimental
 
             foreach (var t in terms)
             {
-                var s = t.GetSimplified();
+                var s = t.GetSimplifiedInternal();
 
                 switch (s)
                 {
@@ -77,7 +77,15 @@ namespace GoogolSharp.Experimental
             return new ArithmosymSum(flat);
         }
 
-        public override string ToString()
-            => "(" + string.Join("+", terms.Select(t => t.ToString())) + ")";
+        internal override string ToInternalString()
+            => "(" + string.Join("+", terms.Select(t => t.ToInternalString())) + ")";
+
+        internal override Arithmonym EvaluateInternal()
+        {
+            Arithmonym acc = Arithmonym.Zero;
+            foreach (var t in terms)
+                acc += t.EvaluateInternal();
+            return acc;
+        }
     }
 }

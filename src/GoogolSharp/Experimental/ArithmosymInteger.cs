@@ -16,13 +16,17 @@
  *  along with GoogolSharp.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using QuadrupleLib;
+using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
+
 namespace GoogolSharp.Experimental
 {
     public class ArithmosymInteger(Int128 value) : Arithmosym
     {
         public readonly Int128 value = value;
-        public override Arithmosym GetSimplified() => this;
+        internal override Arithmosym GetSimplifiedInternal() => this;
 
-        public override string ToString() => value.ToString();
+        internal override string ToInternalString() => value.ToString();
+        internal override Arithmonym EvaluateInternal() => (Arithmonym)(Float128)value;
     }
 }

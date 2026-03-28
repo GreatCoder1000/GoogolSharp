@@ -20,10 +20,12 @@ namespace GoogolSharp.Experimental
 {
     public class ArithmosymE() : Arithmosym
     {
-        public override Arithmosym GetSimplified() 
+        internal override Arithmosym GetSimplifiedInternal()
             => this;
 
-        public override string ToString()
+        internal override string ToInternalString()
             => "e";
+
+        internal override Arithmonym EvaluateInternal() => Arithmonym.E;
     }
 }
