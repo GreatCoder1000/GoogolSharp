@@ -33,7 +33,7 @@ public class Float128AcceptanceTests
         Float128 a = (Float128)2;
         Float128 b = (Float128)3;
         Float128 result = a + b;
-        Assert.Equal(5.0, (double)result, precision: 10);
+        AssertFloat128.Equal((Float128)5.0, result, 10);
     }
 
     [Fact]
@@ -42,7 +42,7 @@ public class Float128AcceptanceTests
         var five = (Float128)5;
         var two = (Float128)2;
         var result = five - two;
-        Assert.Equal(3.0, (double)result, precision: 10);
+        AssertFloat128.Equal((Float128)3.0, result, 10);
     }
 
     [Fact]
@@ -51,7 +51,7 @@ public class Float128AcceptanceTests
         var four = (Float128)4;
         var five = (Float128)5;
         var result = four * five;
-        Assert.Equal(20.0, (double)result, precision: 10);
+        AssertFloat128.Equal((Float128)20.0, result, 10);
     }
 
     [Fact]
@@ -60,17 +60,17 @@ public class Float128AcceptanceTests
         var ten = (Float128)10;
         var two = (Float128)2;
         var result = ten / two;
-        Assert.Equal(5.0, (double)result, precision: 10);
+        AssertFloat128.Equal((Float128)5.0, result, 10);
     }
 
     [Fact]
     public void NegationAndReciprocal()
     {
         var three = (Float128)3;
-        Assert.Equal(-3.0, (double)(-three), precision: 10);
+        AssertFloat128.Equal((Float128)(-3.0), -three, 10);
         // reciprocal of three is one-third
         var recip = Float128.One / three;
-        Assert.Equal(1.0 / 3.0, (double)recip, precision: 10);
+        AssertFloat128.Equal((Float128)(1.0 / 3.0), recip, 10);
     }
 
     // predicates and special values -------------------------------------------------
@@ -109,14 +109,14 @@ public class Float128AcceptanceTests
     {
         var value = (Float128)123.456;
         double back = (double)value;
-        Assert.Equal(123.456, back, precision: 10);
+        AssertFloat128.Equal((Float128)123.456, value, 10);
     }
 
     [Fact]
     public void ParseString()
     {
         var parsed = Float128.Parse("3.14159");
-        Assert.Equal(3.14159, (double)parsed, precision: 10);
+        AssertFloat128.Equal((Float128)3.14159, parsed, 10);
     }
 
     // rounding helpers ------------------------------------------------------------
@@ -155,9 +155,9 @@ public class Float128AcceptanceTests
     [Fact]
     public void SafeLog2KnownValues()
     {
-        Assert.Equal(0.0, (double)Float128PreciseTranscendentals.SafeLog2((Float128)1), precision: 10);
-        Assert.Equal(1.0, (double)Float128PreciseTranscendentals.SafeLog2((Float128)2), precision: 10);
-        Assert.Equal(10.0, (double)Float128PreciseTranscendentals.SafeLog2((Float128)1024), precision: 10);
+        AssertFloat128.Equal((Float128)0.0, Float128PreciseTranscendentals.SafeLog2((Float128)1), 10);
+        AssertFloat128.Equal((Float128)1.0, Float128PreciseTranscendentals.SafeLog2((Float128)2), 10);
+        AssertFloat128.Equal((Float128)10.0, Float128PreciseTranscendentals.SafeLog2((Float128)1024), 10);
     }
 
     [Fact]
@@ -166,7 +166,6 @@ public class Float128AcceptanceTests
         var a = (Float128)0.693147180;
         var b = (Float128)5.599453094e-10;
         var sum = a + b;
-        Console.WriteLine($"a={a}, b={b}, a+b={sum}");
         Assert.InRange((double)sum, 0.693147179, 0.693147181);
     }
 
@@ -253,90 +252,84 @@ public class Float128AcceptanceTests
         {
             Float128 x = Float128.ScaleB(Float128.One, i);
             Float128 result = Float128PreciseTranscendentals.SafeLog2(x);
-            double expected = (double)i;
-            double actual = (double)result;
-            Assert.Equal(expected, actual, precision: 8);
+            AssertFloat128.Equal((Float128)i, result, 8);
         }
     }
 
     [Fact]
     public void Log2KnownValues()
     {
-        Assert.Equal(1.0, (double)Float128PreciseTranscendentals.SafeLog2((Float128)2), precision: 10);
-        Assert.Equal(2.0, (double)Float128PreciseTranscendentals.SafeLog2((Float128)4), precision: 10);
-        Assert.Equal(3.0, (double)Float128PreciseTranscendentals.SafeLog2((Float128)8), precision: 10);
-        Assert.Equal(4.0, (double)Float128PreciseTranscendentals.SafeLog2((Float128)16), precision: 10);
-        Assert.Equal(5.0, (double)Float128PreciseTranscendentals.SafeLog2((Float128)32), precision: 10);
-        Assert.Equal(-1.0, (double)Float128PreciseTranscendentals.SafeLog2((Float128)0.5), precision: 10);
-        Assert.Equal(-2.0, (double)Float128PreciseTranscendentals.SafeLog2((Float128)0.25), precision: 10);
+        AssertFloat128.Equal((Float128)1.0, Float128PreciseTranscendentals.SafeLog2((Float128)2), 10);
+        AssertFloat128.Equal((Float128)2.0, Float128PreciseTranscendentals.SafeLog2((Float128)4), 10);
+        AssertFloat128.Equal((Float128)3.0, Float128PreciseTranscendentals.SafeLog2((Float128)8), 10);
+        AssertFloat128.Equal((Float128)4.0, Float128PreciseTranscendentals.SafeLog2((Float128)16), 10);
+        AssertFloat128.Equal((Float128)5.0, Float128PreciseTranscendentals.SafeLog2((Float128)32), 10);
+        AssertFloat128.Equal((Float128)(-1.0), Float128PreciseTranscendentals.SafeLog2((Float128)0.5), 10);
+        AssertFloat128.Equal((Float128)(-2.0), Float128PreciseTranscendentals.SafeLog2((Float128)0.25), 10);
     }
 
     [Fact]
     public void Log10KnownValues()
     {
-        Assert.Equal(0.0, (double)Float128PreciseTranscendentals.SafeLog10((Float128)1), precision: 10);
-        Assert.Equal(1.0, (double)Float128PreciseTranscendentals.SafeLog10((Float128)10), precision: 3);
-        Assert.Equal(2.0, (double)Float128PreciseTranscendentals.SafeLog10((Float128)100), precision: 3);
-        Assert.Equal(3.0, (double)Float128PreciseTranscendentals.SafeLog10((Float128)1000), precision: 2);
-        Assert.Equal(-1.0, (double)Float128PreciseTranscendentals.SafeLog10((Float128)0.1), precision: 3);
+        AssertFloat128.Equal((Float128)0.0, Float128PreciseTranscendentals.SafeLog10((Float128)1), 10);
+        AssertFloat128.Equal((Float128)1.0, Float128PreciseTranscendentals.SafeLog10((Float128)10), 3);
+        AssertFloat128.Equal((Float128)2.0, Float128PreciseTranscendentals.SafeLog10((Float128)100), 3);
+        AssertFloat128.Equal((Float128)3.0, Float128PreciseTranscendentals.SafeLog10((Float128)1000), 2);
+        AssertFloat128.Equal((Float128)(-1.0), Float128PreciseTranscendentals.SafeLog10((Float128)0.1), 3);
     }
 
     [Fact]
     public void LogNaturalKnownValues()
     {
-        Assert.Equal(0.0, (double)Float128PreciseTranscendentals.SafeLog((Float128)1), precision: 10);
+        AssertFloat128.Equal((Float128)0.0, Float128PreciseTranscendentals.SafeLog((Float128)1), 10);
         double ln2Expected = Math.Log(2);
-        double ln2Actual = (double)Float128PreciseTranscendentals.SafeLog((Float128)2);
-        Assert.Equal(ln2Expected, ln2Actual, precision: 4);
+        AssertFloat128.Equal((Float128)ln2Expected, Float128PreciseTranscendentals.SafeLog((Float128)2), 4);
 
         double lnEExpected = 1.0;
-        double lnEActual = (double)Float128PreciseTranscendentals.SafeLog(Float128PreciseTranscendentals.E);
-        Assert.Equal(lnEExpected, lnEActual, precision: 4);
-        Assert.Equal(2.0, (double)Float128PreciseTranscendentals.SafeExp2((Float128)1), precision: 10);
-        Assert.Equal(4.0, (double)Float128PreciseTranscendentals.SafeExp2((Float128)2), precision: 10);
-        Assert.Equal(8.0, (double)Float128PreciseTranscendentals.SafeExp2((Float128)3), precision: 10);
-        Assert.Equal(16.0, (double)Float128PreciseTranscendentals.SafeExp2((Float128)4), precision: 10);
-        Assert.Equal(0.5, (double)Float128PreciseTranscendentals.SafeExp2((Float128)(-1)), precision: 10);
+        AssertFloat128.Equal((Float128)lnEExpected, Float128PreciseTranscendentals.SafeLog(Float128PreciseTranscendentals.E), 4);
+        AssertFloat128.Equal((Float128)2.0, Float128PreciseTranscendentals.SafeExp2((Float128)1), 10);
+        AssertFloat128.Equal((Float128)4.0, Float128PreciseTranscendentals.SafeExp2((Float128)2), 10);
+        AssertFloat128.Equal((Float128)8.0, Float128PreciseTranscendentals.SafeExp2((Float128)3), 10);
+        AssertFloat128.Equal((Float128)16.0, Float128PreciseTranscendentals.SafeExp2((Float128)4), 10);
+        AssertFloat128.Equal((Float128)0.5, Float128PreciseTranscendentals.SafeExp2((Float128)(-1)), 10);
     }
 
     [Fact]
     public void ExpKnownValues()
     {
-        Assert.Equal(1.0, (double)Float128PreciseTranscendentals.SafeExp((Float128)0), precision: 10);
+        AssertFloat128.Equal((Float128)1.0, Float128PreciseTranscendentals.SafeExp((Float128)0), 10);
         double eExpected = Math.E;
-        double eActual = (double)Float128PreciseTranscendentals.SafeExp((Float128)1);
-        Assert.Equal(eExpected, eActual, precision: 8);
+        AssertFloat128.Equal((Float128)eExpected, Float128PreciseTranscendentals.SafeExp((Float128)1), 8);
 
         double e2Expected = Math.Exp(2);
-        double e2Actual = (double)Float128PreciseTranscendentals.SafeExp((Float128)2);
-        Assert.Equal(e2Expected, e2Actual, precision: 8);
+        AssertFloat128.Equal((Float128)e2Expected, Float128PreciseTranscendentals.SafeExp((Float128)2), 8);
     }
 
     [Fact]
     public void Exp10KnownValues()
     {
-        Assert.Equal(1.0, (double)Float128PreciseTranscendentals.SafeExp10((Float128)0), precision: 10);
-        Assert.Equal(10.0, (double)Float128PreciseTranscendentals.SafeExp10((Float128)1), precision: 10);
-        Assert.Equal(100.0, (double)Float128PreciseTranscendentals.SafeExp10((Float128)2), precision: 10);
-        Assert.Equal(1000.0, (double)Float128PreciseTranscendentals.SafeExp10((Float128)3), precision: 10);
-        Assert.Equal(0.1, (double)Float128PreciseTranscendentals.SafeExp10((Float128)(-1)), precision: 10);
+        AssertFloat128.Equal((Float128)1.0, Float128PreciseTranscendentals.SafeExp10((Float128)0), 10);
+        AssertFloat128.Equal((Float128)10.0, Float128PreciseTranscendentals.SafeExp10((Float128)1), 10);
+        AssertFloat128.Equal((Float128)100.0, Float128PreciseTranscendentals.SafeExp10((Float128)2), 10);
+        AssertFloat128.Equal((Float128)1000.0, Float128PreciseTranscendentals.SafeExp10((Float128)3), 10);
+        AssertFloat128.Equal((Float128)0.1, Float128PreciseTranscendentals.SafeExp10((Float128)(-1)), 10);
     }
 
     [Fact]
     public void PowWithIntegerExponents()
     {
-        Assert.Equal(1.0, (double)Float128PreciseTranscendentals.SafePow((Float128)5, (Float128)0), precision: 10);
-        Assert.Equal(5.0, (double)Float128PreciseTranscendentals.SafePow((Float128)5, (Float128)1), precision: 3);
-        Assert.Equal(25.0, (double)Float128PreciseTranscendentals.SafePow((Float128)5, (Float128)2), precision: 2);
-        Assert.Equal(125.0, (double)Float128PreciseTranscendentals.SafePow((Float128)5, (Float128)3), precision: 1);
-        Assert.Equal(0.2, (double)Float128PreciseTranscendentals.SafePow((Float128)5, (Float128)(-1)), precision: 3);
+        AssertFloat128.Equal((Float128)1.0, Float128PreciseTranscendentals.SafePow((Float128)5, (Float128)0), 10);
+        AssertFloat128.Equal((Float128)5.0, Float128PreciseTranscendentals.SafePow((Float128)5, (Float128)1), 3);
+        AssertFloat128.Equal((Float128)25.0, Float128PreciseTranscendentals.SafePow((Float128)5, (Float128)2), 2);
+        AssertFloat128.Equal((Float128)125.0, Float128PreciseTranscendentals.SafePow((Float128)5, (Float128)3), 1);
+        AssertFloat128.Equal((Float128)0.2, Float128PreciseTranscendentals.SafePow((Float128)5, (Float128)(-1)), 3);
     }
 
     [Fact]
     public void PowWithFractionalExponents()
     {
         var sqrt4 = Float128PreciseTranscendentals.SafePow((Float128)4, (Float128)0.5);
-        Assert.Equal(2.0, (double)sqrt4, precision: 8);
+        AssertFloat128.Equal((Float128)2.0, sqrt4, 8);
 
         var cbrt8 = Float128PreciseTranscendentals.SafePow((Float128)8, Float128PreciseTranscendentals.SafeExp2((Float128)(-1.5)));
         // 8^(1/3) = 2

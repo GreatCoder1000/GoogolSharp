@@ -29,8 +29,8 @@ GoogolSharp is built for researchers, hobbyists, and developers who want to expl
 
 ## ⚖️ Dependencies
 
-- `.NET 7` or later
-- `C# 11` or later
+- `.NET 8` or later
+- `C# 12` or later
 - [`QuadrupleLib.Float128`](https://github.com/IsaMorphic/QuadrupleLib) for high‑precision floating‑point support.
 
 ---

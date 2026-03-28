@@ -22,11 +22,12 @@ using QuadrupleLib.Accelerators;
 using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
 using System.Globalization;
 using System.Numerics;
+
 namespace GoogolSharp
 {
     partial struct Arithmonym
     {
-        
+
         /// <summary>
         /// Returns the absolute value (magnitude) of <paramref name="value"/>.
         /// This is a small helper that forwards to the instance-level <see cref="AbsoluteValue"/> property.
@@ -53,10 +54,10 @@ namespace GoogolSharp
 
         /// <summary>
         /// Returns the base-10 logarithm of <paramref name="value"/>.
-        /// This static helper forwards to the instance-level <see cref="_Exp10"/> behavior.
+        /// This static helper forwards to the instance-level <see cref="_Log10"/> behavior.
         /// </summary>
-        /// <param name="value">The logarithm (base 10).</param>
-        /// <returns>An <see cref="Arithmonym"/> representing Log10(<paramref name="value"/>).</returns>
+        /// <param name="value">The positive value to take the base-10 logarithm of.</param>
+        /// <returns>An <see cref="Arithmonym"/> representing log₁₀(<paramref name="value"/>).</returns>
         public static Arithmonym Log10(Arithmonym value) => value._Log10;
 
         /// <summary>
@@ -69,21 +70,21 @@ namespace GoogolSharp
         /// <summary>
         /// Returns the base-2 logarithm of <paramref name="value"/>.
         /// </summary>
-        /// <param name="value">The logarithm (base 2).</param>
-        /// <returns>An <see cref="Arithmonym"/> representing Log2(<paramref name="value"/>).</returns>
+        /// <param name="value">The positive value to take the base-2 logarithm of.</param>
+        /// <returns>An <see cref="Arithmonym"/> representing log₂(<paramref name="value"/>).</returns>
         public static Arithmonym Log2(Arithmonym value) => value._Log10 * Log2_10;
 
         /// <summary>
         /// Returns e raised to the power <paramref name="value"/>.
         /// </summary>
-        /// <param name="value">The exponent value (base 2).</param>
-        /// <returns>An <see cref="Arithmonym"/> representing 2^<paramref name="value"/>.</returns>
+        /// <param name="value">The exponent value (base e).</param>
+        /// <returns>An <see cref="Arithmonym"/> representing e^<paramref name="value"/>.</returns>
         public static Arithmonym Exp(Arithmonym value) => (value / Ln10)._Exp10;
 
         /// <summary>
         /// Returns the natural (base-e) logarithm of <paramref name="value"/>.
         /// </summary>
-        /// <param name="value">The logarithm (base e).</param>
+        /// <param name="value">The positive value to take the natural logarithm of.</param>
         /// <returns>An <see cref="Arithmonym"/> representing ln(<paramref name="value"/>).</returns>
         public static Arithmonym Log(Arithmonym value) => value._Log10 * Ln10;
 
@@ -93,12 +94,18 @@ namespace GoogolSharp
         public static Arithmonym Pow(Arithmonym left, Arithmonym right) => (left._Log10 * right)._Exp10;
 
         /// <summary>
-        /// Returns the absolute value (magnitude) of <paramref name="value"/>.
-        /// This is a small helper that forwards to the instance-level <see cref="AbsoluteValue"/> property.
+        /// Returns the square root of <paramref name="value"/>
         /// </summary>
-        /// <param name="value">The value to take the absolute of.</param>
-        /// <returns>A non-negative <see cref="Arithmonym"/> with the same magnitude as <paramref name="value"/>.</returns>
-        public static Arithmonym Sqrt(Arithmonym value) => new ArithmonymSqrt(value).Of();
+        /// <param name="value">The non-negative value to take the square root of.</param>
+        /// <returns>The positive square root of <paramref name="value"/>.</returns>
+        public static Arithmonym Sqrt(Arithmonym value) => new ArithmonymSqrt(value).Evaluate();
+
+        /// <summary>
+        /// Returns the cube root of <paramref name="value"/>
+        /// </summary>
+        /// <param name="value">The value to take the cube root of.</param>
+        /// <returns>The cube root of <paramref name="value"/>.</returns>
+        public static Arithmonym Cbrt(Arithmonym value) => new ArithmonymCbrt(value).Evaluate();
 
         /// <summary>
         /// Determines whether the specified <see cref="Arithmonym"/> represents positive or negative infinity.
@@ -594,39 +601,6 @@ namespace GoogolSharp
                 result = default;
                 return false;
             }
-        }
-
-        /// <summary>
-        /// Returns a string representation of the current <see cref="Arithmonym"/>,
-        /// formatted according to <paramref name="format"/> and <paramref name="provider"/> if provided.
-        /// </summary>
-        /// <param name="format">A format string (currently unused); may be <c>null</c>.</param>
-        /// <param name="provider">An optional format provider that supplies culture-specific formatting information.</param>
-        /// <returns>A formatted string representation of this <see cref="Arithmonym"/>.</returns>
-        public string ToString(string? format, IFormatProvider? provider)
-        {
-            if (format == "B") return ToBinaryString(squishedHi, 32) + ToBinaryString(squishedMid, 32) + ToBinaryString(squishedLo, 32);
-            // Current implementation falls back to default ToString(); keep that behavior.
-            return ToString();
-        }
-
-        // Converts an integer to a binary string with optional fixed width
-        private static string ToBinaryString(uint number, int bitWidth = 0)
-        {
-            // Convert to binary without leading zeros
-            string binary = Convert.ToString(number, 2);
-
-            // If a fixed width is specified, pad with leading zeros
-            if (bitWidth > 0)
-            {
-                // Ensure bitWidth is reasonable (1 to 64 for int)
-                if (bitWidth < 1 || bitWidth > 64)
-                    throw new ArgumentOutOfRangeException(nameof(bitWidth), "Bit width must be between 1 and 64.");
-
-                binary = binary.PadLeft(bitWidth, '0');
-            }
-
-            return binary;
         }
 
         /// <summary>

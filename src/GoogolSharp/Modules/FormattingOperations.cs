@@ -21,69 +21,247 @@ using QuadrupleLib;
 using QuadrupleLib.Accelerators;
 using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
 using System.Globalization;
-using System.Numerics;
+using System.Text;
+
 namespace GoogolSharp
 {
     partial struct Arithmonym
     {
+
+        /// <summary>
+        /// Returns a string representation of the current <see cref="Arithmonym"/>,
+        /// formatted according to <paramref name="format"/> and <paramref name="provider"/> if provided.
+        /// </summary>
+        /// <param name="format">A format string (currently unused); may be <c>null</c>.</param>
+        /// <param name="provider">An optional format provider that supplies culture-specific formatting information.</param>
+        /// <returns>A formatted string representation of this <see cref="Arithmonym"/>.</returns>
+        public string ToString(string? format, IFormatProvider? provider)
+        {
+            if (format is null) return ToString();
+            if (format == "B") return ToBinaryString(squishedHi, 32) + ToBinaryString(squishedMid, 32) + ToBinaryString(squishedLo, 32);
+            if (format == "L") return ToLetterString();
+            if (format == "A") return ToAbbreviatedString();
+            return ToString();
+        }
+
+        // Converts an integer to a binary string with optional fixed width
+        private static string ToBinaryString(uint number, int bitWidth = 0)
+        {
+            // Convert to binary without leading zeros
+            string binary = Convert.ToString(number, 2);
+
+            // If a fixed width is specified, pad with leading zeros
+            if (bitWidth > 0)
+            {
+                // Ensure bitWidth is reasonable (1 to 64 for int)
+                if (bitWidth < 1 || bitWidth > 64)
+                    throw new ArgumentOutOfRangeException(nameof(bitWidth), "Bit width must be between 1 and 64.");
+
+                binary = binary.PadLeft(bitWidth, '0');
+            }
+
+            return binary;
+        }
+
         /// <summary>
         /// Returns a human-readable string representation of this <see cref="Arithmonym"/>.
         /// </summary>
-        public override string ToString()
+        public override string ToString() => ToCommonString();
+
+        /// <summary>
+        /// Returns a human-readable string representation of this <see cref="Arithmonym"/>.
+        /// </summary>
+        public string ToLetterString()
         {
             if (IsNaN(this)) return "NaN";
             if (this == PositiveInfinity) return "∞";
             if (this == NegativeInfinity) return "-∞";
             if (this == Zero) return "0";
 
-            // Reconstruct operand in [2, 10)
             Float128 value = Operand;
 
-            string output = "";
+            var sb = new StringBuilder();
             if (_IsNegative)
-                output += "-";
+                sb.Append('-');
 
             string[] letters = ["", "A", "B", "C", "D", "E", "F", "J", "K", "L", "M", "N", "P"];
             while (letters.Length < 63)
                 letters = [.. letters, $"[{letters.Length}]"];
 
-            switch (Letter)
+            // unified special‑letter handler
+            string? special = FormatSpecialLetter(Letter, value, _IsReciprocal, commonString: false, abbreviate: false);
+            if (special != null)
+            {
+                sb.Append(special);
+                return sb.ToString();
+            }
+
+            // default formatting
+            if (_IsReciprocal)
+                sb.Append("1 / ");
+
+            sb.Append(letters[Letter]);
+            sb.Append(value.ToString("R", null));
+
+            return sb.ToString();
+        }
+
+
+        /// <summary>
+        /// Returns a human-readable string representation of this <see cref="Arithmonym"/>.
+        /// </summary>
+        public string ToCommonString()
+        {
+            if (IsNaN(this)) return "NaN";
+            if (this == PositiveInfinity) return "∞";
+            if (this == NegativeInfinity) return "-∞";
+            if (this == Zero) return "0";
+
+            Float128 value = Operand;
+
+            if (Letter == 0x0C)
+                value += 2;
+
+            var sb = new StringBuilder();
+            if (_IsNegative)
+                sb.Append('-');
+
+            string[] prefixes = ["", "A", "B", "C", "D", "10^", "10^^", "{10,10,", "{10,", "{10,", "{10,10,", "{10,10,10,", "{10,", "X^^", "X^^^", "{X,", "{X,", "X_2^^", "{10,"];
+            while (prefixes.Length < 63)
+                prefixes = [.. prefixes, $"[{prefixes.Length}]"];
+
+            string[] suffixes = ["", "", "", "", "", "", "", "}", ",1,2}", ",2,2}", ",2}", "}", "(1)2}", " & 10", " & 10", "(1)2} & 10", ",2(1)2} & 10", " & X & 10", "/2}"];
+            while (suffixes.Length < 63)
+                suffixes = [.. suffixes, $"[{suffixes.Length}]"];
+
+            // unified special‑letter handler
+            string? special = FormatSpecialLetter(Letter, value, _IsReciprocal, commonString: true, abbreviate: false);
+            if (special != null)
+            {
+                sb.Append(special);
+                return sb.ToString();
+            }
+
+            // default formatting
+            if (_IsReciprocal)
+                sb.Append("1 / ");
+
+            sb.Append(prefixes[Letter]);
+            sb.Append(value.ToString("R", null));
+            sb.Append(suffixes[Letter]);
+
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Returns a human-readable string representation of this <see cref="Arithmonym"/>.
+        /// </summary>
+        public string ToAbbreviatedString()
+        {
+            if (IsNaN(this)) return "NaN";
+            if (this == PositiveInfinity) return "∞";
+            if (this == NegativeInfinity) return "-∞";
+            if (this == Zero) return "0";
+
+            Float128 value = Operand;
+
+            if (Letter == 0x0C)
+                value += 2;
+
+            var sb = new StringBuilder();
+            if (_IsNegative)
+                sb.Append('-');
+
+            string[] prefixes = ["", "A", "B", "C", "D", "10^", "10^^", "{10,10,", "{10,", "{10,", "{10,10,", "{10,10,10,", "{10,", "X^^", "X^^^", "{X,", "{X,", "X_2^^", "{10,"];
+            while (prefixes.Length < 63)
+                prefixes = [.. prefixes, $"[{prefixes.Length}]"];
+
+            string[] suffixes = ["", "", "", "", "", "", "", "}", ",1,2}", ",2,2}", ",2}", "}", "(1)2}", " & 10", " & 10", "(1)2} & 10", ",2(1)2} & 10", " & X & 10", "/2}"];
+            while (suffixes.Length < 63)
+                suffixes = [.. suffixes, $"[{suffixes.Length}]"];
+
+            // unified special‑letter handler
+            string? special = FormatSpecialLetter(Letter, value, _IsReciprocal, commonString: true, abbreviate: true);
+            if (special != null)
+            {
+                sb.Append(special);
+                return sb.ToString();
+            }
+
+            // default formatting
+            if (_IsReciprocal)
+                sb.Append("1 / ");
+
+            sb.Append(prefixes[Letter]);
+            sb.Append(value.ToString("R", null));
+            sb.Append(suffixes[Letter]);
+
+            return sb.ToString();
+        }
+
+
+        private string? FormatSpecialLetter(byte letter, Float128 value, bool isReciprocal, bool commonString, bool abbreviate)
+        {
+            switch (letter)
             {
                 case 0x01:
-                    output += _IsReciprocal
-                        ? 1 / (1 + ((value - 2) / 8))
-                        : 1 + ((value - 2) / 8);
-                    break;
+                    {
+                        Float128 t = Float128.FusedMultiplyAdd(value, Float128.One / 8, 1 - (Float128)2 / 8);
+                        return (isReciprocal ? (1 / t) : t).ToString("R", null);
+                    }
+
                 case 0x02:
-                    output += _IsReciprocal
-                        ? 1 / (2 + ((value - 2) / 4))
-                        : 2 + ((value - 2) / 4);
-                    break;
+                    {
+                        Float128 t = Float128.FusedMultiplyAdd(value, Float128.One / 4, 2 - (Float128)2 / 4);
+                        return (isReciprocal ? (1 / t) : t).ToString("R", null);
+                    }
+
                 case 0x03:
-                    output += _IsReciprocal
-                        ? 1 / (value * 2)
-                        : value * 2;
-                    break;
+                    {
+                        Float128 t = value * 2;
+                        if (commonString)
+                            return ArithmonymFormattingUtils.FormatNearInteger(isReciprocal ? 1 / t : t);
+
+                        return (isReciprocal ? (1 / t) : t).ToString("R", null);
+                    }
+
                 case 0x04:
-                    output += _IsReciprocal
-                        ? 1 / (value * 10)
-                        : value * 10;
-                    break;
+                    {
+                        Float128 t = value * 10;
+                        return (isReciprocal ? (1 / t) : t).ToString("R", null);
+                    }
+
                 case 0x05:
-                    output += _IsReciprocal
-                        ? Float128PreciseTranscendentals.SafeExp10(-value) : Float128PreciseTranscendentals.SafeExp10(value);
-                    break;
+                    {
+                        Float128 t = isReciprocal
+                            ? Float128PreciseTranscendentals.SafeExp10(-value)
+                            : Float128PreciseTranscendentals.SafeExp10(value);
+
+                        if (value >= 3 && abbreviate && !isReciprocal)
+                        {
+                            return FormatFloat128AbbreviateFromLog10(value);
+                        }
+
+                        return t.ToString("R", null);
+                    }
+
                 case 0x06:
-                    output += ArithmonymFormattingUtils.FormatArithmonymFromLetterF(Operand, _IsReciprocal);
-                    break;
+                    return commonString
+                        ? ArithmonymFormattingUtils.FormatArithmonymFromLetterF(value, isReciprocal, "*10^", false)
+                        : ArithmonymFormattingUtils.FormatArithmonymFromLetterF(value, isReciprocal);
+
                 default:
-                    if (_IsReciprocal)
-                        output += "1 / ";
-                    output += letters[Letter];
-                    output += value;
-                    break;
+                    return null;
             }
-            return output;
+        }
+
+        private string FormatFloat128AbbreviateFromLog10(Float128 value)
+        {
+            int vf = (int)value;
+            int vfloor = vf / 3;
+            Float128 left = Float128PreciseTranscendentals.SafeExp10(value - (3 * vfloor));
+
+            return left.ToString($"F{3 + (3 * vfloor) - vf}", null) + new string[] { "", "K", "M", "B", "T" }[vfloor];
         }
     }
 }

@@ -21,12 +21,12 @@ using QuadrupleLib;
 using QuadrupleLib.Accelerators;
 using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
 using System.Globalization;
-using System.Numerics;
+
 namespace GoogolSharp
 {
     partial struct Arithmonym
-    {    
-        
+    {
+
         /// <summary>
         /// Converts this <see cref="Arithmonym"/> to the underlying <see cref="Float128"/> value.
         /// Special values such as infinities and NaN are preserved.
@@ -89,7 +89,7 @@ namespace GoogolSharp
             if (_IsNegative) output = -output;
             return output;
         }
-        
+
         public static explicit operator double(Arithmonym value)
         {
             return value.ToDouble();
@@ -110,7 +110,26 @@ namespace GoogolSharp
             return new(value);
         }
 
-        
+        public static explicit operator Arithmonym(int value)
+        {
+            return (Arithmonym)(Float128)value;
+        }
+
+        public static explicit operator Arithmonym(uint value)
+        {
+            return (Arithmonym)(Float128)value;
+        }
+
+        public static explicit operator Arithmonym(long value)
+        {
+            return (Arithmonym)(Float128)value;
+        }
+
+        public static explicit operator Arithmonym(ulong value)
+        {
+            return (Arithmonym)(Float128)value;
+        }
+
         /// <summary>
         /// Converts this instance to an unsigned 64-bit integer by converting to <see cref="Float128"/> then casting.
         /// </summary>

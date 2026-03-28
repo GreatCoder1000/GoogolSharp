@@ -34,9 +34,9 @@ All this cleanly fits into 96 bits. Since this is not a power of two it is repre
 
 ## ⚖️ Dependencies
 
-* `.NET 7` or later
-* `C# 11` or later
-* `QuadrupleLib.Float128` (Download the library with `git clone https://github.com/IsaMorphic/QuadrupleLib.git`)
+* `.NET 8` or later
+* `C# 12` or later
+* `QuadrupleLib.Float128`
 
 ## 📄 License
 

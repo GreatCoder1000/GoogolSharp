@@ -2,7 +2,17 @@
   href: introduction.md
 - name: Getting Started
   href: getting-started.md
+- name: The History of Arithmonym
+  href: history-of-arithmonym.md
 - name: Arithmonym Casts
   href: arithmonym-casts.md
+- name: Transcendental Functions
+  href: transcendental-functions.md
+- name: Debugging Tools & Testing
+  href: debugging-tools.md
 - name: Factorials & Combinatorics
   href: factorials-and-combinatorics.md
+- name: Internal Letter System
+  href: internal-letter-system.md
+- name: Googological Functions
+  href: googological-functions.md

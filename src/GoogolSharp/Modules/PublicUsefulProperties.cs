@@ -21,7 +21,7 @@ using QuadrupleLib;
 using QuadrupleLib.Accelerators;
 using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
 using System.Globalization;
-using System.Numerics;
+
 namespace GoogolSharp
 {
     partial struct Arithmonym
@@ -232,7 +232,7 @@ namespace GoogolSharp
             }
         }
 
-        
+
         /// <summary>
         /// Gets the normalized form of this <see cref="Arithmonym"/>.
         /// </summary>

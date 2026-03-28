@@ -35,6 +35,21 @@ namespace GoogolSharp.Helpers
             return 2 + Float128PreciseTranscendentals.SafeLog10(Float128PreciseTranscendentals.SafeLog10(Float128PreciseTranscendentals.SafeLog10(v)));
         }
 
+        public static Float128 InverseLetterG(Float128 v)
+        {
+            // 10^^^0 = 1
+            // 10^^^-1 = slog(1) = 0
+            // 10^^^-2 = slog(0) = -1
+            // 10^^^-3 = slog(-1) = something!
+
+            // Approximation for fast-ness
+            if (v < -100) return Float128.Parse("-1.8414056604369606378466046580124861060503713143776396695648500895481840812183170005103456716913040161870560012665879494546091");
+            if (v < 0) return SuperLog10(v + 1);
+            if (v < 1) return v - 1;
+            if (v < 10) return Float128PreciseTranscendentals.SafeLog10(v);
+            return 1 + Float128PreciseTranscendentals.SafeLog10(Float128HyperTranscendentals.SuperLog10(v));
+        }
+
         public static Float128 LetterJToLetterG(Float128 v)
         {
             if (v < 2) return v;

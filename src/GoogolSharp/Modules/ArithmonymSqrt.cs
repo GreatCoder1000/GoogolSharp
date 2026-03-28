@@ -21,7 +21,7 @@ using QuadrupleLib;
 using QuadrupleLib.Accelerators;
 using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
 using System.Globalization;
-using System.Numerics;
+
 namespace GoogolSharp
 {
     internal readonly struct ArithmonymSqrt : IArithmonymOperation
@@ -34,6 +34,6 @@ namespace GoogolSharp
             this.inner = inner;
         }
 
-        public Arithmonym Of() => (Operand._Log10 / Arithmonym.Two)._Exp10;
+        public Arithmonym Evaluate() => (Operand._Log10 / Arithmonym.Two)._Exp10;
     }
 }

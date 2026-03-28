@@ -21,72 +21,12 @@ using QuadrupleLib;
 using QuadrupleLib.Accelerators;
 using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
 using System.Globalization;
-using System.Numerics;
+
 namespace GoogolSharp
 {
     partial struct Arithmonym
     {
-        
-        // Lanczos coefficients (g=7, n=9 is common choice)
-        private static readonly Float128[] lanczosCoefficients =
-        [
-            0.99999999999980993,
-            676.5203681218851,
-            -1259.1392167224028,
-            771.32342877765313,
-            -176.61502916214059,
-            12.507343278686905,
-            -0.13857109526572012,
-            9.9843695780195716e-6,
-            1.5056327351493116e-7
-        ];
-
-        /// <summary>
-        /// Factorial using Lanczos approximation via Gamma(n+1).
-        /// </summary>
-        public static Arithmonym Factorial(Arithmonym n)
-        {
-            // Convert to double for approximation
-            Float128 x = (Float128)n;
-
-            if (Float128.IsPositiveInfinity(x))
-                return (Pow(n / E, n)) * Sqrt(Pi * 2 * n);
-
-            if (x < Float128.Zero)
-                throw new ArgumentException("Factorial not defined for negative values.");
-
-            // For integer values, handle small n directly
-            if (x == Float128.Floor(x) && x <= 20)
-            {
-                double exact = 1.0;
-                for (int i = 2; i <= (int)x; i++)
-                    exact *= i;
-                return (Arithmonym)exact;
-            }
-
-            // Lanczos approximation for Gamma(n+1)
-            return (Arithmonym)GammaLanczos(x + Float128.One);
-        }
-
-        private static Float128 GammaLanczos(Float128 z)
-        {
-            if (z < 0.5)
-            {
-                // Reflection formula for stability
-                return Float128.Pi / (Float128.Sin(Math.PI * z) * GammaLanczos(1 - z));
-            }
-
-            z--;
-            Float128 x = lanczosCoefficients[0];
-            for (int i = 1; i < lanczosCoefficients.Length; i++)
-            {
-                x += lanczosCoefficients[i] / (z + i);
-            }
-
-            Float128 g = 7;
-            Float128 t = z + g + 0.5;
-            return Float128.Sqrt(2 * Float128.Pi) * Float128.Pow(t, z + 0.5) * Float128.Exp(-t) * x;
-        }
+        public static Arithmonym Factorial(Arithmonym n) => new ArithmonymFactorial(n).Evaluate();
 
         public static Arithmonym Permutations(Arithmonym n, Arithmonym r)
         {

@@ -21,12 +21,12 @@ using QuadrupleLib;
 using QuadrupleLib.Accelerators;
 using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
 using System.Globalization;
-using System.Numerics;
+
 namespace GoogolSharp
 {
     partial struct Arithmonym
     {
-        
+
 
         /// <summary>
         /// Initializes a new instance of <see cref="Arithmonym"/> from a <see cref="Float128"/> value.
@@ -106,8 +106,6 @@ namespace GoogolSharp
             else if (value < (Float128)1e10)
             {
 #if DEBUG
-                if (Float128.Abs(v - (Float128)100) < (Float128)0.1)
-                    Console.WriteLine($"[Arithmonym constructor] Input={v}, SafeLog10={Float128PreciseTranscendentals.SafeLog10(value)}, SnapToInt result={(SnapToInt(Float128PreciseTranscendentals.SafeLog10(value)))}");
 #endif
                 value = Float128PreciseTranscendentals.SafeLog10(value);
                 value = SnapToInt(value);
@@ -135,8 +133,8 @@ namespace GoogolSharp
             squishedMid = (uint)(s >> 32);
             squishedHi = (uint)(s >> 64);
         }
-        
-        private Arithmonym(bool isNegative, bool _IsReciprocal, byte letter, UInt128 operand)
+
+        internal Arithmonym(bool isNegative, bool _IsReciprocal, byte letter, UInt128 operand)
             : this(
                 operand
                 + ((UInt128)letter << (FRACTION_BITS + 3))
@@ -145,7 +143,7 @@ namespace GoogolSharp
         {
         }
 
-        
+
         /// <summary>
         /// Initializes a new instance by splitting a packed <see cref="UInt128"/> value
         /// into the internal three 32-bit words. This constructor is used internally to
@@ -158,7 +156,7 @@ namespace GoogolSharp
             squishedHi = (uint)(squished >> 64);
         }
 
-        
+
 
         /// <summary>
         /// Initializes a new instance of <see cref="Arithmonym"/> from a <see cref="double"/> value.

@@ -23,6 +23,7 @@ using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelera
 using System.Globalization;
 using System.Numerics;
 
+
 namespace GoogolSharp
 {
     /// <summary>
@@ -43,21 +44,9 @@ namespace GoogolSharp
     /// - i: OperandFloored-2 (3 bits)
     /// - f: Fraction (Q3.85)
     /// </remarks>
-    public readonly partial struct Arithmonym :
-        IEquatable<Arithmonym>,
-        IEqualityOperators<Arithmonym, Arithmonym, bool>,
-        IComparable,
-        IComparisonOperators<Arithmonym, Arithmonym, bool>,
-        IAdditionOperators<Arithmonym, Arithmonym, Arithmonym>,
-        IAdditiveIdentity<Arithmonym, Arithmonym>,
-        ISubtractionOperators<Arithmonym, Arithmonym, Arithmonym>,
-        IMultiplyOperators<Arithmonym, Arithmonym, Arithmonym>,
-        IMultiplicativeIdentity<Arithmonym, Arithmonym>,
-        IDivisionOperators<Arithmonym, Arithmonym, Arithmonym>,
-        IExponentialFunctions<Arithmonym>,
-        INumber<Arithmonym>,
-        INumberBase<Arithmonym>
+    public readonly partial struct Arithmonym : IGoogologyFloat<Arithmonym>, ITrigonometricFunctions<Arithmonym>, IHyperbolicFunctions<Arithmonym>
     {
         // See Modules/ for implementation.
+        // For some unincluded stuff like Float128PreciseTranscendentals look in Helpers/
     }
 }
