@@ -1,5 +1,7 @@
 - name: Introduction
   href: introduction.md
+- name: What is Googology?
+  href: what-is-googology.md
 - name: Getting Started
   href: getting-started.md
 - name: The History of Arithmonym
@@ -16,3 +18,5 @@
   href: internal-letter-system.md
 - name: Googological Functions
   href: googological-functions.md
+- name: GoogolDB
+  href: googoldb.md
