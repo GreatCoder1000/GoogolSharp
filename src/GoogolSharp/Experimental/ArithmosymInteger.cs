@@ -16,28 +16,17 @@
  *  along with GoogolSharp.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace GoogolSharp
+using QuadrupleLib;
+using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
+
+namespace GoogolSharp.Experimental
 {
-    partial struct Arithmonym
+    public class ArithmosymInteger(Int128 value) : Arithmosym
     {
-        public static Arithmonym Log(Arithmonym inputV, Arithmonym baseV)
-        {
-            return inputV._Log10 / baseV._Log10;
-        }
+        public readonly Int128 value = value;
+        internal override Arithmosym GetSimplifiedInternal() => this;
 
-        public static Arithmonym RootN(Arithmonym inputV, int rootV)
-        {
-            if (inputV < Zero && int.IsOddInteger(rootV))
-            {
-                return (inputV.Negated._Log10 / rootV)._Exp10.Negated;
-            }
-
-            return (inputV._Log10 / rootV)._Exp10;
-        }
-
-        public static Arithmonym Hypot(Arithmonym legA, Arithmonym legB)
-        {
-            return Sqrt(legA * legA + legB * legB);
-        }
+        internal override string ToInternalString() => value.ToString();
+        internal override Arithmonym EvaluateInternal() => (Arithmonym)(Float128)value;
     }
 }
