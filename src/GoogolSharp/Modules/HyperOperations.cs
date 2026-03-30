@@ -32,7 +32,11 @@ namespace GoogolSharp
             if (c == 4) return Tetration(a, b);
             throw new NotImplementedException("Not Implemented Yet.");
         }
+
         public static Arithmonym Tetration(Arithmonym baseV, Arithmonym heightV)
+            => Tetration(baseV, heightV, analytical: false);
+
+        public static Arithmonym Tetration(Arithmonym baseV, Arithmonym heightV, bool analytical)
         {
             ArgumentOutOfRangeException.ThrowIfLessThan(baseV, Zero);
             ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(heightV, NegativeTwo);
@@ -55,6 +59,7 @@ namespace GoogolSharp
 
             Arithmonym iterationCount = Floor(heightV);
             Arithmonym start = heightV - iterationCount;
+            if (analytical) start = InterestingCurve(start);
             return PowerTower(baseV, iterationCount, start);
         }
 
@@ -77,6 +82,16 @@ namespace GoogolSharp
                 result = newResult;
             }
             return result;
+        }
+
+        private static Arithmonym InterestingCurve(Arithmonym value)
+        {
+            ArgumentOutOfRangeException.ThrowIfLessThan(value, Zero);
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(value, One);
+            if (value == One) return One;
+
+            // Polynomial approximating 10^^(value - 1) analytically
+            return value * 1.45373 + value * value * -0.4618 + value * value * value * 0.0080691;
         }
 
         private Arithmonym AddToItsSlog(Arithmonym value)
@@ -106,7 +121,6 @@ namespace GoogolSharp
                 Float128 letterG;
                 if (value < Dekateraksys)
                     letterG = Float128PreciseTranscendentals.SafePow(5, value.Operand - 2) * 2;
-                // GG
                 else letterG = Float128HyperTranscendentals.LetterG(Float128PreciseTranscendentals.SafeExp10(Float128PreciseTranscendentals.SafePow(5, value.Operand - 3) * 2));
                 letterG--;
                 if (Float128.IsInfinity(letterG)) return value;
