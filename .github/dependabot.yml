@@ -1,0 +1,7 @@
+version: 2
+updates:
+  - package-ecosystem: "nuget" # Dependabot will find QuadrupleLib 😊
+    directory: "/src/GoogolSharp/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
