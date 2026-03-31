@@ -153,7 +153,7 @@ namespace GoogolSharp
 
         public static Arithmonym MinMagnitude(Arithmonym x, Arithmonym y)
         {
-            if (IsNaN(x) || IsNaN(y)) return Arithmonym.NaN;
+            if (IsNaN(x) || IsNaN(y)) return NaN;
 
             var ax = Abs(x);
             var ay = Abs(y);
@@ -168,7 +168,7 @@ namespace GoogolSharp
 
         public static Arithmonym MaxMagnitude(Arithmonym x, Arithmonym y)
         {
-            if (IsNaN(x) || IsNaN(y)) return Arithmonym.NaN;
+            if (IsNaN(x) || IsNaN(y)) return NaN;
 
             var ax = Abs(x);
             var ay = Abs(y);
@@ -253,14 +253,14 @@ namespace GoogolSharp
             // Handle NaN
             if (TFrom.IsNaN(value))
             {
-                result = Arithmonym.NaN; // or default if you don’t support NaN
+                result = NaN; // or default if you don’t support NaN
                 return true;
             }
 
             // Handle Infinity
             if (TFrom.IsInfinity(value))
             {
-                result = TFrom.IsNegative(value) ? Arithmonym.MinValue : Arithmonym.MaxValue;
+                result = TFrom.IsNegative(value) ? MinValue : MaxValue;
                 return true;
             }
 
@@ -268,10 +268,10 @@ namespace GoogolSharp
             if (typeof(TFrom) == typeof(double))
             {
                 double original = (double)(object)value;
-                if (original > (double)Arithmonym.MaxValue)
-                    result = Arithmonym.MaxValue;
-                else if (original < (double)Arithmonym.MinValue)
-                    result = Arithmonym.MinValue;
+                if (original > (double)MaxValue)
+                    result = MaxValue;
+                else if (original < (double)MinValue)
+                    result = MinValue;
                 else
                     result = new Arithmonym(original);
                 return true;
@@ -281,10 +281,10 @@ namespace GoogolSharp
             if (typeof(TFrom) == typeof(Float128))
             {
                 var original = (Float128)(object)value;
-                if (original > (Float128)Arithmonym.MaxValue)
-                    result = Arithmonym.MaxValue;
-                else if (original < (Float128)Arithmonym.MinValue)
-                    result = Arithmonym.MinValue;
+                if (original > (Float128)MaxValue)
+                    result = MaxValue;
+                else if (original < (Float128)MinValue)
+                    result = MinValue;
                 else
                     result = new Arithmonym(original);
                 return true;
@@ -315,7 +315,7 @@ namespace GoogolSharp
             // Handle NaN
             if (TFrom.IsNaN(value))
             {
-                result = Arithmonym.NaN; // or default if you don’t support NaN
+                result = NaN; // or default if you don’t support NaN
                 return true;
             }
 
@@ -330,10 +330,10 @@ namespace GoogolSharp
             if (typeof(TFrom) == typeof(double))
             {
                 double original = (double)(object)value;
-                if (original > (double)Arithmonym.MaxValue)
-                    result = Arithmonym.MaxValue; // truncate down
-                else if (original < (double)Arithmonym.MinValue)
-                    result = Arithmonym.MinValue; // truncate up
+                if (original > (double)MaxValue)
+                    result = MaxValue; // truncate down
+                else if (original < (double)MinValue)
+                    result = MinValue; // truncate up
                 else
                     result = new Arithmonym(original);
                 return true;
@@ -343,10 +343,10 @@ namespace GoogolSharp
             if (typeof(TFrom) == typeof(Float128))
             {
                 var original = (Float128)(object)value;
-                if (original > (Float128)Arithmonym.MaxValue)
-                    result = Arithmonym.MaxValue;
-                else if (original < (Float128)Arithmonym.MinValue)
-                    result = Arithmonym.MinValue;
+                if (original > (Float128)MaxValue)
+                    result = MaxValue;
+                else if (original < (Float128)MinValue)
+                    result = MinValue;
                 else
                     result = new Arithmonym(original);
                 return true;

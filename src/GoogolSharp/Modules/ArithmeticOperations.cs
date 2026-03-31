@@ -273,7 +273,7 @@ namespace GoogolSharp
 
         public static Arithmonym operator %(Arithmonym a, Arithmonym b)
         {
-            if (b == Arithmonym.Zero)
+            if (b == Zero)
                 throw new DivideByZeroException();
 
             // quotient = Floor(a / b)
