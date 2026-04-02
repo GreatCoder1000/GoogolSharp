@@ -24,7 +24,7 @@ namespace GoogolSharp.Helpers
     {
         public static Float128 SuperLog10(Float128 v)
         {
-            // slog(-1) = slog(0.1) - 1 = log(0.1) - 1
+            // 
 
             if (v < 0) return Float128PreciseTranscendentals.SafeExp10(v) - 2;
             if (v < 1) return v - 1;

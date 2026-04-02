@@ -73,7 +73,7 @@ namespace GoogolSharp
                 if (_IsNegative || IsZero(this) || IsNaN(this)) return NaN;
                 if (IsInfinity(this) && IsNegative(this)) return Zero;
                 if (_IsReciprocal) return Reciprocal._Log10.Negated;
-                if (Letter < 0x05)
+                if (Letter < LETTERCODE_E)
                 {
                     // small values: compute log10 via float128 then snap to nearby integer
                     Float128 log = Float128PreciseTranscendentals.SafeLog10(ToFloat128());
@@ -84,20 +84,20 @@ namespace GoogolSharp
                         log = rounded;
                     return new Arithmonym(log);
                 }
-                if (Letter == 0x05)
+                if (Letter == LETTERCODE_E)
                     return new Arithmonym(Operand);
-                if (Letter == 0x06)
+                if (Letter == LETTERCODE_F)
                 {
                     Float128 newOperand = Operand - Float128.One;
-                    byte newLetter = 0x06;
+                    byte newLetter = LETTERCODE_F;
                     if (newOperand < (Float128)2)
                     {
                         newOperand = Float128PreciseTranscendentals.SafeExp10(newOperand - Float128.One);
-                        newLetter = 0x05;
+                        newLetter = LETTERCODE_E;
                     }
                     return new Arithmonym(false, false, newLetter, EncodeOperand(newOperand));
                 }
-                if (Letter == 0x07)
+                if (Letter == LETTERCODE_J)
                 {
                     Float128 op = Float128HyperTranscendentals.LetterJToLetterG(Operand);
                     if (op < 3)
@@ -110,11 +110,11 @@ namespace GoogolSharp
                         letterFOperand--;
                         if (letterFOperand < 10)
                         {
-                            return new(false, false, 0x06, EncodeOperand(letterFOperand));
+                            return new(false, false, LETTERCODE_F, EncodeOperand(letterFOperand));
                         }
                         Float128 letterGOperand = Float128PreciseTranscendentals.SafeLog10(Float128HyperTranscendentals.SuperLog10(letterFOperand));
                         letterGOperand += 2;
-                        return new(false, false, 0x07, EncodeOperand(Float128HyperTranscendentals.LetterGToLetterJ(letterGOperand)));
+                        return new(false, false, LETTERCODE_J, EncodeOperand(Float128HyperTranscendentals.LetterGToLetterJ(letterGOperand)));
                     }
                     return this;
                 }
@@ -143,7 +143,7 @@ namespace GoogolSharp
                 }
                 if (IsNaN(this)) return NaN;
                 if (_IsReciprocal) return new(Float128PreciseTranscendentals.SafeExp10(ToFloat128()));
-                if (Letter < 0x05)
+                if (Letter < LETTERCODE_E)
                 {
                     // small value fast paths
                     Float128 x = ToFloat128();
@@ -200,17 +200,17 @@ namespace GoogolSharp
                     }
                     return candidate;
                 }
-                if (Letter == 0x05)
-                    return new(false, false, 0x06, EncodeOperand(2 + Float128PreciseTranscendentals.SafeLog10(Operand)));
-                if (Letter == 0x06)
+                if (Letter == LETTERCODE_E)
+                    return new(false, false, LETTERCODE_F, EncodeOperand(2 + Float128PreciseTranscendentals.SafeLog10(Operand)));
+                if (Letter == LETTERCODE_F)
                 {
                     if (Operand < 9)
                     {
-                        return new(false, false, 0x06, EncodeOperand(Operand + 1));
+                        return new(false, false, LETTERCODE_F, EncodeOperand(Operand + 1));
                     }
-                    return new(false, false, 0x07, EncodeOperand(Float128HyperTranscendentals.LetterGToLetterJ(2 + Float128PreciseTranscendentals.SafeLog10(Float128HyperTranscendentals.SuperLog10(Operand + 1)))));
+                    return new(false, false, LETTERCODE_J, EncodeOperand(Float128HyperTranscendentals.LetterGToLetterJ(2 + Float128PreciseTranscendentals.SafeLog10(Float128HyperTranscendentals.SuperLog10(Operand + 1)))));
                 }
-                if (Letter == 0x07)
+                if (Letter == LETTERCODE_J)
                 {
                     Float128 op = Float128HyperTranscendentals.LetterJToLetterG(Operand);
                     if (op < 3)
@@ -221,7 +221,7 @@ namespace GoogolSharp
                         letterFOperand++;
                         Float128 letterGOperand = Float128PreciseTranscendentals.SafeLog10(Float128HyperTranscendentals.SuperLog10(letterFOperand));
                         letterGOperand += 2;
-                        return new(false, false, 0x07, EncodeOperand(Float128HyperTranscendentals.LetterGToLetterJ(letterGOperand)));
+                        return new(false, false, LETTERCODE_J, EncodeOperand(Float128HyperTranscendentals.LetterGToLetterJ(letterGOperand)));
                     }
                     return this;
                 }

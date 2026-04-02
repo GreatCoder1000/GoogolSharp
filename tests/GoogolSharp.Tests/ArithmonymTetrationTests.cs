@@ -94,6 +94,16 @@ namespace GoogolSharp.Tests
             AssertArithmonym.NearlyEqual(expected, result, 1e-3);
         }
 
+        // Check that tetration grows extremely fast but still returns a finite number for small inputs
+        [Fact]
+        public void TestSixTetratedToSeven()
+        {
+            // 6 ↑↑ 7 = eeee2.069197e36305
+            Arithmonym expected = Arithmonym.Parse("eeee2.069197e36305", null);
+            var result = Arithmonym.Tetration(Arithmonym.Six, Arithmonym.Seven);
+            AssertArithmonym.NearlyEqual(expected, result, 1e-3);
+        }
+
         // Symmetry check: tetration is NOT commutative
         [Fact]
         public void TestTetrationIsNotCommutative()

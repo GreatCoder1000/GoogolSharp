@@ -19,6 +19,13 @@
 
 namespace GoogolSharp
 {
+    /// <summary>
+    /// Any tricky Arithmonym operation* can implement this. 
+    /// You can also create a custom one. 
+    /// It just may not have syntactic sugar.
+    /// 
+    /// * That don't have acceleration/precision boosts via internals.
+    /// </summary>
     internal interface IArithmonymOperation
     {
         public Arithmonym Operand { get; }
