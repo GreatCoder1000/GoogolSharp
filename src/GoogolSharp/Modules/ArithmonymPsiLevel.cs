@@ -38,6 +38,8 @@ namespace GoogolSharp
             if (n == 4) return Arithmonym.Tetralogue;
             if (n == 5) return Arithmonym.Pentalogue;
             if (n == 6) return Arithmonym.Dekalogue;
+
+            // TODO
             throw new NotImplementedException();
         }
     }
