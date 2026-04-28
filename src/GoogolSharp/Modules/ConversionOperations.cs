@@ -127,6 +127,26 @@ namespace GoogolSharp
             return (Arithmonym)(Float128)value;
         }
 
+        public static explicit operator int(Arithmonym value)
+        {
+            return (int)(Float128)value;
+        }
+
+        public static explicit operator uint(Arithmonym value)
+        {
+            return (uint)(Float128)value;
+        }
+
+        public static explicit operator long(Arithmonym value)
+        {
+            return (long)(Float128)value;
+        }
+
+        public static explicit operator ulong(Arithmonym value)
+        {
+            return (ulong)(Float128)value;
+        }
+
         /// <summary>
         /// Converts this instance to an unsigned 64-bit integer by converting to <see cref="Float128"/> then casting.
         /// </summary>

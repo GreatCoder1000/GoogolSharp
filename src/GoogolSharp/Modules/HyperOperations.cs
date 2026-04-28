@@ -16,9 +16,7 @@
  *  along with GoogolSharp.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Xml.XPath;
 using GoogolSharp.Helpers;
-using SQLitePCL;
 using Float128 = QuadrupleLib.Float128<QuadrupleLib.Accelerators.DefaultAccelerator>;
 
 namespace GoogolSharp
@@ -78,10 +76,11 @@ namespace GoogolSharp
             // Handle special base cases
             if (HandlePentationZeroBase(heightV, out var zeroBaseResult))
                 return zeroBaseResult;
-            
+
             if (baseV == One) return One;
             if (IsZero(heightV)) return One;
             if (heightV == One) return baseV;
+            if (heightV > Trialogue) return _Pentation10Linear(heightV);
 
             // Validate analytical mode
             if (analytical && Abs(baseV - Ten) > (Arithmonym)ANALYTICAL_BASE_TOLERANCE)
@@ -97,7 +96,7 @@ namespace GoogolSharp
 
             // Handle small positive heights via tetration recursion
             if (heightV < Ten)
-                return Tetration(baseV, Pentation(baseV, heightV - One, analytical));
+                return Tetration(baseV, Pentation(baseV, heightV - One, analytical), analytical);
 
             // General case: decompose and iterate via TetraTower
             Arithmonym integerHeight = Floor(heightV);
@@ -109,10 +108,10 @@ namespace GoogolSharp
         {
             result = default;
             ArgumentOutOfRangeException.ThrowIfLessThan(heightV, Zero);
-            
+
             if (!IsZero(heightV))
                 return false;
-                
+
             if (IsEvenInteger(heightV)) { result = One; return true; }
             if (IsOddInteger(heightV)) { result = Zero; return true; }
             throw new Exception("0^^^n : n ∈ R and n ∉ Z is undefined.");
@@ -137,6 +136,7 @@ namespace GoogolSharp
             if (baseV == One) return One;
             if (heightV == Zero) return One;
             if (heightV == One) return baseV;
+            if (heightV > Trialogue) return Tetration10Linear(heightV);
 
             // Attempt fast path computation for non-analytical tetration
             if (!analytical)
@@ -155,7 +155,7 @@ namespace GoogolSharp
             // General case: decompose height into integer + fractional parts
             Arithmonym integerHeight = Floor(heightV);
             Arithmonym fractionalHeight = heightV - integerHeight;
-            if (useAnalytical) 
+            if (useAnalytical)
                 fractionalHeight = InterestingCurve(fractionalHeight);
 
             return PowerTower(baseV, ++integerHeight, fractionalHeight);
@@ -176,24 +176,24 @@ namespace GoogolSharp
         private static bool TryTetrationFastPath(Arithmonym baseV, Arithmonym heightV, out Arithmonym result)
         {
             result = default;
-            
+
             if (heightV <= NegativeOne) { result = (heightV + Two)._Log10 / baseV._Log10; return true; }
             if (heightV <= Zero) { result = heightV + One; return true; }
             if (heightV <= One) { result = Pow(baseV, heightV); return true; }
             if (heightV <= Two) { result = Pow(baseV, Pow(baseV, heightV - One)); return true; }
             if (heightV <= Three) { result = Pow(baseV, Pow(baseV, Pow(baseV, heightV - Two))); return true; }
             if (heightV <= Four) { result = Pow(baseV, Pow(baseV, Pow(baseV, Pow(baseV, heightV - Three)))); return true; }
-            
+
             return false;
         }
 
         private static bool ValidateAnalyticalMode(Arithmonym baseV, bool requestAnalytical)
         {
             if (!requestAnalytical) return false;
-            
+
             if (Abs(baseV - Ten) <= (Arithmonym)ANALYTICAL_BASE_TOLERANCE) return true;
             if (Abs(baseV - E) <= (Arithmonym)ANALYTICAL_BASE_TOLERANCE) return true;
-            
+
             throw new Exception("Can't tetrate analytically for bases other than 10 or e");
         }
 
@@ -226,26 +226,29 @@ namespace GoogolSharp
         /// </summary>
         public static Arithmonym PowerTower(Arithmonym baseValue, Arithmonym iterationCount, Arithmonym startingValue)
         {
+            Console.WriteLine($"/////////////////started powertower process {baseValue},{iterationCount},{startingValue}");
             Arithmonym currentValue = startingValue;
-            
-            for (int iteration = 0; iteration < iterationCount; iteration++)
+            int intCount = (int)MinMagnitude(iterationCount, (Arithmonym)int.MaxValue);
+            for (int iteration = 0; iteration < intCount; iteration++)
             {
                 Arithmonym nextValue = Pow(baseValue, currentValue);
-
+                Console.WriteLine($"###########################----------------------------------------------------------------------------nextValue in power tower {nextValue}");
                 // Check if sequence has converged to a fixed point (newValue ≈ currentValue)
                 // This is valid for bases < e^e^-1 ≈ 1.444
                 if (HasConvergedToFixedPoint(nextValue, currentValue))
                     break;
 
                 // Check if the logarithm has converged, indicating we can use AddToItsSlog acceleration
-                if (ShouldUseAcceleration(nextValue, currentValue))
+                // For non-base-10: log_base(nextValue) should ≈ currentValue
+                // Only accelerate if the current value is already significant (> 100) to ensure depth
+                if (currentValue > (Arithmonym)100 && ShouldUseAcceleration(nextValue, currentValue, baseValue))
                 {
+                    Console.WriteLine($"accelerating,{currentValue.AddToItsSlog(iterationCount - iteration, false)}");
                     return currentValue.AddToItsSlog(iterationCount - iteration, false);
                 }
-                
+
                 currentValue = nextValue;
             }
-            
             return currentValue;
         }
 
@@ -255,13 +258,15 @@ namespace GoogolSharp
             return Abs(nextValue - currentValue) < CONVERGENCE_TOLERANCE;
         }
 
-        private static bool ShouldUseAcceleration(Arithmonym nextValue, Arithmonym currentValue)
+        private static bool ShouldUseAcceleration(Arithmonym nextValue, Arithmonym currentValue, Arithmonym baseValue)
         {
-            // Acceleration technique: if log10 has converged, use AddToItsSlog
-            bool logConverged = Abs(nextValue._Log10 - currentValue) < CONVERGENCE_TOLERANCE;
+            // Acceleration technique: if log_base(nextValue) ≈ currentValue, use AddToItsSlog
+            // log_base(x) = log10(x) / log10(base), so: log10(nextValue) ≈ currentValue * log10(base)
+            Arithmonym expectedLog = currentValue * baseValue._Log10;
+            bool logConverged = Abs(nextValue._Log10 - expectedLog) < CONVERGENCE_TOLERANCE;
             bool nextIsNotOne = nextValue != One;
             bool currentIsNotZero = currentValue != Zero;
-            
+
             return logConverged && nextIsNotOne && currentIsNotZero;
         }
 
@@ -345,21 +350,21 @@ namespace GoogolSharp
 
             // Polynomial coefficients (degree 12 → degree 0)
             Arithmonym[] c =
-            {
-        -1.58961365e+04,
-         1.00218925e+05,
-        -2.76624816e+05,
-         4.38599788e+05,
-        -4.40413666e+05,
-         2.91056375e+05,
-        -1.27363047e+05,
-         3.61665463e+04,
-        -6.34231255e+03,
-         6.29537046e+02,
-        -3.30294377e+01,
-         2.83793626e+00,
-        -2.00790645e-03
-    };
+            [
+                -1.58961365e+04,
+                1.00218925e+05,
+                -2.76624816e+05,
+                4.38599788e+05,
+                -4.40413666e+05,
+                2.91056375e+05,
+                -1.27363047e+05,
+                3.61665463e+04,
+                -6.34231255e+03,
+                6.29537046e+02,
+                -3.30294377e+01,
+                2.83793626e+00,
+                -2.00790645e-03
+            ];
 
             // Derivative coefficients
             Arithmonym[] d = new Arithmonym[c.Length - 1];
@@ -413,7 +418,8 @@ namespace GoogolSharp
             Arithmonym resultSlog = Slog10(this, analytical) + integersToAdd;
             if (analytical)
                 resultSlog = InverseAnalyticify(resultSlog);
-            
+
+            Console.WriteLine($"$$$$$$$$$$$$$$$$$$$$$$$$$$addtoitsslog returning {Tetration10Linear(resultSlog)} inputted {this}.AddToItsSlog({integersToAdd}) ResultSlog: {resultSlog}");
             return Tetration10Linear(resultSlog);
         }
 
@@ -441,7 +447,7 @@ namespace GoogolSharp
         }
 
         public static Arithmonym Slog10(Arithmonym value, bool analytical)
-        => analytical ? Analyticify(Slog10(value)) : Slog10(value);
+        => analytical ? Analyticify(Slog10Linear(value)) : Slog10Linear(value);
 
         /// <summary>
         /// Returns the <paramref name="n"/>-hyperlogarithm of <paramref name="value"/>
@@ -455,7 +461,7 @@ namespace GoogolSharp
             ArgumentOutOfRangeException.ThrowIfLessThan(n, 1);
             ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(n, 9);
             if (n == 1) return value._Log10;
-            if (n == 2) return Slog10(value);
+            if (n == 2) return Slog10Linear(value);
             if (value.Letter == LETTERCODE_J && (n == (value.OperandFloored + 1)))
                 return (Arithmonym)Float128PreciseTranscendentals.SafePow(5, value.Operand + 1 - n) * 2;
             if (value.Letter == LETTERCODE_J && (n == value.Operand))
@@ -472,7 +478,7 @@ namespace GoogolSharp
                 if (value <= 10) return value._Log10;
 
                 // This solution works. So please, don't question it. Remember we assume value is a small number here.
-                Arithmonym result = Slog10(value);
+                Arithmonym result = Slog10Linear(value);
                 for (int i = 2; i < n; i++)
                     result = One + result._Log10;
                 return result;
@@ -537,24 +543,6 @@ namespace GoogolSharp
             throw new NotImplementedException();
         }
 
-        public static Arithmonym Slog10(Arithmonym value)
-        {
-            // Small values: use QuadrupleLib's SuperLog10 for high precision
-            if (value < TenBillion)
-                return new(Float128HyperTranscendentals.SuperLog10(value));
-
-            // F-letter range: value is 10^^x where x is representable as the operand
-            if (value < Dekalogue)
-                return new(value.Operand);
-
-            // G/J-letter range: convert through intermediate representations
-            if (value < Triapetaksys)
-                return ComputeSlog10ForLargeValues(value);
-
-            // Unreachable: value too large to compute further
-            return value;
-        }
-
         private static Arithmonym ComputeSlog10ForLargeValues(Arithmonym value)
         {
             // Extract the letter-G representation from the F-letter value
@@ -576,19 +564,19 @@ namespace GoogolSharp
 
             // Adjust for the conversion formula
             letterGValue--;
-            
+
             if (Float128.IsInfinity(letterGValue))
                 return value;
-            
+
             // Recursively convert back to tetration form
             if (letterGValue < 2)
                 return Tetration10Linear((Arithmonym)Float128PreciseTranscendentals.SafeExp10(letterGValue - 1));
 
             // Return as J-letter encoding
             return new(
-                false, 
-                false, 
-                LETTERCODE_J, 
+                false,
+                false,
+                LETTERCODE_J,
                 EncodeOperand(2 + (Float128PreciseTranscendentals.SafeLog(letterGValue / 2) / Float128PreciseTranscendentals.SafeLog(5)))
             );
         }
@@ -659,18 +647,48 @@ namespace GoogolSharp
             // Unreachable: exponent too large
             return exponent;
         }
-
-        private static Arithmonym ConvertToJLetterViaPaths(Arithmonym exponent)
+        private static Arithmonym _Pentation10Linear(Arithmonym exponent)
         {
-            // Convert through: F-letter (exponent) -> G-representation -> J-letter
-            Arithmonym asG = LetterFToLetterG(exponent);
-            Arithmonym asJ = LetterGToLetterJ(asG);
+            ArgumentOutOfRangeException.ThrowIfLessThan(exponent, Zero);
+            // 10^^^1.5 = 10^^10^^0.5
+            if (exponent < One)
+                return exponent._Exp10;
             
+            if (exponent < Two)
+                return Tetration10Linear((exponent - 1)._Exp10);
+
+            if (exponent < Ten)
+                return new(false, false, LETTERCODE_J, EncodeOperand(LetterGToLetterJ(exponent)));
+
+            return ConvertToJLetterViaPaths(exponent, 1);
+        }
+
+        private static Arithmonym ConvertToJLetterViaPaths(Arithmonym asF, int plus = 0)
+        {
+            ArgumentOutOfRangeException.ThrowIfLessThan(asF, Ten);
+            // Convert through: F-letter (exponent) -> G-representation -> J-letter  operand
+            Arithmonym asG = LetterFToLetterG(asF);
+            Console.WriteLine($"$$$$$$$$$$asG={asG}, Letter=0x{asG.Letter:X2}");
+
+            // Extract the J-letter operand value (should be in [2,10) range)
+            // by computing it directly without going through Arithmonym constructor
+            Float128 jOperand;
+            Float128 gVal = asG.ToFloat128();
+
+            if (asG <= Two)
+                jOperand = gVal;  // Small G values map directly
+            else if (asG < Ten)
+                jOperand = 2 + (Float128PreciseTranscendentals.SafeLog2(gVal / 2) / Float128PreciseTranscendentals.SafeLog2(5));
+            else
+                jOperand = Float128HyperTranscendentals.LetterGToLetterJ(gVal);
+
+            Console.WriteLine($"$$$$$$$$$$jOperand={jOperand}");
+
             return new(
                 false,
                 false,
                 LETTERCODE_J,
-                EncodeOperand(asJ.ToFloat128())
+                EncodeOperand(jOperand + plus)
             );
         }
 
@@ -678,7 +696,7 @@ namespace GoogolSharp
         {
             // For exponents >= 10^10^10, use interval arithmetic to constrain letter-H
             Float128 letterHValue = Float128PreciseTranscendentals.SafePow(5, exponent.Operand - 3) * 2;
-            
+
             if (letterHValue < 2)
                 letterHValue = 2;
             if (letterHValue >= 3)
@@ -714,18 +732,18 @@ namespace GoogolSharp
         private static Arithmonym LetterFToLetterG(Arithmonym exponent)
         {
             ArgumentOutOfRangeException.ThrowIfLessThan(exponent, Zero);
-            ArgumentOutOfRangeException.ThrowIfGreaterThan(exponent, Dekalogue);
-            
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(exponent, Dekalogue);
+
             if (exponent < One)
                 return exponent;  // 10^x -> G representation is still x for small x
-            
+
             if (exponent < Ten)
                 return exponent._Log10 + 1;  // 10^^(10^a) = 10^^^(Log10(10^a)+1) = 10^^^(a+1)
-            
-            // Large exponents: use logarithm chain
+
+            // 10^^(10^10^a) where a E [0,1) -> 10^^10^^(1+a) -> 10^^10^^10^^log(1+a) -> 10^^^(2+log(1+a))
             if (exponent < TenBillion)
-                return ((exponent._Log10._Log10 + One)._Log10 + Two);
-            
+                return (exponent._Log10._Log10 + One)._Log10 + Two;
+
             // Very large exponents: directly compute from F-letter operand
             return new Arithmonym(Float128PreciseTranscendentals.SafeLog10(exponent.Operand)) + Two;
         }
@@ -737,32 +755,34 @@ namespace GoogolSharp
         private static Arithmonym LetterGToLetterJ(Arithmonym gRepresentation)
         {
             ArgumentOutOfRangeException.ThrowIfGreaterThan(gRepresentation, Ten);
-            
+
             if (gRepresentation <= Two)
                 return gRepresentation;  // No conversion needed for small G values
             
-            // Logarithmic conversion formula for larger G values
-            return (gRepresentation / Two)._Log10 / Five._Log10;
+            
+            Float128 g = gRepresentation.ToFloat128();
+            Float128 j = 2 + (Float128PreciseTranscendentals.SafeLog2(g / 2) / Float128PreciseTranscendentals.SafeLog2(5));
+            return new(j);
         }
 
         /// <summary>
-        /// Friedman's TREE function. Notable number: TREE(3)
+        /// Friedman's TREE function (lower bounds). Notable number: TREE(3)
         /// </summary>        
         public static Arithmonym Tree(Arithmonym x) => new ArithmonymTree(x).Evaluate();
 
 
         /// <summary>
-        /// Simple SubCubic Graph function. Notable number: SSCG(3)
+        /// Simple SubCubic Graph function (lower bounds). Notable number: SSCG(3)
         /// </summary>
         public static Arithmonym Sscg(Arithmonym x) => new ArithmonymSscg(x).Evaluate();
 
         /// <summary>
-        /// SubCubic Graph function. Notable number: SCG(13)
+        /// SubCubic Graph function (lower bounds). Notable number: SCG(13)
         /// </summary>
         public static Arithmonym Scg(Arithmonym x) => new ArithmonymScg(x).Evaluate();
 
         /// <summary>
-        /// Busy Beaver function (Sigma, not the frantic frog)
+        /// Busy Beaver function based on currently known lower bounds (Sigma, not the frantic frog)
         /// 
         /// Learn more: https://googology.fandom.com/wiki/Busy_beaver_function
         /// </summary>

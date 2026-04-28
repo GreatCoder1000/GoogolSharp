@@ -88,7 +88,24 @@ namespace GoogolSharp
         /// <summary>
         /// Returns <paramref name="left"/> exponentiated to <paramref name="right"/>
         /// </summary>
-        public static Arithmonym Pow(Arithmonym left, Arithmonym right) => (left._Log10 * right)._Exp10;
+        public static Arithmonym Pow(Arithmonym left, Arithmonym right)
+        {
+            // Special case: integer exponent 0-20 - use repeated multiplication instead of log route
+            // This avoids rounding errors for cases like Pow(2, 2) which should be exactly 4
+            if (IsInteger(right) && right >= Zero && right < (Arithmonym)20)
+            {
+                int exponent = right.ToInt();
+                if (exponent == 0) return One;
+                
+                Arithmonym result = left;
+                for (int i = 1; i < exponent; i++)
+                    result = result * left;
+                return result;
+            }
+            
+            // General case: use logarithms
+            return (left._Log10 * right)._Exp10;
+        }
 
         /// <summary>
         /// Returns the square root of <paramref name="value"/>

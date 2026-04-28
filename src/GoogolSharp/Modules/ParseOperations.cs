@@ -33,7 +33,7 @@ namespace GoogolSharp
 
             // Direct Float128 parse ONLY IF NO SCIENTIFIC
             // Old bug: eeee5e12345 -> 5 in Float128 parsing! Causing a big bug.
-            if (!s.Contains("10^") && !s.Contains('e') && !s.Contains('E'))
+            if (!s.Contains("10^") && !s.Contains('e') && !s.Contains('E') && !s.Contains('F'))
                 if (Float128.TryParse(s, null, out Float128 floatValue))
                     return new Arithmonym(floatValue);
 

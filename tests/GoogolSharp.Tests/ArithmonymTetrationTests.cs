@@ -104,6 +104,33 @@ namespace GoogolSharp.Tests
             AssertArithmonym.NearlyEqual(expected, result, 1e-3);
         }
 
+        [Fact]
+        public void TestFiveTetratedToFour()
+        {
+            // 5 ↑↑ 4 = e1.3357404839e2184
+            Arithmonym expected = Arithmonym.Parse("e1.3357404839e2184", null);
+            var result = Arithmonym.Tetration(Arithmonym.Five, Arithmonym.Four);
+            AssertArithmonym.NearlyEqual(expected, result, 1e-3);
+        }
+
+        [Fact]
+        public void TestEightTetratedToFour()
+        {
+            // 8 ↑↑ 4 = e5.431651e15151335
+            Arithmonym expected = Arithmonym.Parse("e5.431651e15151335", null);
+            var result = Arithmonym.Tetration(Arithmonym.Eight, Arithmonym.Four);
+            AssertArithmonym.NearlyEqual(expected, result, 1e-3);
+        }
+
+        [Fact]
+        public void TestSevenTetratedToEleven()
+        {
+            // 7 ↑↑ 11 = eeeeeeee3.17741949e695974
+            Arithmonym expected = Arithmonym.Parse("eeeeeeee3.17741949e695974", null);
+            var result = Arithmonym.Tetration(Arithmonym.Seven, Arithmonym.Eleven);
+            AssertArithmonym.NearlyEqual(expected, result, 1e-3);
+        }
+
         // Symmetry check: tetration is NOT commutative
         [Fact]
         public void TestTetrationIsNotCommutative()

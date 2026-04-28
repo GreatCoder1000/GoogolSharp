@@ -71,12 +71,21 @@ namespace GoogolSharp.Tests
         [Fact]
         public void TestThreePentatedToThree()
         {
-            // 3 ↑↑↑ 3 approimation
+            // 3 ↑↑↑ 3 approximation
             Arithmonym expected = Arithmonym.Parse("F7625597484986.041", null);
             var result = Arithmonym.Pentation(Arithmonym.Three, Arithmonym.Three);
             AssertArithmonym.NearlyEqual(expected, result, 1e-3);
         }
 
+        [Fact]
+        public void TestFourPentatedToThree()
+        {
+            // 4 ↑↑↑ 3 approximation
+            Arithmonym expected = Arithmonym.Parse("Fe8.07230472603e153", null);
+            var result = Arithmonym.Pentation(Arithmonym.Four, Arithmonym.Three);
+            AssertArithmonym.NearlyEqual(expected, result, 1e-3);
+        }
+        
         // Symmetry check: tetration is NOT commutative
         [Fact]
         public void TestTetrationIsNotCommutative()
