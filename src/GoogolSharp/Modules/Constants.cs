@@ -23,6 +23,7 @@ namespace GoogolSharp
 {
     partial struct Arithmonym
     {
+        #region Numerical Constants
         /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents a quiet Not-a-Number (QNaN).
         /// </summary>
@@ -176,49 +177,49 @@ namespace GoogolSharp
         /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents the value 100.
         /// </summary>
-        public static Arithmonym Hundred => new(isNegative: false, _IsReciprocal: false, 0x05, 0);
+        public static Arithmonym Hundred => new(isNegative: false, _IsReciprocal: false, LETTERCODE_E, 0);
 
         /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents the value 10^10.
         /// 
         /// The name Dialogue was also suggested for this constant, but it is a bit ambiguous and used in other places too.
         /// </summary>
-        public static Arithmonym TenBillion => new(isNegative: false, _IsReciprocal: false, 0x06, 0);
+        public static Arithmonym TenBillion => new(isNegative: false, _IsReciprocal: false, LETTERCODE_F, 0);
 
         /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents the value 10^(10^10).
         /// </summary>
-        public static Arithmonym Trialogue => new(isNegative: false, _IsReciprocal: false, 0x06, EncodeOperand((Float128)3));
+        public static Arithmonym Trialogue => new(isNegative: false, _IsReciprocal: false, LETTERCODE_F, EncodeOperand((Float128)3));
 
         /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents the value 10^(10^(10^10)).
         /// </summary>
-        public static Arithmonym Tetralogue => new(isNegative: false, _IsReciprocal: false, 0x06, EncodeOperand((Float128)4));
+        public static Arithmonym Tetralogue => new(isNegative: false, _IsReciprocal: false, LETTERCODE_F, EncodeOperand((Float128)4));
 
         /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents the value 10^(10^(10^(10^10))).
         /// </summary>
-        public static Arithmonym Pentalogue => new(isNegative: false, _IsReciprocal: false, 0x06, EncodeOperand((Float128)5));
+        public static Arithmonym Pentalogue => new(isNegative: false, _IsReciprocal: false, LETTERCODE_F, EncodeOperand((Float128)5));
 
         /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents the value 10^(10^(10^(10^(10^(10^(10^(10^(10^10)))))))).
         /// </summary>
-        public static Arithmonym Dekalogue => new(isNegative: false, _IsReciprocal: false, 0x07, 0);
+        public static Arithmonym Dekalogue => new(isNegative: false, _IsReciprocal: false, LETTERCODE_J, 0);
 
         /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents the value 10^^^3
         /// </summary>
-        public static Arithmonym Triateraksys => new(isNegative: false, _IsReciprocal: false, 0x07, EncodeOperand(2 + Float128PreciseTranscendentals.SafeLog2(1.5) / Float128PreciseTranscendentals.SafeLog2(5)));
+        public static Arithmonym Triateraksys => new(isNegative: false, _IsReciprocal: false, LETTERCODE_J, EncodeOperand(2 + Float128PreciseTranscendentals.SafeLog2(1.5) / Float128PreciseTranscendentals.SafeLog2(5)));
 
         /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents the value 10^^^10 (or J3)
         /// </summary>
-        public static Arithmonym Dekateraksys => new(isNegative: false, _IsReciprocal: false, 0x07, EncodeOperand(3));
+        public static Arithmonym Dekateraksys => new(isNegative: false, _IsReciprocal: false, LETTERCODE_J, EncodeOperand(3));
 
         /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents the value 10^^^^3
         /// </summary>
-        public static Arithmonym Triapetaksys => new(isNegative: false, _IsReciprocal: false, 0x07, EncodeOperand(3 + Float128PreciseTranscendentals.SafeLog2(1.5) / Float128PreciseTranscendentals.SafeLog2(5)));
+        public static Arithmonym Triapetaksys => new(isNegative: false, _IsReciprocal: false, LETTERCODE_J, EncodeOperand(3 + Float128PreciseTranscendentals.SafeLog2(1.5) / Float128PreciseTranscendentals.SafeLog2(5)));
 
         /// <summary>
         /// A constant <see cref="Arithmonym"/> that represents SCG(2)'s lower bound ~ T2
@@ -281,5 +282,12 @@ namespace GoogolSharp
         /// See also: <seealso cref="MaxValue"/>, <seealso cref="MinValue"/>
         /// </summary>
         public static Arithmonym Epsilon => MaxValue.Reciprocal;
+        #endregion
+
+        #region Internal Constants (modifying will cause serious issues, don't modify!!)
+        public const byte LETTERCODE_E = 0x05;
+        public const byte LETTERCODE_F = 0x06;
+        public const byte LETTERCODE_J = 0x07;
+        #endregion
     }
 }

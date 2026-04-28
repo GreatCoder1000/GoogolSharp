@@ -228,7 +228,7 @@ namespace GoogolSharp
                         return (isReciprocal ? (1 / t) : t).ToString("R", null);
                     }
 
-                case 0x05:
+                case LETTERCODE_E:
                     {
                         Float128 t = isReciprocal
                             ? Float128PreciseTranscendentals.SafeExp10(-value)
@@ -242,12 +242,12 @@ namespace GoogolSharp
                         return t.ToString("R", null);
                     }
 
-                case 0x06:
+                case LETTERCODE_F:
                     return commonString
                         ? ArithmonymFormattingUtils.FormatArithmonymFromLetterF(value, isReciprocal, "*10^", false, abbreviate)
                         : ArithmonymFormattingUtils.FormatArithmonymFromLetterF(value, isReciprocal, "E", true, abbreviate);
 
-                case 0x07:
+                case LETTERCODE_J:
                     {
                         if (value < 3)
                         {

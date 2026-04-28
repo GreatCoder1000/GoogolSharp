@@ -31,9 +31,11 @@ namespace GoogolSharp
         {
             ArgumentNullException.ThrowIfNull(s);
 
-            // Direct Float128 parse
-            if (Float128.TryParse(s, null, out Float128 floatValue))
-                return new Arithmonym(floatValue);
+            // Direct Float128 parse ONLY IF NO SCIENTIFIC
+            // Old bug: eeee5e12345 -> 5 in Float128 parsing! Causing a big bug.
+            if (!s.Contains("10^") && !s.Contains('e') && !s.Contains('E') && !s.Contains('F'))
+                if (Float128.TryParse(s, null, out Float128 floatValue))
+                    return new Arithmonym(floatValue);
 
             // Leading sign handling
             if (s.StartsWith('-'))
@@ -81,10 +83,11 @@ namespace GoogolSharp
         {
             // Normalize: replace *10^ with e, remove parentheses
             string normalized = s.Replace("*10^", "e")
+                                 .Replace("10^", "e")
                                  .Replace("(", "")
                                  .Replace(")", "");
 
-            string[] parts = normalized.Split(['e', 'E']);
+            string[] parts = normalized.ToLower().Split('e');
 
             if (parts.Length == 2)
             {
@@ -93,24 +96,28 @@ namespace GoogolSharp
 
                 bool reciprocal = false;
 
-                // Convert to "F‑notation" internal representation
-                Float128 letterF = exponent + Float128PreciseTranscendentals.SafeLog10(significand);
+                // Right now letterF is misleading, it is actually storing letter E!
+                Float128 letterE = exponent + Float128PreciseTranscendentals.SafeLog10(significand);
 
-                if (letterF < 0)
+                if (letterE < 0)
                 {
-                    letterF = -letterF;
+                    letterE = -letterE;
                     reciprocal = true;
                 }
 
-                if (letterF < 10)
+                if (letterE < 10)
                 {
-                    result = new Arithmonym(letterF)._Exp10;
+                    result = new Arithmonym(letterE)._Exp10;
                     return true;
                 }
 
-                letterF = 1 + Float128HyperTranscendentals.SuperLog10(letterF);
+                // and NOW we calculate letter F.
 
-                result = new Arithmonym(false, reciprocal, 0x06, EncodeOperand(letterF));
+                // We do a +1 because letterE = log(actual value)
+                Float128 letterF = 1 + Float128HyperTranscendentals.SuperLog10(letterE);
+
+                // No Exp10 needed here. Because we already did it in letterF
+                result = new Arithmonym(false, reciprocal, LETTERCODE_F, EncodeOperand(letterF));
                 return true;
             }
 

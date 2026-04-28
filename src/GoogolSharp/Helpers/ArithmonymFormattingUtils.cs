@@ -50,9 +50,9 @@ namespace GoogolSharp.Helpers
                               showExponentSignIfPositive ? "+" : "";
 
                 if (placeholder == "*10^")
-                    return $"10^({sign}{FormatArithmonymFromLetterF(letterF - 1, false, placeholder, showExponentSignIfPositive)})";
+                    return $"10^({sign}{FormatArithmonymFromLetterF(letterF - 1, false, placeholder, showExponentSignIfPositive, abbreviate)})";
 
-                return $"{placeholder}{sign}{FormatArithmonymFromLetterF(letterF - 1, false, placeholder, showExponentSignIfPositive)}";
+                return $"{placeholder}{sign}{FormatArithmonymFromLetterF(letterF - 1, false, placeholder, showExponentSignIfPositive, abbreviate)}";
             }
 
             if (letterF < 100000000000000000000.0)

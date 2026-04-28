@@ -41,7 +41,7 @@ namespace GoogolSharp
             // the known inaccuracies of SafeExp10.  If Operand is very near an
             // integer k, and Letter==5, just compute 10^k exactly using integer
             // arithmetic rather than calling the transcendental.
-            if (!IsInfinity(this) && !IsNaN(this) && Letter == 0x05 && !_IsReciprocal)
+            if (!IsInfinity(this) && !IsNaN(this) && Letter == LETTERCODE_E && !_IsReciprocal)
             {
                 Float128 op = Operand;
                 Float128 rounded = Float128.Round(op);
@@ -60,7 +60,7 @@ namespace GoogolSharp
             }
 
             // TODO!! Lazy way to make tests pass.
-            if (Operand == 2 && Letter == 0x06) return (Float128)10000000000L;
+            if (Operand == 2 && Letter == LETTERCODE_F) return (Float128)10000000000L;
 
             var output = Letter switch
             {
@@ -76,9 +76,9 @@ namespace GoogolSharp
                 0x04 => _IsReciprocal
                                         ? 1 / (Operand * 10)
                                         : Operand * 10,
-                0x05 => _IsReciprocal
+                LETTERCODE_E => _IsReciprocal
                                         ? Float128PreciseTranscendentals.SafeExp10(-Operand) : Float128PreciseTranscendentals.SafeExp10(Operand),
-                0x06 => _IsReciprocal
+                LETTERCODE_F => _IsReciprocal
                                         ? 1 / Float128PreciseTranscendentals.SafeExp10(Float128PreciseTranscendentals.SafeExp10(Float128PreciseTranscendentals.SafeExp10(Operand - 2)))
                                         : Float128PreciseTranscendentals.SafeExp10(Float128PreciseTranscendentals.SafeExp10(Float128PreciseTranscendentals.SafeExp10(Operand - 2))),
                 _ => _IsReciprocal ? Float128.Zero : Float128.PositiveInfinity,
@@ -125,6 +125,26 @@ namespace GoogolSharp
         public static explicit operator Arithmonym(ulong value)
         {
             return (Arithmonym)(Float128)value;
+        }
+
+        public static explicit operator int(Arithmonym value)
+        {
+            return (int)(Float128)value;
+        }
+
+        public static explicit operator uint(Arithmonym value)
+        {
+            return (uint)(Float128)value;
+        }
+
+        public static explicit operator long(Arithmonym value)
+        {
+            return (long)(Float128)value;
+        }
+
+        public static explicit operator ulong(Arithmonym value)
+        {
+            return (ulong)(Float128)value;
         }
 
         /// <summary>
